@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0d15"/><stop offset="1" stop-color="#26283a"/></linearGradient>
+    <linearGradient id="cool" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8d8ca0"/><stop offset=".5" stop-color="#5d6573"/><stop offset="1" stop-color="#2a2d36"/></linearGradient>
+    </defs>
+<rect width="1600" height="900" fill="url(#cool)"/>
+<rect x="90" y="90" width="1420" height="730" fill="#a3a5a8" opacity=".42"/>
+<rect x="1010" y="120" width="360" height="440" fill="#596b81" stroke="#5b5962" stroke-width="24"/>
+<g stroke="#292c38" stroke-width="13"><path d="M1090 120V560M1190 120V560M1290 120V560"/><path d="M1010 270H1370M1010 420H1370"/></g>
+<rect x="230" y="520" width="600" height="210" rx="20" fill="#706456"/>
+<path d="M230 730H880" stroke="#403832" stroke-width="30"/>
+<rect x="620" y="270" width="260" height="200" fill="#30333f" stroke="#83715e" stroke-width="14"/>
+<path d="M0 760H1600V900H0Z" fill="#3b3b42"/>
+<path d="M1000 120 L540 900 H1180Z" fill="#dce0d7" opacity=".12"/>
+<g opacity=".18" filter="url(#paper)"><rect width="1600" height="900" fill="#fff"/></g>
+</svg>

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#11121a">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:title" content="第四の寝室">
+  <meta property="og:description" content="実在する名画とその作者をめぐる、死に戻り型美術史サスペンス。">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="description" content="実在する名画とその作者をめぐる、死に戻り型美術史サスペンス『第四の寝室』ブラウザゲーム。">
+  <title>第四の寝室 — Production 1.7</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <noscript>このゲームにはJavaScriptが必要です。</noscript>
+  <main id="app" aria-live="polite">
+    <section id="title-screen" class="screen title-screen">
+      <div class="title-art" aria-hidden="true">
+        <div class="paint-frame"><img src="assets/fourth-bedroom-base.webp" alt=""></div>
+        <span class="title-chair chair-a"></span><span class="title-chair chair-b"></span><span class="title-chair chair-c"></span>
+      </div>
+      <div class="title-copy">
+        <p class="eyebrow">THE FOURTH BEDROOM</p>
+        <h1>第四の寝室</h1>
+        <p class="subtitle">夜明けまで、彼はまだ画家だった。</p>
+        <p class="title-intro">一枚の「第四の《寝室》」を調べる夜。死によって失った未来の記憶だけを頼りに、現在に残る証拠から真相を組み直す。</p>
+        <div class="title-actions">
+          <button id="new-game" class="primary">はじめから</button>
+          <button id="continue-game">つづきから</button>
+          <button id="title-load">記録を選ぶ</button>
+        </div>
+        <div class="title-sub-actions">
+          <button id="title-settings" class="text-button">設定</button>
+          <button id="title-credits" class="text-button">作品情報</button>
+        </div>
+        <p class="version">BALANCE / QA · VERSION 1.7.0 · ADAPTIVE ASSIST / LOCAL PLAYTEST METRICS</p>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen game-screen hidden">
+      <div id="scene" class="scene bg-train" data-tone="warm">
+        <div class="scene-layer scene-back"></div>
+        <div class="scene-layer scene-mid"></div>
+        <div class="scene-layer scene-front"></div>
+        <div id="painting-stage" class="painting-stage hidden" aria-label="調査対象の絵画">
+          <img id="painting-image" src="assets/fourth-bedroom-base.webp" alt="フィンセント・ファン・ゴッホの寝室をもとにした第四版候補">
+          <div class="fourth-overlay night-window"></div>
+          <div class="fourth-overlay third-chair"><span></span></div>
+          <div class="fourth-overlay mystery-portrait"></div>
+          <div class="fourth-overlay keyhole"></div>
+        </div>
+        <div id="character-layer" class="character-layer" aria-hidden="true"></div>
+        <div id="hotspot-layer" class="hotspot-layer"></div>
+        <div id="smoke-layer" class="smoke-layer"></div>
+        <div class="vignette"></div>
+      </div>
+
+      <div id="chapter-card" class="chapter-card hidden" aria-hidden="true">
+        <p id="chapter-card-kicker" class="eyebrow">CHAPTER</p>
+        <h2 id="chapter-card-title"></h2>
+        <p id="chapter-card-subtitle"></p>
+      </div>
+      <div id="place-card" class="place-card hidden" aria-live="polite">
+        <strong id="place-card-location"></strong>
+        <span id="place-card-time"></span>
+      </div>
+      <div id="beat-card" class="beat-card hidden" aria-live="polite">
+        <span>SCENE</span>
+        <strong id="beat-card-text"></strong>
+      </div>
+
+      <header class="hud">
+        <div class="hud-location">
+          <p id="chapter-label">PROLOGUE</p>
+          <p><span id="location-label">—</span><span class="dot">·</span><span id="time-label">—</span></p>
+          <div class="story-progress" aria-hidden="true"><span id="story-progress-fill"></span></div>
+        </div>
+        <div class="hud-right">
+          <span id="loop-label" class="loop-label">記録 01</span>
+          <span id="progress-label" class="progress-label">0%</span>
+          <button id="auto-toggle" class="mode-button" aria-pressed="false">AUTO</button>
+          <button id="skip-toggle" class="mode-button" aria-pressed="false">SKIP</button>
+          <button id="ui-toggle" class="mode-button" aria-label="UIを隠す">UI</button>
+          <button id="audio-toggle" aria-label="音声切替">音</button>
+          <button id="menu-button" aria-label="メニュー">≡</button>
+        </div>
+      </header>
+
+      <section id="dialogue-panel" class="dialogue-panel" tabindex="0">
+        <div class="speaker-row">
+          <span id="speaker-name" class="speaker-name"></span>
+          <span id="emotion-label" class="emotion-label"></span>
+        </div>
+        <p id="dialogue-text" class="dialogue-text"></p>
+        <div class="dialogue-status">
+          <span id="read-status"></span>
+          <span class="advance-mark" aria-hidden="true">▾</span>
+        </div>
+      </section>
+
+      <section id="choice-panel" class="choice-panel hidden" aria-label="選択肢"></section>
+
+      <section id="investigation-panel" class="investigation-panel hidden">
+        <div>
+          <span class="investigation-icon">◎</span>
+          <strong id="investigation-title">調査</strong>
+          <p id="investigation-progress"></p>
+        </div>
+        <div class="investigation-actions">
+          <button id="investigation-hint" class="hint-button" type="button">観察の手引き</button>
+          <button id="finish-investigation" class="primary" disabled>調査を終える</button>
+        </div>
+      </section>
+
+      <div id="toast" class="toast hidden" role="status"></div>
+      <button id="restore-ui" class="restore-ui hidden" aria-label="UIを再表示">UIを表示</button>
+    </section>
+
+    <section id="gameover-screen" class="screen gameover-screen hidden">
+      <div class="gameover-visual"><div class="lost-color"></div></div>
+      <div class="gameover-content">
+        <p class="eyebrow">OBSERVATION LOST</p>
+        <div class="death-counter" id="death-counter"></div>
+        <h2 id="gameover-title">GAME OVER</h2>
+        <div id="gameover-body"></div>
+        <div class="gameover-actions">
+          <button id="return-button" class="primary">記録点へ戻る</button>
+          <button id="gameover-notebook">観察手帳</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="ending-screen" class="screen ending-screen hidden">
+      <div class="ending-painting"><img src="assets/the-bedroom-1889.webp" alt="フィンセント・ファン・ゴッホ《寝室》1889年版"></div>
+      <div class="ending-content">
+        <p class="eyebrow">CHAPTER COMPLETE</p>
+        <h2>記録は次の層へ続く。</h2>
+        <p id="ending-summary"></p>
+        <div class="ending-stats" id="ending-stats"></div>
+        <button id="restart-demo" class="primary">最初から遊ぶ</button>
+        <button id="return-title">タイトルへ</button>
+      </div>
+    </section>
+
+    <dialog id="menu-dialog" class="modal">
+      <div class="modal-header"><h2>メニュー</h2><button class="close-modal" aria-label="閉じる">×</button></div>
+      <div class="menu-grid">
+        <button data-open="notebook">観察手帳</button>
+        <button data-open="log">会話ログ</button>
+        <button data-open="saves">記録／読込</button>
+        <button data-open="settings">設定</button>
+        <button data-open="playtest">プレイ記録</button>
+        <button id="manual-save">クイック保存</button>
+        <button id="go-title">タイトルへ</button>
+      </div>
+      <div class="menu-status" id="menu-status"></div>
+    </dialog>
+
+    <dialog id="notebook-dialog" class="modal wide-modal">
+      <div class="modal-header"><h2>観察手帳</h2><button class="close-modal" aria-label="閉じる">×</button></div>
+      <div class="notebook-tools">
+        <input id="notebook-search" type="search" placeholder="記録を検索" aria-label="観察手帳を検索">
+        <select id="notebook-filter" aria-label="分類で絞り込む"><option value="all">すべての分類</option></select>
+        <span id="notebook-count"></span>
+      </div>
+      <div id="notebook-content" class="notebook-content"></div>
+    </dialog>
+
+    <dialog id="log-dialog" class="modal wide-modal">
+      <div class="modal-header"><h2>会話ログ</h2><button class="close-modal" aria-label="閉じる">×</button></div>
+      <div class="log-tools"><input id="log-search" type="search" placeholder="会話を検索" aria-label="会話ログを検索"></div>
+      <div id="log-content" class="log-content"></div>
+    </dialog>
+
+    <dialog id="saves-dialog" class="modal wide-modal">
+      <div class="modal-header"><h2>記録／読込</h2><button class="close-modal" aria-label="閉じる">×</button></div>
+      <p class="modal-note">オートセーブに加え、任意の3枠へ記録できます。選択肢や調査の直前にも保存可能です。</p>
+      <div id="save-slots" class="save-slots"></div>
+    </dialog>
+
+    <dialog id="settings-dialog" class="modal settings-modal">
+      <div class="modal-header"><h2>設定</h2><button class="close-modal" aria-label="閉じる">×</button></div>
+      <div class="settings-grid">
+        <label>文字表示速度
+          <input id="text-speed" type="range" min="0" max="35" value="15">
+        </label>
+        <label>AUTO待ち時間
+          <input id="auto-delay" type="range" min="450" max="2400" step="50" value="1150">
+        </label>
+        <label>文字サイズ
+          <input id="font-size" type="range" min="15" max="24" value="18">
+        </label>
+        <label>行間
+          <input id="line-height" type="range" min="16" max="23" value="19">
+        </label>
+        <label>文章パネル濃度
+          <input id="panel-opacity" type="range" min="60" max="98" value="90">
+        </label>
+        <label>環境音量
+          <input id="ambient-volume" type="range" min="0" max="100" value="65">
+        </label>
+        <label>効果音量
+          <input id="sfx-volume" type="range" min="0" max="100" value="70">
+        </label>
+      </div>
+      <label class="check-row"><input id="reduce-motion" type="checkbox"> 演出を抑える</label>
+      <label class="check-row"><input id="ambient-enabled" type="checkbox" checked> 環境音を使う</label>
+      <label class="check-row"><input id="high-contrast" type="checkbox"> 高コントラスト表示</label>
+      <label class="select-row">観察補助
+        <select id="assist-mode">
+          <option value="off">観察重視（補助なし）</option>
+          <option value="standard" selected>標準（任意ヒント）</option>
+          <option value="story">物語重視（早めの補助）</option>
+        </select>
+      </label>
+      <label class="check-row"><input id="skip-read-only" type="checkbox" checked> SKIPは既読文章だけにする</label>
+      <p class="help">Enter / Space：文章を進める　1〜9：選択肢　A：AUTO　S：SKIP　H：UI表示切替　G：調査ヒント　Esc：メニュー　N：手帳　L：ログ</p>
+    </dialog>
+
+    <dialog id="playtest-dialog" class="modal wide-modal">
+      <div class="modal-header"><h2>プレイ記録</h2><button class="close-modal" aria-label="閉じる">×</button></div>
+      <p class="modal-note">この記録は端末内だけに保存され、外部へ送信されません。章ごとの滞在時間、死亡、パズル再試行、ヒント使用を確認できます。</p>
+      <div id="playtest-summary" class="playtest-summary"></div>
+      <div class="playtest-actions">
+        <button id="export-playtest" class="primary" type="button">JSONを書き出す</button>
+        <button id="reset-playtest" type="button">計測だけリセット</button>
+      </div>
+    </dialog>
+
+    <dialog id="credits-dialog" class="modal wide-modal">
+      <div class="modal-header"><h2>作品情報</h2><button class="close-modal" aria-label="閉じる">×</button></div>
+      <div class="credits-copy">
+        <p>『第四の寝室』は、フィンセント・ファン・ゴッホの《寝室》と書簡を土台にしたフィクションです。ゲーム内の「第四版」、マルタ、アンドレ、現代の研究所をめぐる事件は創作です。</p>
+        <p>史実と創作を混同させないため、真筆・再制作・後世の加筆・経年変化を物語上でも分けて扱います。</p>
+        <p>使用画像の出典と利用条件は同梱の <code>CREDITS_AND_SOURCES.md</code> に記載しています。</p>
+      </div>
+    </dialog>
+  </main>
+  <script src="data/game-data.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

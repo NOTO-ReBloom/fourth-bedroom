@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0d15"/><stop offset="1" stop-color="#26283a"/></linearGradient>
+    <radialGradient id="flame"><stop stop-color="#ffd08b"/><stop offset=".22" stop-color="#e65e37"/><stop offset=".55" stop-color="#8b1f25" stop-opacity=".7"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient><linearGradient id="smoke" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#000" stop-opacity=".2"/><stop offset=".45" stop-color="#17171c"/><stop offset="1" stop-color="#000" stop-opacity=".75"/></linearGradient>
+    </defs>
+<rect width="1600" height="900" fill="#08090d"/>
+<rect x="60" y="70" width="1480" height="760" fill="#222630"/>
+<g fill="#10131a"><rect x="130" y="120" width="420" height="560"/><rect x="1050" y="120" width="420" height="560"/></g>
+<g opacity=".65"><circle cx="1050" cy="480" r="260" fill="url(#flame)"/><circle cx="1220" cy="620" r="230" fill="url(#flame)"/></g>
+<path d="M0 0H1600V900H0Z" fill="url(#smoke)" opacity=".65"/>
+<g stroke="#e44b3c" stroke-width="6" opacity=".44"><path d="M0 120H1600M0 500H1600"/></g>
+<path d="M760 80V820" stroke="#f8cf82" stroke-width="3" opacity=".14"/>
+<g opacity=".28" filter="url(#paper)"><rect width="1600" height="900" fill="#fff"/></g>
+</svg>
