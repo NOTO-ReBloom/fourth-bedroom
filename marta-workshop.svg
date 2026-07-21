@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0d15"/><stop offset="1" stop-color="#26283a"/></linearGradient>
+    <linearGradient id="paperwall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bdb3a3"/><stop offset=".6" stop-color="#7d766d"/><stop offset="1" stop-color="#4f5156"/></linearGradient>
+    </defs>
+<rect width="1600" height="900" fill="#34363d"/>
+<rect x="80" y="65" width="1440" height="770" fill="url(#paperwall)"/>
+<rect x="105" y="95" width="420" height="470" fill="#54616d" stroke="#514b45" stroke-width="18"/>
+<g stroke="#d8d7cc" stroke-width="5"><path d="M245 95V565M385 95V565"/></g>
+<g opacity=".65" stroke="#cbd3d7" stroke-width="4"><path d="M140 140l-18 130M190 120l-30 210M460 130l-24 250"/></g>
+<rect x="645" y="160" width="330" height="420" fill="#d1c5ac" stroke="#6b5741" stroke-width="20"/>
+<g stroke="#735f4c" stroke-width="2" opacity=".52"><path d="M645 230H975M645 300H975M645 370H975M645 440H975M715 160V580M785 160V580M855 160V580M925 160V580"/></g>
+<rect x="1100" y="170" width="280" height="390" fill="#2f323a" stroke="#6c5942" stroke-width="18"/>
+<path d="M0 650H1600V900H0Z" fill="#6a5b4c"/>
+<rect x="470" y="625" width="700" height="160" fill="#4c3c30"/>
+<g fill="#dbd0b8"><rect x="510" y="650" width="180" height="100" transform="rotate(-3 510 650)"/><rect x="735" y="645" width="210" height="110" transform="rotate(4 735 645)"/><rect x="980" y="650" width="140" height="95" transform="rotate(-6 980 650)"/></g>
+<g opacity=".22" filter="url(#paper)"><rect width="1600" height="900" fill="#fff"/></g>
+</svg>

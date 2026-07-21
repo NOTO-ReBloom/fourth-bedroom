@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0d15"/><stop offset="1" stop-color="#26283a"/></linearGradient>
+    <linearGradient id="wh" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#554438"/><stop offset=".6" stop-color="#252123"/><stop offset="1" stop-color="#090a0d"/></linearGradient>
+    </defs>
+<rect width="1600" height="900" fill="url(#wh)"/>
+<g fill="#241f1d" stroke="#6b5948" stroke-width="8"><rect x="70" y="120" width="330" height="620"/><rect x="460" y="90" width="280" height="680"/><rect x="820" y="135" width="310" height="610"/><rect x="1190" y="100" width="330" height="660"/></g>
+<g fill="#8c6d4b"><rect x="95" y="165" width="280" height="120"/><rect x="95" y="325" width="280" height="140"/><rect x="95" y="505" width="280" height="170"/><rect x="490" y="145" width="220" height="165"/><rect x="490" y="350" width="220" height="130"/><rect x="490" y="520" width="220" height="190"/><rect x="850" y="190" width="250" height="145"/><rect x="850" y="380" width="250" height="170"/><rect x="1220" y="160" width="270" height="140"/><rect x="1220" y="340" width="270" height="150"/><rect x="1220" y="530" width="270" height="170"/></g>
+<path d="M640 0 L980 900 H520Z" fill="#d5a65a" opacity=".12"/>
+<circle cx="805" cy="120" r="50" fill="#d6af67" opacity=".48"/>
+<path d="M0 760H1600V900H0Z" fill="#111216"/>
+<g opacity=".18" filter="url(#paper)"><rect width="1600" height="900" fill="#fff"/></g>
+</svg>

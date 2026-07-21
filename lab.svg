@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0d15"/><stop offset="1" stop-color="#26283a"/></linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d2cec2"/><stop offset=".5" stop-color="#8f8e8a"/><stop offset="1" stop-color="#54565d"/></linearGradient>
+    </defs>
+<rect width="1600" height="900" fill="#11141d"/>
+<rect x="50" y="60" width="1500" height="760" rx="24" fill="url(#wall)"/>
+<path d="M50 610H1550V820H50Z" fill="#3e4149"/>
+<g opacity=".86"><path d="M300 110V610M650 110V610M1000 110V610M1350 110V610" stroke="#bcb7aa" stroke-width="4" opacity=".32"/><path d="M50 280H1550" stroke="#c7c2b7" stroke-width="3" opacity=".22"/></g>
+<rect x="575" y="132" width="450" height="530" rx="10" fill="#20242e" stroke="#d0cdc5" stroke-width="8"/>
+<rect x="620" y="180" width="360" height="410" fill="#262d3d"/>
+<g fill="none" stroke="#d7b86e" stroke-width="8" opacity=".8"><path d="M360 160H1240"/><path d="M430 160V650M1170 160V650"/></g>
+<g fill="#171a22"><rect x="100" y="560" width="350" height="150" rx="16"/><rect x="1150" y="560" width="350" height="150" rx="16"/></g>
+<g fill="#78b6c9" opacity=".55"><rect x="120" y="588" width="155" height="92" rx="4"/><rect x="1170" y="588" width="155" height="92" rx="4"/></g>
+<path d="M780 80V730" stroke="#e6e0cb" stroke-width="3" opacity=".18"/>
+<circle cx="800" cy="415" r="330" fill="none" stroke="#d9b860" stroke-width="2" opacity=".12"/>
+<g opacity=".18" filter="url(#paper)"><rect width="1600" height="900" fill="#fff"/></g>
+</svg>

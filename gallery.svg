@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs>
+    <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="11" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.03" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2"/></filter>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0d15"/><stop offset="1" stop-color="#26283a"/></linearGradient>
+    <linearGradient id="gallerywall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#24262e"/><stop offset=".65" stop-color="#17191f"/><stop offset="1" stop-color="#0a0b10"/></linearGradient>
+    </defs>
+<rect width="1600" height="900" fill="#08090d"/>
+<path d="M120 70H1480V830H120Z" fill="url(#gallerywall)"/>
+<path d="M0 780H1600V900H0Z" fill="#0b0c10"/>
+<rect x="520" y="130" width="560" height="520" fill="#12151d" stroke="#5c4934" stroke-width="28"/>
+<rect x="565" y="175" width="470" height="430" fill="#262d43"/>
+<path d="M800 0L540 700H1060Z" fill="#e1c27e" opacity=".11"/>
+<path d="M800 650V860" stroke="#d6b76c" stroke-width="2" opacity=".35"/>
+<ellipse cx="800" cy="760" rx="380" ry="70" fill="#000" opacity=".5"/>
+<g opacity=".14" filter="url(#paper)"><rect width="1600" height="900" fill="#fff"/></g>
+</svg>
