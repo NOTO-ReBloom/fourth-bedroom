@@ -4,8 +4,8 @@
   const DATA = window.GAME_DATA;
   const nodes = new Map(DATA.nodes.map(n => [n.id, n]));
   const nodeOrder = new Map(DATA.nodes.map((n, i) => [n.id, i]));
-  const SAVE_PREFIX = 'fourth-bedroom-production-v19';
-  const LEGACY_SAVE_PREFIX = 'fourth-bedroom-production-v18';
+  const SAVE_PREFIX = 'fourth-bedroom-production-v20';
+  const LEGACY_SAVE_PREFIX = 'fourth-bedroom-production-v19';
   const SAVE_KEYS = {
     auto: `${SAVE_PREFIX}-autosave`,
     slot1: `${SAVE_PREFIX}-slot1`,
@@ -90,7 +90,7 @@
     playStartedAt: Date.now(),
     totalPlayMs: 0,
     metrics: defaultMetrics(),
-    saveVersion: '1.9.0'
+    saveVersion: '2.0.0'
   });
 
   let state = defaultState();
@@ -139,7 +139,7 @@
     }
     normalized.playStartedAt = Date.now();
     normalized.metrics.lastNodeAt = Date.now();
-    normalized.saveVersion = '1.9.0';
+    normalized.saveVersion = '2.0.0';
     return normalized;
   }
 
@@ -572,10 +572,20 @@
       const mood = inferMood(n, id, active);
       const d = document.createElement('div');
       d.className = `character-card ${ids.length === 1 ? 'right' : (i === 0 ? 'left' : 'right')} ${roleClass} mood-${mood}`;
-      const paintedPortraits = {vincent:'assets/portrait-vincent.jpg', gauguin:'assets/portrait-gauguin.jpg'};
-      if (paintedPortraits[id]) {
-        d.classList.add('painted-portrait', `portrait-${id}`);
-        d.innerHTML = `<div class="portrait-canvas"><img src="${paintedPortraits[id]}" alt=""><span class="portrait-glaze"></span></div>`;
+      const portraitAssets = {
+        sumi:'assets/characters/sumi.webp',
+        claire:'assets/characters/claire.webp',
+        marta:'assets/characters/marta.webp',
+        marc:'assets/characters/marc.webp',
+        leon:'assets/characters/leon.webp',
+        andre:'assets/characters/andre.webp',
+        vincent:'assets/portrait-vincent.jpg',
+        gauguin:'assets/portrait-gauguin.jpg'
+      };
+      if (portraitAssets[id]) {
+        const historical = id === 'vincent' || id === 'gauguin';
+        d.classList.add(historical ? 'painted-portrait' : 'illustrated-portrait', `portrait-${id}`);
+        d.innerHTML = `<div class="portrait-canvas"><img src="${portraitAssets[id]}" alt=""><span class="portrait-glaze"></span><span class="portrait-edge"></span></div>`;
       } else {
         d.innerHTML = characterSvg(id, mood);
       }

@@ -1,0 +1,66 @@
+{
+  "version": "1.8.0",
+  "routes": [
+    {
+      "label": "BAD END 1",
+      "endingNode": "endBad1",
+      "expected": "endBad1",
+      "pass": true,
+      "visitedNodes": 602,
+      "mandatoryDeaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "label": "BAD END 2",
+      "endingNode": "endBad2",
+      "expected": "endBad2",
+      "pass": true,
+      "visitedNodes": 601,
+      "mandatoryDeaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "label": "BAD END 3",
+      "endingNode": "endBad3",
+      "expected": "endBad3",
+      "pass": true,
+      "visitedNodes": 601,
+      "mandatoryDeaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "label": "NORMAL END",
+      "endingNode": "endNormal",
+      "expected": "endNormal",
+      "pass": true,
+      "visitedNodes": 600,
+      "mandatoryDeaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "label": "TRUE END",
+      "endingNode": "a631",
+      "expected": "a631",
+      "pass": true,
+      "visitedNodes": 622,
+      "mandatoryDeaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    }
+  ],
+  "allPass": true
+}

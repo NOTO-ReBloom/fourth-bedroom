@@ -49,7 +49,7 @@ try {
   const gameData = context.window.GAME_DATA;
   const nodes = gameData?.nodes;
   if (!Array.isArray(nodes) || nodes.length !== 700) failures.push(`GAME_DATA nodes expected 700, got ${nodes?.length ?? 'missing'}`);
-  if (gameData?.meta?.version !== '1.9.0') failures.push(`GAME_DATA version expected 1.9.0, got ${gameData?.meta?.version ?? 'missing'}`);
+  if (gameData?.meta?.version !== '2.0.0') failures.push(`GAME_DATA version expected 2.0.0, got ${gameData?.meta?.version ?? 'missing'}`);
   const ids = nodes?.map(x => x.id) ?? [];
   const idSet = new Set(ids);
   if (idSet.size !== ids.length) failures.push('GAME_DATA contains duplicate node IDs');

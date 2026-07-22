@@ -1,7 +1,7 @@
 window.GAME_DATA = {
   "meta": {
     "title": "第四の寝室",
-    "version": "1.9.0",
+    "version": "2.0.0",
     "scope": "CHARACTER VOICE & PERFORMANCE PASS — SPEAKER CORRECTION / SILENCE TIMING / POV-SAFE DIALOGUE POLISH"
   },
   "evidence": {

@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "checks": {
+    "version": true,
+    "save_namespace": true,
+    "claire_asset": true,
+    "no_svg_claire": true,
+    "desktop_no_overflow": true,
+    "sumi_asset": true,
+    "marta_asset": true,
+    "marc_asset": true,
+    "leon_asset": true,
+    "andre_asset": true,
+    "mobile_no_overflow": true,
+    "dialogue_visible": true,
+    "portrait_not_covering_dialogue": false
+  },
+  "exceptions": [],
+  "console_errors": []
+}

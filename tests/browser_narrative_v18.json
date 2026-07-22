@@ -1,0 +1,55 @@
+{
+  "ok": true,
+  "version": "1.8.0",
+  "segments": 1606,
+  "deathSequences": 29,
+  "mixedSegmentTest": [
+    {
+      "speaker": "澄",
+      "text": "遅くなりました",
+      "voice": "dialogue",
+      "seg": 0
+    },
+    {
+      "speaker": "澄",
+      "text": "クレールの目が腕時計へ落ちる。",
+      "voice": "inner",
+      "seg": 1
+    },
+    {
+      "speaker": "クレール",
+      "text": "予定より一分早い",
+      "voice": "dialogue",
+      "seg": 2
+    },
+    {
+      "speaker": "澄",
+      "text": "では、謝らなくてよかったですね",
+      "voice": "dialogue",
+      "seg": 3
+    },
+    {
+      "speaker": "澄",
+      "text": "口元が、ほんの少しだけ緩む。",
+      "voice": "inner",
+      "seg": 4
+    },
+    {
+      "speaker": "クレール",
+      "text": "その調子なら大丈夫そう",
+      "voice": "dialogue",
+      "seg": 5
+    }
+  ],
+  "mobile": {
+    "box": {
+      "x": 11.703125,
+      "right": 378.296875,
+      "width": 366.59375,
+      "height": 178
+    },
+    "overflow": false
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}

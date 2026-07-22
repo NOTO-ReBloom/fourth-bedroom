@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "method": "Chromium CDP Final Candidate 2.0 functional validation (navigation blocked by administrator policy)",
+  "checks": {
+    "title_v20": true,
+    "data_v20": true,
+    "save_namespace": true,
+    "gauguin_normalized": true,
+    "no_empty_segments": true,
+    "p09x1_data": true,
+    "r11bad_data": true,
+    "a222x2_data": true,
+    "a303_data": true,
+    "a404x2_data": true,
+    "a520x1_data": true,
+    "a608x1_data": true,
+    "a625_data": true,
+    "a303_first_sumi": true,
+    "a303_controlled": true,
+    "a303_second_vincent": true,
+    "a303_measured": true,
+    "a608_sumi_corrected_output": true,
+    "choice_hidden_before_final_segment": true,
+    "choice_after_final_segment": true,
+    "mobile_no_overflow": true
+  },
+  "exceptions": [],
+  "console_errors": [],
+  "screenshot": "final_v20_functional_mobile.png"
+}

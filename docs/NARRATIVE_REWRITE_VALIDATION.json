@@ -1,0 +1,17 @@
+{
+  "version": "1.8.0",
+  "nodes": 700,
+  "segments": 1606,
+  "modes": {
+    "inner": 916,
+    "dialogue": 590,
+    "document": 78,
+    "system": 22
+  },
+  "manual_key_nodes": 100,
+  "inner_third_person_hits": 0,
+  "inner_standalone_quote_hits": 0,
+  "segments_over_110_chars": 0,
+  "third_person_examples": [],
+  "long_examples": []
+}

@@ -16,8 +16,11 @@ push時に `scripts/validate-site.mjs` を実行し、次を検査します。
 - 必須ファイルの存在
 - HTML / CSSのルート絶対パス混入
 - 参照される画像・スクリプトの存在
-- ゲームデータ700ノードの読み込み
+- ゲームデータ700ノード・1621セグメントの読み込み
 - ノードIDの重複
+- 重要台詞の話者所有権
+- 引用ラベルの非会話化
+- 全5エンディングへの到達性
 
 検査に失敗した場合、Pagesへのデプロイは実行されません。
 
@@ -29,7 +32,7 @@ GitHub Pagesのプロジェクトサイトを想定し、次の形式で検証�
 /fourth-bedroom/
 ```
 
-HTML、CSS、JavaScript、画像、manifestを含むローカル参照42件がすべてHTTP 200で取得できることを確認しています。詳細は `docs/GITHUB_PAGES_SUBPATH_TEST.json` を参照してください。
+HTML、CSS、JavaScript、画像、manifestを含むローカル参照43件がすべてHTTP 200で取得できることを確認しています。詳細は `docs/GITHUB_PAGES_SUBPATH_TEST.json` を参照してください。
 
 ## セーブデータ
 
