@@ -6,9 +6,12 @@ import vm from 'node:vm';
 const root = path.resolve('site');
 const required = [
   'index.html', 'styles.css', 'game.js', 'data/game-data.js',
-  'assets/fourth-bedroom-base.webp', 'assets/the-bedroom-1889.webp',
+  'assets/fourth-bedroom-base.webp', 'assets/the-bedroom-1889.webp', 'service-worker.js',
   '.nojekyll', '404.html', 'favicon.svg', 'site.webmanifest'
 ];
+const fictionalCharacters = ['sumi','claire','marta','marc','leon','andre'];
+const portraitMoods = ['neutral','quiet','soft','focused','working','guarded','wary','resolved','down','shaken','alarm','tense','breathless'];
+for (const id of fictionalCharacters) for (const mood of portraitMoods) required.push(`assets/characters/expressions/${id}/${mood}.webp`);
 const failures = [];
 const exists = async rel => {
   try { await stat(path.join(root, rel)); return true; }
@@ -34,9 +37,12 @@ for (const match of css.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
 }
 for (const match of game.matchAll(/["'`](assets\/[^"'`]+?\.(?:webp|jpg|jpeg|png|svg))["'`]/g)) refs.add(match[1]);
 for (const ref of refs) {
-  if (/^(?:https?:|data:|mailto:|#|%23)/.test(ref)) continue;
+  if (/^(?:https?:|data:|mailto:|#|%23)/.test(ref) || ref.includes('${')) continue;
   if (!await exists(ref)) failures.push(`referenced file missing: ${ref}`);
 }
+
+if (/character_contact_sheet|character_v23_.*_qa/i.test(html + css + game)) failures.push('runtime references a character QA/contact sheet');
+if (!game.includes('assets/characters/expressions/${id}/${safeMood}.webp')) failures.push('game.js does not use mood-specific individual portrait assets');
 
 for (const rel of ['styles.css', 'data/game-data.js', 'game.js', 'favicon.svg', 'site.webmanifest']) {
   if (!html.includes(rel)) failures.push(`index.html does not reference ${rel}`);
@@ -49,11 +55,11 @@ try {
   const gameData = context.window.GAME_DATA;
   const nodes = gameData?.nodes;
   if (!Array.isArray(nodes) || nodes.length !== 700) failures.push(`GAME_DATA nodes expected 700, got ${nodes?.length ?? 'missing'}`);
-  if (gameData?.meta?.version !== '2.0.0') failures.push(`GAME_DATA version expected 2.0.0, got ${gameData?.meta?.version ?? 'missing'}`);
+  if (gameData?.meta?.version !== '2.3.0') failures.push(`GAME_DATA version expected 2.3.0, got ${gameData?.meta?.version ?? 'missing'}`);
   const ids = nodes?.map(x => x.id) ?? [];
   const idSet = new Set(ids);
   if (idSet.size !== ids.length) failures.push('GAME_DATA contains duplicate node IDs');
-  const allowedModes = new Set(['dialogue','inner','document','system']);
+  const allowedModes = new Set(['dialogue','thought','narration','document','system']);
   let segmentCount = 0;
   for (const node of nodes || []) {
     if (!Array.isArray(node.script) || !node.script.length) failures.push(`node ${node.id}: script missing`);
@@ -62,8 +68,8 @@ try {
       if (!allowedModes.has(segment.mode)) failures.push(`node ${node.id}:${i}: invalid mode ${segment.mode}`);
       if (typeof segment.text !== 'string') failures.push(`node ${node.id}:${i}: segment text missing`);
       if ((segment.text || '').length > 110) failures.push(`node ${node.id}:${i}: segment exceeds 110 characters`);
-      if (segment.mode === 'inner' && /澄は|澄が|澄の|澄を|澄に/.test(segment.text || '')) failures.push(`node ${node.id}:${i}: external third-person wording remains in inner segment`);
-      if (segment.mode === 'inner' && /^「[\s\S]*」$/.test((segment.text || '').trim())) failures.push(`node ${node.id}:${i}: spoken line remains inside inner segment`);
+      if (['thought','narration'].includes(segment.mode) && /澄は|澄が|澄の|澄を|澄に/.test(segment.text || '')) failures.push(`node ${node.id}:${i}: external third-person wording remains in inner segment`);
+      if (['thought','narration'].includes(segment.mode) && /^「[\s\S]*」$/.test((segment.text || '').trim())) failures.push(`node ${node.id}:${i}: spoken line remains inside inner segment`);
       if (segment.mode === 'dialogue' && /^「|」$/.test((segment.text || '').trim())) failures.push(`node ${node.id}:${i}: dialogue still includes outer brackets`);
       if (segment.mode === 'dialogue' && segment.speaker === '地の文') failures.push(`node ${node.id}:${i}: narrator mislabeled as dialogue`);
       if (segment.mode === 'dialogue' && segment.speaker && new RegExp(`${segment.speaker}(?:は|が)`).test(segment.text || '')) failures.push(`node ${node.id}:${i}: stage direction appears inside dialogue`);
@@ -92,7 +98,7 @@ try {
     ['a408a','私は、同じにならない場所を見ています','マルタ'],
     ['a412x2','記憶は、嘘ではありません。だから扱いにくい','マルタ'],
     ['a421','会ったことはありません。手紙では、面倒な人です','マルタ'],
-    ['a422x1','説明しやすい一語より、面倒な具体の方が多い','マルタ'],
+    ['a422x1','説明しやすい一語より、面倒な具体の方がずっと多い','マルタ'],
     ['a505x1','正面を撮るか、裏を撮るか。どの光を当てるか。あなたも選んでいる','アンドレ'],
     ['a505x2','あなたは、選んだことを消して、最初から一つしかなかったように見せている','澄'],
     ['a520x4','報告には、分かったこと、分からないこと、研究所が送信を遅らせた事実を分けて書きます','澄'],

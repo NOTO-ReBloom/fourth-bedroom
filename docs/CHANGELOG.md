@@ -1,3 +1,12 @@
+# Final Candidate 2.3 — Character Art / Expression Pass
+
+- Added 78 individual transparent fictional-character portraits.
+- Added 13 identity-locked mood states for each of six fictional characters.
+- Removed runtime dependence on contact-sheet crops.
+- Added low-priority portrait preloading and neutral fallback.
+- Added character asset validation and Chromium PC/mobile tests.
+- Preserved all 700 nodes, five endings and the GO01 → GO04 → GO26 mandatory death sequence.
+
 # CHANGELOG
 
 ## Narrative 1.9

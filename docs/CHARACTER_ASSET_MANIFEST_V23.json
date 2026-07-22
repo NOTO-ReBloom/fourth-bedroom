@@ -1,0 +1,151 @@
+{
+  "version": "2.3.0",
+  "source": "individual transparent character masters from Final Candidate 2.2",
+  "runtimeContactSheets": false,
+  "characters": {
+    "sumi": {
+      "displayName": "水瀬 澄",
+      "faceBox": [
+        282,
+        152,
+        200,
+        200
+      ],
+      "expressions": {
+        "neutral": "assets/characters/expressions/sumi/neutral.webp",
+        "quiet": "assets/characters/expressions/sumi/quiet.webp",
+        "soft": "assets/characters/expressions/sumi/soft.webp",
+        "focused": "assets/characters/expressions/sumi/focused.webp",
+        "working": "assets/characters/expressions/sumi/working.webp",
+        "guarded": "assets/characters/expressions/sumi/guarded.webp",
+        "wary": "assets/characters/expressions/sumi/wary.webp",
+        "resolved": "assets/characters/expressions/sumi/resolved.webp",
+        "down": "assets/characters/expressions/sumi/down.webp",
+        "shaken": "assets/characters/expressions/sumi/shaken.webp",
+        "alarm": "assets/characters/expressions/sumi/alarm.webp",
+        "tense": "assets/characters/expressions/sumi/tense.webp",
+        "breathless": "assets/characters/expressions/sumi/breathless.webp"
+      }
+    },
+    "claire": {
+      "displayName": "クレール・ベルナール",
+      "faceBox": [
+        283,
+        139,
+        212,
+        212
+      ],
+      "expressions": {
+        "neutral": "assets/characters/expressions/claire/neutral.webp",
+        "quiet": "assets/characters/expressions/claire/quiet.webp",
+        "soft": "assets/characters/expressions/claire/soft.webp",
+        "focused": "assets/characters/expressions/claire/focused.webp",
+        "working": "assets/characters/expressions/claire/working.webp",
+        "guarded": "assets/characters/expressions/claire/guarded.webp",
+        "wary": "assets/characters/expressions/claire/wary.webp",
+        "resolved": "assets/characters/expressions/claire/resolved.webp",
+        "down": "assets/characters/expressions/claire/down.webp",
+        "shaken": "assets/characters/expressions/claire/shaken.webp",
+        "alarm": "assets/characters/expressions/claire/alarm.webp",
+        "tense": "assets/characters/expressions/claire/tense.webp",
+        "breathless": "assets/characters/expressions/claire/breathless.webp"
+      }
+    },
+    "marta": {
+      "displayName": "マルタ・デ・フリース",
+      "faceBox": [
+        268,
+        153,
+        194,
+        194
+      ],
+      "expressions": {
+        "neutral": "assets/characters/expressions/marta/neutral.webp",
+        "quiet": "assets/characters/expressions/marta/quiet.webp",
+        "soft": "assets/characters/expressions/marta/soft.webp",
+        "focused": "assets/characters/expressions/marta/focused.webp",
+        "working": "assets/characters/expressions/marta/working.webp",
+        "guarded": "assets/characters/expressions/marta/guarded.webp",
+        "wary": "assets/characters/expressions/marta/wary.webp",
+        "resolved": "assets/characters/expressions/marta/resolved.webp",
+        "down": "assets/characters/expressions/marta/down.webp",
+        "shaken": "assets/characters/expressions/marta/shaken.webp",
+        "alarm": "assets/characters/expressions/marta/alarm.webp",
+        "tense": "assets/characters/expressions/marta/tense.webp",
+        "breathless": "assets/characters/expressions/marta/breathless.webp"
+      }
+    },
+    "marc": {
+      "displayName": "マルク・デュラン",
+      "faceBox": [
+        241,
+        87,
+        273,
+        273
+      ],
+      "expressions": {
+        "neutral": "assets/characters/expressions/marc/neutral.webp",
+        "quiet": "assets/characters/expressions/marc/quiet.webp",
+        "soft": "assets/characters/expressions/marc/soft.webp",
+        "focused": "assets/characters/expressions/marc/focused.webp",
+        "working": "assets/characters/expressions/marc/working.webp",
+        "guarded": "assets/characters/expressions/marc/guarded.webp",
+        "wary": "assets/characters/expressions/marc/wary.webp",
+        "resolved": "assets/characters/expressions/marc/resolved.webp",
+        "down": "assets/characters/expressions/marc/down.webp",
+        "shaken": "assets/characters/expressions/marc/shaken.webp",
+        "alarm": "assets/characters/expressions/marc/alarm.webp",
+        "tense": "assets/characters/expressions/marc/tense.webp",
+        "breathless": "assets/characters/expressions/marc/breathless.webp"
+      }
+    },
+    "leon": {
+      "displayName": "レオン・ヴァスール",
+      "faceBox": [
+        210,
+        124,
+        217,
+        217
+      ],
+      "expressions": {
+        "neutral": "assets/characters/expressions/leon/neutral.webp",
+        "quiet": "assets/characters/expressions/leon/quiet.webp",
+        "soft": "assets/characters/expressions/leon/soft.webp",
+        "focused": "assets/characters/expressions/leon/focused.webp",
+        "working": "assets/characters/expressions/leon/working.webp",
+        "guarded": "assets/characters/expressions/leon/guarded.webp",
+        "wary": "assets/characters/expressions/leon/wary.webp",
+        "resolved": "assets/characters/expressions/leon/resolved.webp",
+        "down": "assets/characters/expressions/leon/down.webp",
+        "shaken": "assets/characters/expressions/leon/shaken.webp",
+        "alarm": "assets/characters/expressions/leon/alarm.webp",
+        "tense": "assets/characters/expressions/leon/tense.webp",
+        "breathless": "assets/characters/expressions/leon/breathless.webp"
+      }
+    },
+    "andre": {
+      "displayName": "アンドレ・ヴァスール",
+      "faceBox": [
+        211,
+        123,
+        234,
+        234
+      ],
+      "expressions": {
+        "neutral": "assets/characters/expressions/andre/neutral.webp",
+        "quiet": "assets/characters/expressions/andre/quiet.webp",
+        "soft": "assets/characters/expressions/andre/soft.webp",
+        "focused": "assets/characters/expressions/andre/focused.webp",
+        "working": "assets/characters/expressions/andre/working.webp",
+        "guarded": "assets/characters/expressions/andre/guarded.webp",
+        "wary": "assets/characters/expressions/andre/wary.webp",
+        "resolved": "assets/characters/expressions/andre/resolved.webp",
+        "down": "assets/characters/expressions/andre/down.webp",
+        "shaken": "assets/characters/expressions/andre/shaken.webp",
+        "alarm": "assets/characters/expressions/andre/alarm.webp",
+        "tense": "assets/characters/expressions/andre/tense.webp",
+        "breathless": "assets/characters/expressions/andre/breathless.webp"
+      }
+    }
+  }
+}
