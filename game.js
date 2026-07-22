@@ -4,8 +4,8 @@
   const DATA = window.GAME_DATA;
   const nodes = new Map(DATA.nodes.map(n => [n.id, n]));
   const nodeOrder = new Map(DATA.nodes.map((n, i) => [n.id, i]));
-  const SAVE_PREFIX = 'fourth-bedroom-production-v17';
-  const LEGACY_SAVE_PREFIX = 'fourth-bedroom-production-v16';
+  const SAVE_PREFIX = 'fourth-bedroom-production-v21';
+  const LEGACY_SAVE_PREFIX = 'fourth-bedroom-production-v20';
   const SAVE_KEYS = {
     auto: `${SAVE_PREFIX}-autosave`,
     slot1: `${SAVE_PREFIX}-slot1`,
@@ -39,7 +39,8 @@
     placeCard: $('#place-card'), placeCardLocation: $('#place-card-location'), placeCardTime: $('#place-card-time'),
     beatCard: $('#beat-card'), beatCardText: $('#beat-card-text'),
     invHint: $('#investigation-hint'), playtestSummary: $('#playtest-summary'),
-    menuStatus: $('#menu-status')
+    menuStatus: $('#menu-status'),
+    transition: $('#cinematic-transition'), saveIndicator: $('#save-indicator')
   };
 
   const defaultSettings = () => ({
@@ -51,6 +52,7 @@
     reduceMotion: false,
     ambient: true,
     ambientVolume: 65,
+    musicVolume: 28,
     sfxVolume: 70,
     highContrast: false,
     skipReadOnly: true,
@@ -78,6 +80,8 @@
     evidence: [],
     visited: [],
     readNodes: {},
+    readSegments: {},
+    segmentIndex: 0,
     log: [],
     deaths: 0,
     currentChapter: 'PROLOGUE',
@@ -88,7 +92,7 @@
     playStartedAt: Date.now(),
     totalPlayMs: 0,
     metrics: defaultMetrics(),
-    saveVersion: '1.7.0'
+    saveVersion: '2.3.0'
   });
 
   let state = defaultState();
@@ -111,6 +115,13 @@
   let currentWasRead = false;
   let lastSceneBg = '';
   let afterTextRanFor = null;
+  let currentScript = [];
+  let currentSegment = null;
+  let segmentIndex = 0;
+  let transitionTimer = null;
+  let saveIndicatorTimer = null;
+  let lastAutoIndicatorAt = 0;
+  let previousLogCursor = -1;
 
   function normalizeState(saved) {
     const base = defaultState();
@@ -120,6 +131,7 @@
       settings: {...base.settings, ...((saved && saved.settings) || {})},
       flags: {...((saved && saved.flags) || {})},
       readNodes: {...((saved && saved.readNodes) || {})},
+      readSegments: {...((saved && saved.readSegments) || {})},
       metrics: {...base.metrics, ...((saved && saved.metrics) || {}),
         nodeVisits: {...(((saved && saved.metrics) || {}).nodeVisits || {})},
         choiceSelections: {...(((saved && saved.metrics) || {}).choiceSelections || {})},
@@ -133,7 +145,7 @@
     }
     normalized.playStartedAt = Date.now();
     normalized.metrics.lastNodeAt = Date.now();
-    normalized.saveVersion = '1.7.0';
+    normalized.saveVersion = '2.3.0';
     return normalized;
   }
 
@@ -170,10 +182,21 @@
     return JSON.parse(JSON.stringify(state));
   }
 
+  function showSaveIndicator(force = false) {
+    if (!els.saveIndicator) return;
+    const now = Date.now();
+    if (!force && now - lastAutoIndicatorAt < 5000) return;
+    lastAutoIndicatorAt = now;
+    clearTimeout(saveIndicatorTimer);
+    els.saveIndicator.classList.add('visible');
+    saveIndicatorTimer = setTimeout(() => els.saveIndicator.classList.remove('visible'), state.settings.reduceMotion ? 500 : 1250);
+  }
+
   function writeSave(key, manual = false) {
     try {
       localStorage.setItem(key, JSON.stringify(snapshotState()));
       updateContinueState();
+      showSaveIndicator(manual);
       if (manual) {
         audio?.sfx('save');
         showToast('現在の記録を保存しました。');
@@ -254,6 +277,7 @@
       '#line-height': s.lineHeight,
       '#panel-opacity': s.panelOpacity,
       '#ambient-volume': s.ambientVolume,
+      '#music-volume': s.musicVolume,
       '#sfx-volume': s.sfxVolume
     };
     Object.entries(inputs).forEach(([selector, value]) => { const el = $(selector); if (el) el.value = value; });
@@ -265,6 +289,7 @@
     if (audio) {
       audio.enabled = s.ambient;
       audio.ambientVolume = s.ambientVolume / 100;
+      audio.musicVolume = s.musicVolume / 100;
       audio.sfxVolume = s.sfxVolume / 100;
       audio.refreshVolume();
     }
@@ -279,7 +304,11 @@
       this.enabled = true;
       this.current = '';
       this.ambientVolume = .65;
+      this.musicVolume = .28;
       this.sfxVolume = .7;
+      this.scoreNodes = [];
+      this.scoreMaster = null;
+      this.scoreName = '';
     }
     init() {
       if (this.ctx) return;
@@ -297,8 +326,15 @@
       this.ambientMaster = null;
       this.current = '';
     }
+    stopScore() {
+      this.scoreNodes.forEach(n => { try { n.stop?.(); n.disconnect?.(); } catch (_) {} });
+      this.scoreNodes = [];
+      this.scoreMaster = null;
+      this.scoreName = '';
+    }
     refreshVolume() {
       if (this.ambientMaster) this.ambientMaster.gain.setTargetAtTime(this.enabled ? .095 * this.ambientVolume : 0, this.ctx.currentTime, .08);
+      if (this.scoreMaster) this.scoreMaster.gain.setTargetAtTime(this.enabled ? .022 * this.musicVolume : 0, this.ctx.currentTime, .18);
     }
     set(type) {
       if (!this.enabled) { this.stopAmbient(); return; }
@@ -382,6 +418,36 @@
         default: noise(.025,500);
       }
     }
+    setScore(name) {
+      if (!this.enabled || !name || name === 'silence') { this.stopScore(); return; }
+      this.resume();
+      if (!this.ctx || this.scoreName === name) { this.refreshVolume(); return; }
+      this.stopScore();
+      this.scoreName = name;
+      const ctx = this.ctx;
+      const master = ctx.createGain();
+      master.gain.value = .022 * this.musicVolume;
+      master.connect(ctx.destination);
+      this.scoreMaster = master;
+      this.scoreNodes.push(master);
+      const chordMap = {
+        modern:[73.42,110,146.83], arles:[82.41,123.47,164.81], saint:[55,82.41,110],
+        marta:[65.41,98,130.81], forgery:[69.30,103.83,138.59], final:[73.42,110,164.81],
+        danger:[36.71,55,73.42], memory:[58.27,87.31,116.54]
+      };
+      const notes = chordMap[name] || chordMap.modern;
+      const lfo = ctx.createOscillator(), lfoGain = ctx.createGain();
+      lfo.frequency.value = name === 'danger' ? .18 : .07; lfoGain.gain.value = .22;
+      lfo.connect(lfoGain); lfo.start(); this.scoreNodes.push(lfo,lfoGain);
+      notes.forEach((f,i) => {
+        const o=ctx.createOscillator(), g=ctx.createGain(), filter=ctx.createBiquadFilter();
+        o.type=i===0?'sine':'triangle'; o.frequency.value=f;
+        filter.type='lowpass'; filter.frequency.value=420 + i*160;
+        g.gain.value=[.42,.18,.10][i];
+        lfoGain.connect(g.gain); o.connect(filter).connect(g).connect(master); o.start();
+        this.scoreNodes.push(o,g,filter);
+      });
+    }
     sfx(type) {
       this.resume();
       if (!this.ctx || this.sfxVolume <= 0) return;
@@ -440,6 +506,7 @@
     audio = audio || new AudioSystem();
     audio.enabled = state.settings.ambient;
     audio.ambientVolume = state.settings.ambientVolume / 100;
+    audio.musicVolume = state.settings.musicVolume / 100;
     audio.sfxVolume = state.settings.sfxVolume / 100;
     audio.init();
     autoMode = false; skipMode = false; uiHidden = false;
@@ -448,7 +515,7 @@
     els.gameover.classList.add('hidden');
     els.ending.classList.add('hidden');
     els.game.classList.remove('hidden');
-    renderNode(state.nodeId, false, true);
+    renderNode(state.nodeId, false, true, Number(state.segmentIndex || 0));
     saveGame(false, SAVE_KEYS.auto);
   }
 
@@ -553,6 +620,43 @@
     return null;
   }
 
+  const FICTIONAL_PORTRAIT_IDS = new Set(['sumi','claire','marta','marc','leon','andre']);
+  const CHARACTER_DISPLAY_NAMES = {
+    sumi:'水瀬 澄', claire:'クレール・ベルナール', marta:'マルタ・デ・フリース',
+    marc:'マルク・デュラン', leon:'レオン・ヴァスール', andre:'アンドレ・ヴァスール',
+    vincent:'フィンセント・ファン・ゴッホ', gauguin:'ポール・ゴーギャン'
+  };
+  const CHARACTER_MOODS = ['neutral','quiet','soft','focused','working','guarded','wary','resolved','down','shaken','alarm','tense','breathless'];
+  const MOOD_LABELS = {
+    neutral:'通常', quiet:'観察', soft:'安堵', focused:'集中', working:'作業', guarded:'警戒',
+    wary:'疑念', resolved:'決意', down:'疲労', shaken:'動揺', alarm:'恐怖', tense:'緊張', breathless:'息切れ'
+  };
+
+  function portraitAssetFor(id, mood) {
+    if (FICTIONAL_PORTRAIT_IDS.has(id)) {
+      const safeMood = CHARACTER_MOODS.includes(mood) ? mood : 'neutral';
+      return `assets/characters/expressions/${id}/${safeMood}.webp`;
+    }
+    if (id === 'vincent') return 'assets/portrait-vincent.jpg';
+    if (id === 'gauguin') return 'assets/portrait-gauguin.jpg';
+    return null;
+  }
+
+  let characterPreloadStarted = false;
+  function preloadCharacterExpressions() {
+    if (characterPreloadStarted) return;
+    characterPreloadStarted = true;
+    const run = () => {
+      FICTIONAL_PORTRAIT_IDS.forEach(id => CHARACTER_MOODS.forEach(mood => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.src = portraitAssetFor(id, mood);
+      }));
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(run, {timeout: 3500});
+    else setTimeout(run, 900);
+  }
+
   function setCharacters(n) {
     els.characterLayer.innerHTML = '';
     let ids = [];
@@ -566,10 +670,22 @@
       const mood = inferMood(n, id, active);
       const d = document.createElement('div');
       d.className = `character-card ${ids.length === 1 ? 'right' : (i === 0 ? 'left' : 'right')} ${roleClass} mood-${mood}`;
-      const paintedPortraits = {vincent:'assets/portrait-vincent.jpg', gauguin:'assets/portrait-gauguin.jpg'};
-      if (paintedPortraits[id]) {
-        d.classList.add('painted-portrait', `portrait-${id}`);
-        d.innerHTML = `<div class="portrait-canvas"><img src="${paintedPortraits[id]}" alt=""><span class="portrait-glaze"></span></div>`;
+      const portraitAsset = portraitAssetFor(id, mood);
+      if (portraitAsset) {
+        const historical = id === 'vincent' || id === 'gauguin';
+        d.classList.add(historical ? 'painted-portrait' : 'illustrated-portrait', `portrait-${id}`);
+        d.dataset.character = id;
+        d.dataset.mood = mood;
+        const label = CHARACTER_DISPLAY_NAMES[id] || id;
+        const expression = MOOD_LABELS[mood] || '通常';
+        d.innerHTML = `<div class="portrait-canvas"><img src="${portraitAsset}" alt="${label}・${expression}" decoding="async"><span class="portrait-glaze"></span><span class="portrait-edge"></span></div>`;
+        const portraitImage = d.querySelector('img');
+        portraitImage.addEventListener('error', () => {
+          if (FICTIONAL_PORTRAIT_IDS.has(id) && !portraitImage.dataset.fallback) {
+            portraitImage.dataset.fallback = 'neutral';
+            portraitImage.src = portraitAssetFor(id, 'neutral');
+          }
+        }, {once:false});
       } else {
         d.innerHTML = characterSvg(id, mood);
       }
@@ -577,9 +693,60 @@
     });
   }
 
+  function transitionKindFor(n) {
+    const stateName = String(n.visualState || '');
+    const bg = String(n.bg || '');
+    if (/memory|return|death|void|collapse|crumble/i.test(`${stateName} ${bg}`)) return 'memory';
+    if (/fire|smoke|electric|overheat/i.test(`${stateName} ${bg}`)) return 'fire';
+    if (['bedroomWorld','guestRoom','yellowHouse','chairLayer','keyholeRoom','saintRemy','comparisonRoom','martaWorkshop','paperArchive'].includes(bg)) return 'paint';
+    return 'fade';
+  }
+
+  function playSceneTransition(n) {
+    if (!els.transition || state.settings.reduceMotion) return;
+    clearTimeout(transitionTimer);
+    const kind = transitionKindFor(n);
+    els.transition.className = `cinematic-transition kind-${kind}`;
+    void els.transition.offsetWidth;
+    els.transition.classList.add('active');
+    transitionTimer = setTimeout(() => els.transition.classList.remove('active'), 760);
+  }
+
+  function cameraFor(n) {
+    const v = `${n.visualState || ''} ${n.mood || ''} ${n.bg || ''}`;
+    if (/alarm|fear|emergency|smoke|fire|death|collapse|crumble/.test(v)) return 'close';
+    if (/document|paper|archive|scan|comparison|equipment/.test(v)) return 'detail';
+    if (/memory|uneasy|blackout|void|keyhole/.test(v)) return 'uneasy';
+    if (/exterior|courtyard|rhone|gallery|dawn/.test(v)) return 'wide';
+    return 'normal';
+  }
+
+  function scoreForScene(n) {
+    const bg = String(n.bg || '');
+    const chapter = canonicalChapter(n.chapter || state.currentChapter);
+    if (/fire|smoke|electric|collapse|crumble|blackout|void/.test(bg)) return 'danger';
+    if (/portal|memory|screenGlow|chairLayer|keyholeRoom/.test(bg)) return 'memory';
+    if (chapter === 'ACT 1' || chapter === 'ACT 2') return 'arles';
+    if (chapter === 'ACT 3') return 'saint';
+    if (chapter === 'ACT 4') return 'marta';
+    if (chapter === 'ACT 5') return 'forgery';
+    if (chapter === 'ACT 6' || chapter === 'ENDING') return 'final';
+    return 'modern';
+  }
+
+  function pulseLinePresentation() {
+    els.dialogue.classList.remove('line-enter');
+    void els.dialogue.offsetWidth;
+    els.dialogue.classList.add('line-enter');
+    els.characterLayer.querySelectorAll('.character-card.speaking').forEach(card => {
+      card.classList.remove('line-enter'); void card.offsetWidth; card.classList.add('line-enter');
+    });
+  }
+
   function setScene(n) {
     const newBg = n.bg || 'train';
     if (lastSceneBg && lastSceneBg !== newBg && !state.settings.reduceMotion) {
+      playSceneTransition(n);
       els.scene.classList.add('scene-changing');
       setTimeout(() => els.scene.classList.remove('scene-changing'), 420);
     }
@@ -589,11 +756,13 @@
     els.scene.className = `scene bg-${newBg} state-${sceneState} tone-${sceneTone}${els.scene.classList.contains('scene-changing') ? ' scene-changing' : ''}`;
     els.scene.dataset.state = sceneState;
     els.scene.dataset.tone = sceneTone;
+    els.scene.dataset.camera = cameraFor(n);
     const paintBgs = ['labPainting','scan','infrared','scanSafe','screenGlow','portal'];
     if (n.type === 'revealPainting') state.paintingRevealed = true;
     els.paintingStage.classList.toggle('hidden', !(state.paintingRevealed && paintBgs.includes(n.bg)));
     setCharacters(n);
     audio?.set(n.ambient || ambientForBg(n.bg));
+    audio?.setScore(scoreForScene(n));
   }
 
   function ambientForBg(bg) {
@@ -670,7 +839,78 @@
     els.progressFill.style.width = `${pct}%`;
   }
 
-  function renderNode(id, save = true, suppressCards = false) {
+  function scriptForNode(n) {
+    if (Array.isArray(n?.script) && n.script.length) return n.script;
+    return [{
+      mode: n?.voice === 'inner' ? 'thought' : (n?.type === 'evidenceText' ? 'document' : 'dialogue'),
+      speaker: n?.speaker || '',
+      emotion: n?.emotion || '',
+      voice: n?.voice === 'inner' ? 'thought' : (n?.voice || 'normal'),
+      text: n?.text || ''
+    }];
+  }
+
+  function segmentPresentation(n, seg) {
+    return {
+      ...n,
+      ...seg,
+      bg: seg?.bg || n.bg,
+      ambient: seg?.ambient || n.ambient,
+      visualState: seg?.visualState || n.visualState,
+      sceneTone: seg?.sceneTone || n.sceneTone,
+      characters: seg?.characters || n.characters,
+      character: seg?.character || n.character,
+      mood: seg?.mood || n.mood,
+      listenerMood: seg?.listenerMood || n.listenerMood,
+      speaker: seg?.speaker ?? n.speaker ?? '',
+      emotion: seg?.emotion ?? '',
+      text: seg?.text ?? ''
+    };
+  }
+
+  function renderSegment(index, save = true) {
+    if (!node) return;
+    segmentIndex = Math.max(0, Math.min(index, Math.max(0, currentScript.length - 1)));
+    state.segmentIndex = segmentIndex;
+    previousLogCursor = -1;
+    currentSegment = currentScript[segmentIndex] || {mode:'thought',speaker:'',emotion:'',voice:'thought',text:''};
+    const rawMode = currentSegment.mode || (currentSegment.voice === 'inner' ? 'thought' : 'dialogue');
+    const textMode = rawMode === 'inner' ? 'thought' : rawMode;
+    const presentation = segmentPresentation(node, currentSegment);
+    if (textMode !== 'dialogue') presentation.speaker = '';
+    afterTextRanFor = null;
+    const segmentKey = `${node.id}:${segmentIndex}`;
+    currentWasRead = !!state.readSegments[segmentKey];
+    state.readSegments[segmentKey] = true;
+    els.readStatus.textContent = `${currentWasRead ? '既読' : ''}${currentScript.length > 1 ? `${currentWasRead ? ' · ' : ''}${segmentIndex + 1}/${currentScript.length}` : ''}`;
+    setScene(presentation);
+    pulseLinePresentation();
+    const cue = currentSegment.sfx || (segmentIndex === 0 ? node.sfx : null);
+    if (cue) setTimeout(() => audio?.sfx(cue), currentSegment.sfxDelay || node.sfxDelay || 40);
+    const visibleSpeaker = textMode === 'dialogue' ? (currentSegment.speaker || '') :
+      (textMode === 'document' || textMode === 'system' ? (currentSegment.speaker || '') : '');
+    els.speaker.textContent = visibleSpeaker;
+    els.emotion.textContent = '';
+    const speakerRow = els.speaker.closest('.speaker-row');
+    const speakerRowHidden = !visibleSpeaker && !['document','system'].includes(textMode);
+    if (speakerRow) speakerRow.hidden = speakerRowHidden;
+    els.emotion.hidden = true;
+    els.dialogue.dataset.mode = textMode;
+    els.dialogue.dataset.voice = currentSegment.voice || textMode || 'normal';
+    els.dialogue.dataset.delivery = currentSegment.delivery || 'neutral';
+    els.dialogue.classList.toggle('speakerless', !visibleSpeaker);
+    els.scene.dataset.textMode = textMode;
+    els.dialogue.setAttribute('aria-label', ({dialogue: visibleSpeaker ? `${visibleSpeaker}の発言` : '発言', thought:'澄の心の声', narration:'澄が見聞きしたこと', document:'文書', system:'システム表示'}[textMode] || '文章'));
+    fullText = currentSegment.text || '';
+    if (['investigate','investigatePainting','puzzle'].includes(node.type) && !fullText) els.dialogue.classList.add('hidden');
+    else els.dialogue.classList.remove('hidden');
+    addLog(node, currentSegment, segmentIndex);
+    typeText(fullText, () => afterTextComplete(node));
+    if (save) saveGame(false, SAVE_KEYS.auto);
+    updateMenuStatus();
+  }
+
+  function renderNode(id, save = true, suppressCards = false, resumeSegment = 0) {
     clearTyping(); clearAutoTimer(); hideTransient(); afterTextRanFor = null;
     const nextNode = nodes.get(id);
     if (!nextNode) { console.error('missing node', id); return; }
@@ -679,44 +919,32 @@
     const previousChapter = state.currentChapter;
     const previousLocation = state.currentLocation;
     const previousTime = state.currentTime;
-    currentWasRead = !!state.readNodes[id];
     node = nextNode;
     state.nodeId = id;
     if (!state.visited.includes(id)) state.visited.push(id);
-    state.readNodes[id] = true;
     if (node.set) applySet(node.set);
     if (node.chapter) state.currentChapter = node.chapter;
     if (node.location) state.currentLocation = node.location;
     if (node.time) state.currentTime = node.time;
     state.savedAt = Date.now();
+    state.readNodes[id] = true;
 
     els.chapter.textContent = state.currentChapter;
     els.location.textContent = state.currentLocation;
     els.time.textContent = state.currentTime;
     els.loop.textContent = state.paintingLoop ? `絵画記録 ${String(state.paintingLoop).padStart(2,'0')}` : `記録 ${String(state.loop).padStart(2,'0')}`;
-    els.readStatus.textContent = currentWasRead ? '既読' : '';
     updateProgress(id);
-    setScene(node);
-    if (node.sfx) setTimeout(() => audio?.sfx(node.sfx), node.sfxDelay || 40);
 
     if (!suppressCards && canonicalChapter(state.currentChapter) !== canonicalChapter(previousChapter)) showChapterCard(state.currentChapter);
     if (!suppressCards && (state.currentLocation !== previousLocation || state.currentTime !== previousTime)) showPlaceCard(state.currentLocation, state.currentTime);
     if (!suppressCards && node.beat) showBeatCard(node.beat);
 
-    els.speaker.textContent = node.speaker || '';
-    els.emotion.textContent = node.emotion || '';
-    els.dialogue.dataset.voice = node.voice || (node.speaker === '澄（内心）' ? 'inner' : 'normal');
-    fullText = node.text || '';
-    if (['investigate','investigatePainting','puzzle'].includes(node.type)) els.dialogue.classList.add('hidden');
-
-    addLog(node);
-    typeText(fullText, () => afterTextComplete(node));
+    currentScript = scriptForNode(node);
     if (node.evidence && !state.evidence.includes(node.evidence)) {
       addEvidence(node.evidence, false);
       pendingEvidenceToast = node.evidence;
     }
-    if (save) saveGame(false, SAVE_KEYS.auto);
-    updateMenuStatus();
+    renderSegment(Number.isFinite(resumeSegment) ? resumeSegment : 0, save);
   }
 
   function applySet(obj) {
@@ -727,7 +955,7 @@
   }
 
   function typingDelayFor(char) {
-    const pace = Number(node?.pace || 1);
+    const pace = Number(currentSegment?.pace || node?.pace || 1);
     const base = Number(state.settings.speed) * pace;
     if (base === 0 || state.settings.reduceMotion) return 0;
     if (char === '。' || char === '！' || char === '？' || char === '\n') return base + 80;
@@ -784,16 +1012,25 @@
     let delay;
     if (skipMode && (!state.settings.skipReadOnly || currentWasRead)) delay = 110;
     else {
-      delay = Number(state.settings.autoDelay) + Math.min(2100, (n.text || '').length * 18) + Number(n.autoExtra || 0);
-      if (isDangerNode(n)) delay += 900;
+      const presented = segmentPresentation(n, currentSegment || {});
+      const text = currentSegment?.text || n.text || '';
+      const deliveryPause = ({quick:-110,direct:20,measured:260,dry:110,precise:210,formal:180,restrained:240,persuasive:90,controlled:100,constrained:460,radio:160}[currentSegment?.delivery] || 0);
+      const punctuation = (text.match(/[。！？]/g) || []).length * 150 + (text.match(/[、…]/g) || []).length * 55 + (text.match(/\n/g) || []).length * 180;
+      const modeFactor = currentSegment?.mode === 'thought' ? 1.12 : currentSegment?.mode === 'document' ? 1.18 : 1;
+      delay = Number(state.settings.autoDelay) + Math.min(2600, text.length * 20 * modeFactor) + punctuation + Number(currentSegment?.autoExtra || n.autoExtra || 0) + deliveryPause;
+      delay = Math.max(240, delay);
+      if (isDangerNode(presented)) delay += 900;
     }
     autoTimer = setTimeout(() => advance(true), delay);
   }
 
   function afterTextComplete(n) {
-    if (!n || afterTextRanFor === n.id) return;
-    afterTextRanFor = n.id;
+    const segmentKey = n ? `${n.id}:${segmentIndex}` : '';
+    if (!n || afterTextRanFor === segmentKey) return;
+    afterTextRanFor = segmentKey;
     typingDone = true;
+    const finalSegment = segmentIndex >= currentScript.length - 1;
+    if (!finalSegment) { scheduleAuto(n); return; }
     if (pendingEvidenceToast) {
       const ev = pendingEvidenceToast; pendingEvidenceToast = null; showEvidenceToast(ev);
     }
@@ -808,9 +1045,13 @@
   function advance(fromAuto = false) {
     if (completeTyping()) return;
     if (!node) return;
-    if (isInteractiveNode(node)) return;
     clearAutoTimer();
     if (!fromAuto) audio?.sfx('advance');
+    if (segmentIndex < currentScript.length - 1) {
+      renderSegment(segmentIndex + 1, true);
+      return;
+    }
+    if (isInteractiveNode(node)) return;
     if (node.type === 'deathSequence') { showGameover(node.death); return; }
     if (node.next) renderNode(node.next);
   }
@@ -832,6 +1073,7 @@
     choices.forEach((c, index) => {
       const b = document.createElement('button');
       b.type = 'button';
+      b.style.setProperty('--choice-index', index);
       b.innerHTML = `<span class="choice-number">${String(index + 1).padStart(2,'0')}</span><span>${escapeHtml(c.text)}</span>`;
       b.addEventListener('click', e => {
         e.stopPropagation();
@@ -843,6 +1085,7 @@
       els.choices.appendChild(b);
     });
     els.choices.classList.remove('hidden');
+    els.choices.classList.remove('choice-enter'); void els.choices.offsetWidth; els.choices.classList.add('choice-enter');
   }
 
   function startInvestigation(n) {
@@ -1092,15 +1335,17 @@
   function renderLog() {
     const query = ($('#log-search')?.value || '').trim().toLowerCase();
     const entries = state.log.slice(-400).filter(x => !query || `${x.speaker} ${x.text}`.toLowerCase().includes(query));
-    $('#log-content').innerHTML = entries.reverse().map(x => `<div class="log-entry"><b>${escapeHtml(x.speaker || '地の文')}</b><p>${escapeHtml(x.text)}</p></div>`).join('') || '<p class="empty-state">条件に合う会話はありません。</p>';
+    $('#log-content').innerHTML = entries.reverse().map(x => `<div class="log-entry"><b>${escapeHtml(x.speaker || (x.mode === 'thought' ? '澄' : x.mode === 'narration' ? '観察' : x.mode === 'document' ? '記録' : '観察'))}</b><p>${escapeHtml(x.text)}</p></div>`).join('') || '<p class="empty-state">条件に合う会話はありません。</p>';
   }
 
-  function addLog(n) {
-    if (!n.text) return;
+  function addLog(n, seg = null, index = 0) {
+    const text = seg?.text ?? n.text;
+    if (!text) return;
+    const key = `${n.id}:${index}`;
     const prev = state.log[state.log.length - 1];
-    if (prev?.nodeId === n.id) return;
-    state.log.push({nodeId:n.id, speaker:n.speaker || '', text:n.text, chapter:state.currentChapter});
-    if (state.log.length > 700) state.log.shift();
+    if (prev?.segmentKey === key) return;
+    state.log.push({nodeId:n.id, segmentKey:key, mode:seg?.mode || 'dialogue', speaker:seg?.logSpeaker || seg?.speaker || n.speaker || '', text, chapter:state.currentChapter});
+    if (state.log.length > 1200) state.log.shift();
   }
 
   function renderSaveSlots() {
@@ -1285,6 +1530,7 @@
     state.settings.ambient = !state.settings.ambient;
     audio.enabled = state.settings.ambient;
     audio.set(state.settings.ambient ? (node?.ambient || ambientForBg(node?.bg)) : '');
+    audio.setScore(state.settings.ambient ? scoreForScene(node || {}) : 'silence');
     updateModeButtons();
   });
 
@@ -1295,6 +1541,7 @@
     '#line-height': v => state.settings.lineHeight = Number(v),
     '#panel-opacity': v => state.settings.panelOpacity = Number(v),
     '#ambient-volume': v => state.settings.ambientVolume = Number(v),
+    '#music-volume': v => state.settings.musicVolume = Number(v),
     '#sfx-volume': v => state.settings.sfxVolume = Number(v)
   };
   Object.entries(settingHandlers).forEach(([selector, handler]) => $(selector).addEventListener('input', e => { handler(e.target.value); applySettings(); }));
@@ -1309,6 +1556,15 @@
   $('#notebook-filter').addEventListener('change', renderNotebook);
   $('#log-search').addEventListener('input', renderLog);
 
+  function showPreviousLine() {
+    if (!state.log.length) return;
+    previousLogCursor = previousLogCursor < 0 ? state.log.length - 2 : Math.max(0, previousLogCursor - 1);
+    const item = state.log[previousLogCursor];
+    if (!item) return;
+    const label = item.speaker || (item.mode === 'thought' ? '—' : item.mode === 'document' ? '記録' : '観察');
+    showToast(`<strong>${escapeHtml(label)}</strong><br>${escapeHtml(item.text)}`, false, true);
+  }
+
   document.addEventListener('keydown', e => {
     const open = document.querySelector('dialog[open]');
     if (open) { if (e.key === 'Escape') open.close(); return; }
@@ -1318,6 +1574,7 @@
     if (e.key.toLowerCase() === 'a' && !els.game.classList.contains('hidden')) { toggleAuto(); return; }
     if (e.key.toLowerCase() === 's' && !els.game.classList.contains('hidden')) { toggleSkip(); return; }
     if (e.key.toLowerCase() === 'h' && !els.game.classList.contains('hidden')) { toggleUi(); return; }
+    if (e.key === 'ArrowUp' && !els.game.classList.contains('hidden')) { e.preventDefault(); showPreviousLine(); return; }
     if (e.key.toLowerCase() === 'g' && !els.game.classList.contains('hidden') && invState) { useInvestigationHint(); return; }
     if (/^[1-9]$/.test(e.key) && !els.choices.classList.contains('hidden')) {
       const choice = els.choices.querySelectorAll('button')[Number(e.key) - 1];
@@ -1328,6 +1585,10 @@
   });
 
   window.addEventListener('beforeunload', () => { if (!els.game.classList.contains('hidden')) saveGame(false, SAVE_KEYS.auto); });
+
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js').catch(() => {}));
+  }
 
   window.FB_DEBUG = {
     getState: () => JSON.parse(JSON.stringify(state)),
@@ -1354,4 +1615,5 @@
   renderLog();
   renderSaveSlots();
   updateContinueState();
+  preloadCharacterExpressions();
 })();

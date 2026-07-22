@@ -824,3 +824,190 @@ button.primary{background:linear-gradient(135deg,#efca73,#c79b45);box-shadow:0 1
 .gameover-repeat{margin-left:.55rem;color:#b9a56f}
 .reduce-motion .beat-card.beat-in,.reduce-motion .hotspot.hinted{animation:none}
 @media(max-width:640px){.beat-card{min-width:90vw;padding:1rem 1.2rem}.investigation-actions{width:100%;justify-content:stretch}.investigation-actions button{flex:1}.select-row{grid-template-columns:1fr;gap:.45rem}.playtest-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.playtest-table{font-size:.78rem}.playtest-table th,.playtest-table td{padding:.58rem .4rem}}
+
+
+/* Narrative 1.9 — limited POV plus character-specific dialogue delivery and performance rhythm. */
+.dialogue-panel[data-voice="inner"] .speaker-row::before{
+  content:"POV";font:600 .62rem/1 system-ui,sans-serif;letter-spacing:.18em;color:rgba(243,217,145,.58);
+  border:1px solid rgba(243,217,145,.22);padding:.28rem .42rem;margin-right:.15rem
+}
+.dialogue-panel[data-voice="inner"] .speaker-name{color:#e6d5ae;font-weight:500}
+.dialogue-panel[data-voice="inner"] .emotion-label{color:rgba(230,213,174,.58)}
+.dialogue-panel[data-voice="inner"] .dialogue-text{font-style:normal;letter-spacing:.025em;color:#eee7d8}
+.dialogue-panel[data-voice="document"]{
+  background:linear-gradient(110deg,rgba(30,27,23,.96),rgba(16,17,22,.97));
+  border-color:rgba(198,174,121,.36)
+}
+.dialogue-panel[data-voice="document"]:before{background:linear-gradient(180deg,transparent,#bca374 30% 70%,transparent)}
+.dialogue-panel[data-voice="document"] .speaker-name{color:#d8c398;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.dialogue-panel[data-voice="document"] .emotion-label{color:rgba(216,195,152,.55)}
+.dialogue-panel[data-voice="document"] .dialogue-text{
+  color:#e5dcc9;font-family:"Noto Serif JP","Yu Mincho",serif;letter-spacing:.045em
+}
+.dialogue-panel[data-voice="system"]{background:rgba(9,12,18,.95);border-color:rgba(152,177,194,.3)}
+.dialogue-panel[data-voice="system"] .speaker-name{color:#a8c3d2}
+.dialogue-panel[data-voice="dialogue"] .speaker-name{color:#f3d991}
+@media(max-width:820px){
+  .dialogue-panel[data-voice="inner"] .speaker-row::before{font-size:.55rem;padding:.24rem .34rem}
+}
+
+/* Narrative 1.9 — character cadence and delivery. The differences are intentionally subtle. */
+.dialogue-panel[data-delivery="quick"] .dialogue-text{letter-spacing:.005em}
+.dialogue-panel[data-delivery="measured"] .dialogue-text,
+.dialogue-panel[data-delivery="precise"] .dialogue-text,
+.dialogue-panel[data-delivery="formal"] .dialogue-text{letter-spacing:.014em}
+.dialogue-panel[data-delivery="restrained"] .dialogue-text{letter-spacing:.01em;color:color-mix(in srgb,var(--text) 93%,var(--muted))}
+.dialogue-panel[data-delivery="constrained"] .dialogue-text{letter-spacing:.025em;text-shadow:.045em 0 rgba(96,143,177,.18),-.045em 0 rgba(196,110,83,.14)}
+.dialogue-panel[data-delivery="radio"] .speaker-name:after{content:"  /  RADIO";font-size:.58em;letter-spacing:.16em;color:var(--muted)}
+
+
+/* Final Candidate 2.0 — production portrait direction */
+.character-card.illustrated-portrait{width:min(34vw,470px);height:min(75vh,790px);bottom:14%;filter:drop-shadow(0 36px 54px rgba(0,0,0,.72));}
+.character-card.illustrated-portrait .portrait-canvas{position:absolute;inset:0;background:transparent;overflow:visible;clip-path:none;box-shadow:none;-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 86%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0,#000 86%,transparent 100%)}
+.character-card.illustrated-portrait .portrait-canvas:before{content:"";position:absolute;inset:4% 5% 7%;z-index:2;border:1px solid rgba(223,188,119,.09);border-radius:46% 46% 18% 18%/28% 28% 12% 12%;box-shadow:inset 0 -120px 130px rgba(3,4,8,.42);pointer-events:none}
+.character-card.illustrated-portrait .portrait-canvas img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;filter:saturate(.96) contrast(1.03) brightness(.96);transform:scale(1.01);transition:filter .5s ease,transform .7s cubic-bezier(.2,.7,.2,1),object-position .7s ease;}
+.character-card.illustrated-portrait .portrait-glaze{position:absolute;inset:0;z-index:3;background:linear-gradient(112deg,rgba(247,214,148,.10),transparent 28%),radial-gradient(circle at 51% 29%,rgba(255,241,208,.08),transparent 29%),linear-gradient(to top,rgba(2,4,8,.7),transparent 31%);mix-blend-mode:screen;pointer-events:none}
+.character-card.illustrated-portrait .portrait-edge{position:absolute;inset:5% 8% 8%;z-index:4;border-left:1px solid rgba(225,187,105,.12);border-right:1px solid rgba(114,147,168,.08);pointer-events:none;opacity:.8}
+.character-card.illustrated-portrait.listening{opacity:.64;filter:saturate(.62) brightness(.66) drop-shadow(0 29px 42px rgba(0,0,0,.72));transform:scale(.95) translateY(2.5%)}
+.character-card.illustrated-portrait.listening .portrait-canvas img{filter:saturate(.62) contrast(1.04) brightness(.69);transform:scale(.985)}
+.character-card.illustrated-portrait.speaking{filter:saturate(1) brightness(1.02) drop-shadow(0 39px 58px rgba(0,0,0,.76));transform:translateY(-.5%)}
+.character-card.illustrated-portrait.speaking .portrait-canvas img{filter:saturate(1) contrast(1.03) brightness(1.01);transform:scale(1.035)}
+.character-card.illustrated-portrait.present{opacity:.9;filter:saturate(.84) brightness(.86) drop-shadow(0 34px 48px rgba(0,0,0,.7));}
+.character-card.illustrated-portrait.mood-soft .portrait-canvas img{filter:saturate(1.01) contrast(1.01) brightness(1.01);transform:scale(1.025) translateY(-.2%)}
+.character-card.illustrated-portrait.mood-tense .portrait-canvas img{filter:saturate(.94) contrast(1.05) brightness(.96);transform:scale(1.045) translateX(var(--portrait-shift,0))}
+.character-card.illustrated-portrait.mood-alarm .portrait-canvas img{filter:saturate(.9) contrast(1.07) brightness(.94);transform:scale(1.075) translateY(-1.2%)}
+.character-card.illustrated-portrait.mood-down .portrait-canvas img{filter:saturate(.86) contrast(1.02) brightness(.91);transform:scale(.995) translateY(1.2%)}
+.character-card.illustrated-portrait.mood-focused .portrait-canvas img,.character-card.illustrated-portrait.mood-working .portrait-canvas img{filter:saturate(.97) contrast(1.04) brightness(.98);transform:scale(1.04)}
+.character-card.illustrated-portrait.mood-resolved .portrait-canvas img{filter:saturate(1.02) contrast(1.03) brightness(1.01);transform:scale(1.045) translateY(-.8%)}
+.character-card.illustrated-portrait.mood-shaken .portrait-canvas img,.character-card.illustrated-portrait.mood-breathless .portrait-canvas img{filter:saturate(.89) contrast(1.04) brightness(.93);transform:scale(1.055) translateY(1%)}
+.character-card.portrait-sumi{--portrait-shift:-.4%}.character-card.portrait-claire{--portrait-shift:.5%}.character-card.portrait-marta{--portrait-shift:-.2%}.character-card.portrait-andre{--portrait-shift:.8%}
+.character-card.portrait-sumi .portrait-canvas img{object-position:49% bottom}.character-card.portrait-claire .portrait-canvas img{object-position:52% bottom}.character-card.portrait-marta .portrait-canvas img{object-position:48% bottom}.character-card.portrait-marc .portrait-canvas img{object-position:52% bottom}.character-card.portrait-leon .portrait-canvas img{object-position:50% bottom}.character-card.portrait-andre .portrait-canvas img{object-position:49% bottom}
+@media (max-width:820px){
+  .character-card.illustrated-portrait{width:68vw;height:59vh;bottom:22%}
+  .character-card.illustrated-portrait.left{left:-18%}.character-card.illustrated-portrait.right{right:-18%}
+  .character-card.illustrated-portrait .portrait-canvas:before{inset:3% 4% 6%}
+}
+
+
+/* Final Candidate 2.1 — dialogue / thought / narration presentation.
+   Speech is authored with a nameplate; silent POV text never carries a visible label. */
+.emotion-label{display:none!important}
+.dialogue-panel{transition:width .28s ease,left .28s ease,background .28s ease,border-color .28s ease,box-shadow .28s ease,backdrop-filter .28s ease}
+.dialogue-panel[data-mode="dialogue"]{padding-top:30px}
+.dialogue-panel[data-mode="dialogue"] .speaker-row{
+  position:absolute;left:28px;top:-18px;min-height:0;margin:0;display:flex;align-items:center;
+  padding:.48rem 1.05rem .5rem;background:linear-gradient(110deg,rgba(12,14,21,.98),rgba(24,24,29,.96));
+  border:1px solid rgba(224,183,94,.34);border-left:3px solid var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.42)
+}
+.dialogue-panel[data-mode="dialogue"] .speaker-name{font:600 .82rem/1 var(--ui-sans);letter-spacing:.16em;color:#f3d991}
+.dialogue-panel[data-mode="dialogue"] .dialogue-text{color:#f5f0e7;letter-spacing:.018em}
+.dialogue-panel[data-mode="thought"],
+.dialogue-panel[data-mode="narration"]{border-radius:0}
+.dialogue-panel[data-mode="thought"] .speaker-row,
+.dialogue-panel[data-mode="narration"] .speaker-row{display:none}
+.dialogue-panel[data-mode="thought"]{
+  width:min(80vw,900px);left:47%;min-height:126px;padding:20px 46px 27px;
+  background:linear-gradient(90deg,rgba(7,9,15,.15),rgba(8,10,16,.86) 16%,rgba(10,11,18,.91) 84%,rgba(7,9,15,.12));
+  border:0;border-top:1px solid rgba(226,194,128,.16);border-bottom:1px solid rgba(226,194,128,.09);
+  box-shadow:0 22px 70px rgba(0,0,0,.36);backdrop-filter:blur(6px)
+}
+.dialogue-panel[data-mode="thought"]:before{
+  content:""!important;left:23px;top:24px;bottom:24px;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(226,194,128,.55),transparent);opacity:.75
+}
+.dialogue-panel[data-mode="thought"]:after{
+  content:"";position:absolute;left:31px;top:25px;width:34px;height:1px;
+  background:linear-gradient(90deg,rgba(226,194,128,.55),transparent)
+}
+.dialogue-panel[data-mode="thought"] .dialogue-text{
+  max-width:780px;margin:.1rem auto 0;color:#efe7d8;font-weight:400;font-style:normal;
+  font-size:calc(var(--font-size) * 1.01);line-height:2.08;letter-spacing:.052em;text-shadow:0 1px 8px rgba(0,0,0,.58)
+}
+.dialogue-panel[data-mode="narration"]{
+  width:min(86vw,1000px);min-height:120px;padding:20px 34px 25px;
+  background:linear-gradient(90deg,rgba(8,10,16,.44),rgba(10,12,19,.86) 12% 88%,rgba(8,10,16,.44));
+  border:0;border-top:1px solid rgba(178,190,201,.16);border-bottom:1px solid rgba(178,190,201,.10);
+  box-shadow:0 20px 65px rgba(0,0,0,.31);backdrop-filter:blur(8px)
+}
+.dialogue-panel[data-mode="narration"]:before{content:none!important}
+.dialogue-panel[data-mode="narration"] .dialogue-text{
+  max-width:900px;margin:0 auto;color:#dcd8cf;font-size:calc(var(--font-size) * .96);
+  line-height:2.02;letter-spacing:.034em;text-shadow:0 1px 7px rgba(0,0,0,.52)
+}
+.dialogue-panel[data-mode="document"] .speaker-row,
+.dialogue-panel[data-mode="system"] .speaker-row{display:flex;position:static;padding:0;background:none;border:0;box-shadow:none}
+.dialogue-panel[data-mode="document"] .dialogue-text,
+.dialogue-panel[data-mode="system"] .dialogue-text{margin-top:.35rem}
+/* Remove the former visible POV badge. The visual grammar now carries the distinction. */
+.dialogue-panel[data-voice="inner"] .speaker-row::before,
+.dialogue-panel[data-mode="thought"] .speaker-row::before{content:none!important;display:none!important}
+.scene[data-text-mode="thought"] .character-card{opacity:.48!important;filter:saturate(.5) brightness(.64) blur(.15px) drop-shadow(0 28px 44px rgba(0,0,0,.7))!important;transform:scale(.97) translateY(1.5%)!important}
+.scene[data-text-mode="narration"] .character-card{opacity:.72!important;filter:saturate(.7) brightness(.75) drop-shadow(0 30px 46px rgba(0,0,0,.7))!important}
+.log-entry[data-mode="thought"] b{color:#d9c9a7}
+.log-entry[data-mode="narration"] b{color:#aeb9c0}
+@media(max-width:820px){
+  .dialogue-panel[data-mode="dialogue"]{padding-top:27px}
+  .dialogue-panel[data-mode="dialogue"] .speaker-row{left:18px;top:-15px;padding:.42rem .8rem}
+  .dialogue-panel[data-mode="thought"]{left:50%;width:94vw;min-height:138px;padding:19px 26px 25px}
+  .dialogue-panel[data-mode="thought"]:before{left:12px}
+  .dialogue-panel[data-mode="thought"]:after{left:17px;width:24px}
+  .dialogue-panel[data-mode="narration"]{width:94vw;min-height:132px;padding:18px 20px 24px}
+  .dialogue-panel[data-mode="thought"] .dialogue-text{line-height:1.93;letter-spacing:.035em}
+  .dialogue-panel[data-mode="narration"] .dialogue-text{line-height:1.88;letter-spacing:.025em}
+}
+
+/* 2.1.1 robust speaker / direction visibility */
+[hidden]{display:none!important}
+.dialogue-panel.speakerless .speaker-row{display:none!important}
+#emotion-label{display:none!important}
+
+
+/* Final Candidate 2.2 — cinematic staging / score / play-feel pass */
+.listening-note{margin:.35rem 0 0;color:rgba(231,224,210,.62);font:500 .72rem/1.6 var(--ui-sans);letter-spacing:.06em}
+.cinematic-transition{position:absolute;inset:0;z-index:25;pointer-events:none;overflow:hidden;opacity:0;mix-blend-mode:normal}
+.transition-wash{position:absolute;inset:-12%;opacity:0;transform:translateX(-112%) skewX(-8deg);background:linear-gradient(105deg,transparent 2%,rgba(11,13,20,.94) 20%,rgba(224,183,94,.22) 51%,rgba(8,10,16,.97) 79%,transparent 98%);filter:blur(1.5px)}
+.transition-wash.wash-b{transform:translateX(112%) skewX(9deg);background:linear-gradient(75deg,transparent 4%,rgba(17,19,28,.98) 27%,rgba(104,128,153,.18) 52%,rgba(8,10,16,.96) 76%,transparent 96%)}
+.transition-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(242,215,145,.72);opacity:0;box-shadow:0 0 24px rgba(242,215,145,.38)}
+.cinematic-transition.active{opacity:1}
+.cinematic-transition.active .wash-a{animation:cinematic-wash-a .72s cubic-bezier(.62,0,.32,1) both}
+.cinematic-transition.active .wash-b{animation:cinematic-wash-b .72s cubic-bezier(.62,0,.32,1) both}
+.cinematic-transition.active .transition-line{animation:cinematic-line .72s ease both}
+.cinematic-transition.kind-paint .transition-wash{background:repeating-linear-gradient(100deg,transparent 0 8%,rgba(24,25,29,.97) 9% 20%,rgba(210,166,75,.20) 22% 25%,rgba(9,11,17,.98) 28% 44%,transparent 48% 55%);filter:blur(4px)}
+.cinematic-transition.kind-memory{mix-blend-mode:screen}
+.cinematic-transition.kind-memory .wash-a{background:linear-gradient(100deg,transparent,rgba(64,117,153,.45),rgba(210,121,91,.30),transparent)}
+.cinematic-transition.kind-memory .wash-b{background:linear-gradient(80deg,transparent,rgba(210,121,91,.32),rgba(74,124,161,.42),transparent)}
+.cinematic-transition.kind-fire .transition-wash{background:linear-gradient(105deg,transparent,rgba(54,20,15,.96),rgba(176,83,39,.32),rgba(8,9,13,.98),transparent)}
+@keyframes cinematic-wash-a{0%{opacity:0;transform:translateX(-112%) skewX(-8deg)}18%{opacity:1}55%{opacity:1;transform:translateX(3%) skewX(-8deg)}100%{opacity:0;transform:translateX(112%) skewX(-8deg)}}
+@keyframes cinematic-wash-b{0%{opacity:0;transform:translateX(112%) skewX(9deg)}23%{opacity:.75}58%{opacity:.65;transform:translateX(-2%) skewX(9deg)}100%{opacity:0;transform:translateX(-112%) skewX(9deg)}}
+@keyframes cinematic-line{0%,100%{opacity:0;transform:scaleY(.2)}42%,58%{opacity:.82;transform:scaleY(1)}}
+.save-indicator{position:absolute;z-index:44;right:max(20px,env(safe-area-inset-right));bottom:calc(var(--safe-bottom) + 185px);display:flex;align-items:center;gap:.48rem;padding:.42rem .7rem;border:1px solid rgba(231,205,139,.22);background:rgba(8,10,16,.72);color:rgba(240,226,194,.72);font:600 .65rem/1 var(--ui-sans);letter-spacing:.12em;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .25s ease,transform .25s ease;backdrop-filter:blur(10px)}
+.save-indicator span{width:.38rem;height:.38rem;border-radius:50%;background:#dfbf70;box-shadow:0 0 10px rgba(223,191,112,.6)}
+.save-indicator.visible{opacity:1;transform:none}
+.scene[data-camera="close"] .scene-back,.scene[data-camera="close"] .scene-mid{transform:scale(1.045) translateY(1%)}
+.scene[data-camera="close"] .character-layer{transform:scale(1.035) translateY(1%)}
+.scene[data-camera="wide"] .scene-back,.scene[data-camera="wide"] .scene-mid{transform:scale(1.005)}
+.scene[data-camera="detail"] .scene-mid{transform:scale(1.065) translate(-1.5%,1%)}
+.scene[data-camera="uneasy"] .scene-back{transform:scale(1.035) translateX(-.8%)}
+.scene[data-camera="uneasy"] .scene-mid{transform:scale(1.045) translateX(.8%)}
+.scene-back,.scene-mid,.scene-front,.character-layer{transition:transform 1.2s cubic-bezier(.22,.61,.36,1),filter .55s ease,opacity .55s ease}
+.character-card.line-enter.speaking{animation:portrait-line-enter .38s cubic-bezier(.22,.72,.32,1) both}
+@keyframes portrait-line-enter{0%{opacity:.45;transform:translateY(2.2%) scale(.985);filter:saturate(.62) brightness(.72) blur(.3px)}100%{opacity:1;transform:translateY(0) scale(1);filter:saturate(1) brightness(1)}}
+.dialogue-panel.line-enter{animation:dialogue-line-enter .22s ease both}
+@keyframes dialogue-line-enter{0%{opacity:.78;transform:translateX(-50%) translateY(4px)}100%{opacity:1;transform:translateX(-50%) translateY(0)}}
+.choice-panel.choice-enter button{opacity:0;transform:translateY(12px);animation:choice-rise .34s cubic-bezier(.2,.72,.3,1) forwards;animation-delay:calc(var(--choice-index) * 70ms)}
+@keyframes choice-rise{to{opacity:1;transform:none}}
+.choice-panel button:focus-visible{outline:2px solid rgba(242,211,132,.92);outline-offset:4px;box-shadow:0 0 0 6px rgba(242,211,132,.11)}
+.scene.state-memory .cinematic-transition,.scene.state-death .cinematic-transition{filter:contrast(1.15) saturate(.7)}
+.dialogue-text::selection{background:rgba(230,191,99,.30);color:#fff}
+@media(max-width:700px){.save-indicator{right:12px;bottom:calc(var(--safe-bottom) + 198px);font-size:.58rem}.listening-note{font-size:.66rem}.scene[data-camera="close"] .character-layer{transform:scale(1.02) translateY(.5%)}}
+@media(prefers-reduced-motion:reduce){.cinematic-transition,.cinematic-transition *,.character-card.line-enter,.dialogue-panel.line-enter,.choice-panel.choice-enter button{animation:none!important;transition:none!important}.cinematic-transition{display:none}}
+
+/* Final Candidate 2.3 — individually cut transparent portraits with image-based expressions */
+.character-card.illustrated-portrait .portrait-canvas img{image-rendering:auto;will-change:transform,filter;backface-visibility:hidden}
+.character-card.illustrated-portrait[data-mood=quiet] .portrait-canvas img{transform:scale(1.02)}
+.character-card.illustrated-portrait[data-mood=guarded] .portrait-canvas img,.character-card.illustrated-portrait[data-mood=wary] .portrait-canvas img{transform:scale(1.035) translateX(var(--portrait-shift,0))}
+.character-card.illustrated-portrait[data-mood=breathless] .portrait-canvas img{transform:scale(1.055) translateY(1.2%)}
+/* 2.3 readability tuning: expression files carry the mood grade; role focus controls luminance. */
+.character-card.illustrated-portrait.speaking .portrait-canvas img{filter:saturate(1.02) contrast(1.04) brightness(1.12)}
+.character-card.illustrated-portrait.listening .portrait-canvas img{filter:saturate(.72) contrast(1.04) brightness(.78)}
+.character-card.illustrated-portrait.present .portrait-canvas img{filter:saturate(.94) contrast(1.03) brightness(.96)}

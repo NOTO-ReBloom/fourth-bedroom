@@ -59,6 +59,12 @@ The following are original game assets created for this production pass:
 - Fourth-version painting alterations
 - UI, game-over graphics, framing and transitions
 
+## Fictional character portrait production — Final Candidate 2.3
+
+The six fictional characters are stored as individual transparent portrait files with identity-locked expression variants. Final Candidate 2.3 does not display a crop from a multi-character contact sheet at runtime. The 78 runtime portraits were produced from the project's individual fictional character masters, with silhouette extraction, edge decontamination, local facial-expression deformation and restrained colour grading. QA contact sheets are test-only files and are not loaded by the game.
+
+No real person is represented by the six fictional character designs. Vincent van Gogh and Paul Gauguin remain in the separate historical-portrait series described above.
+
 ## Scenario
 
 The implementation is based on `FOURTH_BEDROOM_MASTER_SCENARIO_V2`.

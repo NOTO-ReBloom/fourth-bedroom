@@ -11,8 +11,13 @@
   <meta property="og:description" content="実在する名画とその作者をめぐる、死に戻り型美術史サスペンス。">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" as="image" href="assets/characters/expressions/sumi/neutral.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/characters/expressions/claire/neutral.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/characters/expressions/marta/neutral.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/portrait-vincent.jpg" type="image/jpeg">
+  <link rel="preload" as="image" href="assets/portrait-gauguin.jpg" type="image/jpeg">
   <meta name="description" content="実在する名画とその作者をめぐる、死に戻り型美術史サスペンス『第四の寝室』ブラウザゲーム。">
-  <title>第四の寝室 — Production 1.7</title>
+  <title>第四の寝室 — Final Candidate 2.3</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -27,7 +32,7 @@
         <p class="eyebrow">THE FOURTH BEDROOM</p>
         <h1>第四の寝室</h1>
         <p class="subtitle">夜明けまで、彼はまだ画家だった。</p>
-        <p class="title-intro">一枚の「第四の《寝室》」を調べる夜。死によって失った未来の記憶だけを頼りに、現在に残る証拠から真相を組み直す。</p>
+        <p class="title-intro">一枚の「第四の《寝室》」を調べる夜。死によって失った未来の記憶だけを頼りに、現在に残る証拠から真相を組み直す。</p><p class="listening-note">暗い場所で、イヤホンまたはヘッドホンの使用を推奨します。</p>
         <div class="title-actions">
           <button id="new-game" class="primary">はじめから</button>
           <button id="continue-game">つづきから</button>
@@ -37,7 +42,7 @@
           <button id="title-settings" class="text-button">設定</button>
           <button id="title-credits" class="text-button">作品情報</button>
         </div>
-        <p class="version">BALANCE / QA · VERSION 1.7.0 · ADAPTIVE ASSIST / LOCAL PLAYTEST METRICS</p>
+        <p class="version">FINAL CANDIDATE · VERSION 2.3.0 · CHARACTER ART / EXPRESSION PASS</p>
       </div>
     </section>
 
@@ -57,7 +62,13 @@
         <div id="hotspot-layer" class="hotspot-layer"></div>
         <div id="smoke-layer" class="smoke-layer"></div>
         <div class="vignette"></div>
+        <div id="cinematic-transition" class="cinematic-transition" aria-hidden="true">
+          <span class="transition-wash wash-a"></span>
+          <span class="transition-wash wash-b"></span>
+          <span class="transition-line"></span>
+        </div>
       </div>
+      <div id="save-indicator" class="save-indicator" role="status" aria-live="polite"><span></span>記録更新</div>
 
       <div id="chapter-card" class="chapter-card hidden" aria-hidden="true">
         <p id="chapter-card-kicker" class="eyebrow">CHAPTER</p>
@@ -203,6 +214,9 @@
         <label>環境音量
           <input id="ambient-volume" type="range" min="0" max="100" value="65">
         </label>
+        <label>音楽音量
+          <input id="music-volume" type="range" min="0" max="100" value="28">
+        </label>
         <label>効果音量
           <input id="sfx-volume" type="range" min="0" max="100" value="70">
         </label>
@@ -218,7 +232,7 @@
         </select>
       </label>
       <label class="check-row"><input id="skip-read-only" type="checkbox" checked> SKIPは既読文章だけにする</label>
-      <p class="help">Enter / Space：文章を進める　1〜9：選択肢　A：AUTO　S：SKIP　H：UI表示切替　G：調査ヒント　Esc：メニュー　N：手帳　L：ログ</p>
+      <p class="help">Enter / Space：文章を進める　1〜9：選択肢　A：AUTO　S：SKIP　H：UI表示切替　G：調査ヒント　Esc：メニュー　N：手帳　L：ログ　↑：直前の文章</p>
     </dialog>
 
     <dialog id="playtest-dialog" class="modal wide-modal">
