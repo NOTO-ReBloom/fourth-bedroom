@@ -1,0 +1,578 @@
+{
+  "version": "2.3.0",
+  "characters": 6,
+  "moodsPerCharacter": 13,
+  "assetCount": 78,
+  "requirements": {
+    "individualFile": true,
+    "transparentBackground": true,
+    "fixedCanvas": [
+      720,
+      960
+    ],
+    "identityLocked": true,
+    "runtimeContactSheet": false
+  },
+  "failures": [],
+  "details": {
+    "sumi": {
+      "neutral": {
+        "bytes": 91380,
+        "coverage": 0.4544,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 1.0,
+        "faceMeanDelta": 0.0
+      },
+      "quiet": {
+        "bytes": 90370,
+        "coverage": 0.4544,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9486,
+        "faceMeanDelta": 5.1495
+      },
+      "soft": {
+        "bytes": 93906,
+        "coverage": 0.4544,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9485,
+        "faceMeanDelta": 3.2486
+      },
+      "focused": {
+        "bytes": 92268,
+        "coverage": 0.4544,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9188,
+        "faceMeanDelta": 5.4521
+      },
+      "working": {
+        "bytes": 94668,
+        "coverage": 0.4548,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8669,
+        "faceMeanDelta": 9.7584
+      },
+      "guarded": {
+        "bytes": 93062,
+        "coverage": 0.4548,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8632,
+        "faceMeanDelta": 9.2198
+      },
+      "wary": {
+        "bytes": 90828,
+        "coverage": 0.4544,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9179,
+        "faceMeanDelta": 5.4168
+      },
+      "resolved": {
+        "bytes": 99602,
+        "coverage": 0.4547,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8539,
+        "faceMeanDelta": 10.4342
+      },
+      "down": {
+        "bytes": 87796,
+        "coverage": 0.4545,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7948,
+        "faceMeanDelta": 14.2387
+      },
+      "shaken": {
+        "bytes": 91426,
+        "coverage": 0.4548,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8125,
+        "faceMeanDelta": 11.2228
+      },
+      "alarm": {
+        "bytes": 90338,
+        "coverage": 0.4547,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7947,
+        "faceMeanDelta": 11.072
+      },
+      "tense": {
+        "bytes": 91850,
+        "coverage": 0.4544,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8679,
+        "faceMeanDelta": 7.2347
+      },
+      "breathless": {
+        "bytes": 87090,
+        "coverage": 0.4545,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7655,
+        "faceMeanDelta": 15.4345
+      }
+    },
+    "claire": {
+      "neutral": {
+        "bytes": 102682,
+        "coverage": 0.4663,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 1.0,
+        "faceMeanDelta": 0.0
+      },
+      "quiet": {
+        "bytes": 100800,
+        "coverage": 0.4663,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9573,
+        "faceMeanDelta": 4.8668
+      },
+      "soft": {
+        "bytes": 105390,
+        "coverage": 0.4663,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9244,
+        "faceMeanDelta": 4.3666
+      },
+      "focused": {
+        "bytes": 103906,
+        "coverage": 0.4663,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9436,
+        "faceMeanDelta": 4.2232
+      },
+      "working": {
+        "bytes": 107516,
+        "coverage": 0.4666,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9016,
+        "faceMeanDelta": 7.9931
+      },
+      "guarded": {
+        "bytes": 104202,
+        "coverage": 0.4666,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8875,
+        "faceMeanDelta": 8.6896
+      },
+      "wary": {
+        "bytes": 101332,
+        "coverage": 0.4663,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.932,
+        "faceMeanDelta": 5.5201
+      },
+      "resolved": {
+        "bytes": 112528,
+        "coverage": 0.4666,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8659,
+        "faceMeanDelta": 10.4604
+      },
+      "down": {
+        "bytes": 98076,
+        "coverage": 0.4663,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7953,
+        "faceMeanDelta": 16.5037
+      },
+      "shaken": {
+        "bytes": 104350,
+        "coverage": 0.4667,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8177,
+        "faceMeanDelta": 12.7809
+      },
+      "alarm": {
+        "bytes": 103200,
+        "coverage": 0.4666,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8049,
+        "faceMeanDelta": 12.6521
+      },
+      "tense": {
+        "bytes": 102130,
+        "coverage": 0.4663,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8931,
+        "faceMeanDelta": 7.0804
+      },
+      "breathless": {
+        "bytes": 97514,
+        "coverage": 0.4666,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7556,
+        "faceMeanDelta": 18.5262
+      }
+    },
+    "marta": {
+      "neutral": {
+        "bytes": 66770,
+        "coverage": 0.2597,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 1.0,
+        "faceMeanDelta": 0.0
+      },
+      "quiet": {
+        "bytes": 65554,
+        "coverage": 0.2597,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9386,
+        "faceMeanDelta": 4.9862
+      },
+      "soft": {
+        "bytes": 67614,
+        "coverage": 0.2597,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9428,
+        "faceMeanDelta": 3.5697
+      },
+      "focused": {
+        "bytes": 67262,
+        "coverage": 0.2597,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9149,
+        "faceMeanDelta": 5.0576
+      },
+      "working": {
+        "bytes": 68618,
+        "coverage": 0.26,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8803,
+        "faceMeanDelta": 7.6346
+      },
+      "guarded": {
+        "bytes": 66698,
+        "coverage": 0.2599,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8563,
+        "faceMeanDelta": 7.8145
+      },
+      "wary": {
+        "bytes": 65398,
+        "coverage": 0.2597,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9086,
+        "faceMeanDelta": 4.8388
+      },
+      "resolved": {
+        "bytes": 70956,
+        "coverage": 0.26,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8506,
+        "faceMeanDelta": 9.3603
+      },
+      "down": {
+        "bytes": 62812,
+        "coverage": 0.26,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8013,
+        "faceMeanDelta": 12.2492
+      },
+      "shaken": {
+        "bytes": 65640,
+        "coverage": 0.2601,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8125,
+        "faceMeanDelta": 9.7331
+      },
+      "alarm": {
+        "bytes": 64814,
+        "coverage": 0.26,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7932,
+        "faceMeanDelta": 9.8521
+      },
+      "tense": {
+        "bytes": 66106,
+        "coverage": 0.2597,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8657,
+        "faceMeanDelta": 6.7817
+      },
+      "breathless": {
+        "bytes": 62084,
+        "coverage": 0.2597,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7717,
+        "faceMeanDelta": 13.2199
+      }
+    },
+    "marc": {
+      "neutral": {
+        "bytes": 57232,
+        "coverage": 0.23,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 1.0,
+        "faceMeanDelta": 0.0
+      },
+      "quiet": {
+        "bytes": 56466,
+        "coverage": 0.23,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9305,
+        "faceMeanDelta": 5.1485
+      },
+      "soft": {
+        "bytes": 58948,
+        "coverage": 0.2299,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9195,
+        "faceMeanDelta": 4.9782
+      },
+      "focused": {
+        "bytes": 58132,
+        "coverage": 0.23,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9193,
+        "faceMeanDelta": 5.1126
+      },
+      "working": {
+        "bytes": 59680,
+        "coverage": 0.2302,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8373,
+        "faceMeanDelta": 11.1332
+      },
+      "guarded": {
+        "bytes": 58218,
+        "coverage": 0.2303,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.824,
+        "faceMeanDelta": 11.0136
+      },
+      "wary": {
+        "bytes": 57164,
+        "coverage": 0.2301,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8961,
+        "faceMeanDelta": 5.5959
+      },
+      "resolved": {
+        "bytes": 61552,
+        "coverage": 0.2301,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7618,
+        "faceMeanDelta": 14.5282
+      },
+      "down": {
+        "bytes": 54182,
+        "coverage": 0.2301,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.6879,
+        "faceMeanDelta": 18.0666
+      },
+      "shaken": {
+        "bytes": 56674,
+        "coverage": 0.2302,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7405,
+        "faceMeanDelta": 14.3483
+      },
+      "alarm": {
+        "bytes": 56878,
+        "coverage": 0.2304,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7505,
+        "faceMeanDelta": 13.7735
+      },
+      "tense": {
+        "bytes": 57690,
+        "coverage": 0.2301,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8423,
+        "faceMeanDelta": 8.1388
+      },
+      "breathless": {
+        "bytes": 54180,
+        "coverage": 0.2303,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.6151,
+        "faceMeanDelta": 20.5035
+      }
+    },
+    "leon": {
+      "neutral": {
+        "bytes": 59022,
+        "coverage": 0.2655,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 1.0,
+        "faceMeanDelta": 0.0
+      },
+      "quiet": {
+        "bytes": 57716,
+        "coverage": 0.2655,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9509,
+        "faceMeanDelta": 4.5366
+      },
+      "soft": {
+        "bytes": 60616,
+        "coverage": 0.2654,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9461,
+        "faceMeanDelta": 3.2276
+      },
+      "focused": {
+        "bytes": 59562,
+        "coverage": 0.2655,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9425,
+        "faceMeanDelta": 3.9555
+      },
+      "working": {
+        "bytes": 61026,
+        "coverage": 0.2657,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8974,
+        "faceMeanDelta": 8.4162
+      },
+      "guarded": {
+        "bytes": 59438,
+        "coverage": 0.2658,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8894,
+        "faceMeanDelta": 7.6741
+      },
+      "wary": {
+        "bytes": 58362,
+        "coverage": 0.2655,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.93,
+        "faceMeanDelta": 3.8166
+      },
+      "resolved": {
+        "bytes": 63916,
+        "coverage": 0.2657,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8578,
+        "faceMeanDelta": 11.0062
+      },
+      "down": {
+        "bytes": 55934,
+        "coverage": 0.2656,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7971,
+        "faceMeanDelta": 15.056
+      },
+      "shaken": {
+        "bytes": 58244,
+        "coverage": 0.2658,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8224,
+        "faceMeanDelta": 10.8073
+      },
+      "alarm": {
+        "bytes": 58026,
+        "coverage": 0.2659,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8115,
+        "faceMeanDelta": 9.8117
+      },
+      "tense": {
+        "bytes": 58694,
+        "coverage": 0.2655,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8958,
+        "faceMeanDelta": 5.7253
+      },
+      "breathless": {
+        "bytes": 55440,
+        "coverage": 0.2659,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7493,
+        "faceMeanDelta": 17.256
+      }
+    },
+    "andre": {
+      "neutral": {
+        "bytes": 75430,
+        "coverage": 0.4725,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 1.0,
+        "faceMeanDelta": 0.0
+      },
+      "quiet": {
+        "bytes": 73214,
+        "coverage": 0.4725,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9402,
+        "faceMeanDelta": 4.6986
+      },
+      "soft": {
+        "bytes": 76810,
+        "coverage": 0.4725,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9389,
+        "faceMeanDelta": 3.6542
+      },
+      "focused": {
+        "bytes": 75262,
+        "coverage": 0.4725,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.9159,
+        "faceMeanDelta": 4.8865
+      },
+      "working": {
+        "bytes": 77018,
+        "coverage": 0.4728,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8672,
+        "faceMeanDelta": 8.3838
+      },
+      "guarded": {
+        "bytes": 75424,
+        "coverage": 0.4729,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8492,
+        "faceMeanDelta": 8.268
+      },
+      "wary": {
+        "bytes": 73812,
+        "coverage": 0.4726,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.913,
+        "faceMeanDelta": 4.603
+      },
+      "resolved": {
+        "bytes": 80474,
+        "coverage": 0.4728,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8093,
+        "faceMeanDelta": 10.9321
+      },
+      "down": {
+        "bytes": 69466,
+        "coverage": 0.4726,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7562,
+        "faceMeanDelta": 13.7157
+      },
+      "shaken": {
+        "bytes": 73118,
+        "coverage": 0.473,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7765,
+        "faceMeanDelta": 11.3382
+      },
+      "alarm": {
+        "bytes": 72774,
+        "coverage": 0.4729,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.7749,
+        "faceMeanDelta": 11.1011
+      },
+      "tense": {
+        "bytes": 74416,
+        "coverage": 0.4726,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.8582,
+        "faceMeanDelta": 6.8679
+      },
+      "breathless": {
+        "bytes": 68658,
+        "coverage": 0.4729,
+        "largestComponentRatio": 1.0,
+        "faceSSIMToNeutral": 0.6992,
+        "faceMeanDelta": 15.4973
+      }
+    }
+  },
+  "pass": true
+}

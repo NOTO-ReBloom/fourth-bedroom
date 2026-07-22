@@ -1,0 +1,29 @@
+{
+  "baselineVersion": "2.2.0",
+  "currentVersion": "2.3.0",
+  "metaChanged": true,
+  "sections": {
+    "evidence": {
+      "v22": "441011b74d7c83bd89552742cae2a7831f92109572144d8ada0559d72879a115",
+      "v23": "441011b74d7c83bd89552742cae2a7831f92109572144d8ada0559d72879a115",
+      "identical": true
+    },
+    "nodes": {
+      "v22": "e8af4502e8715b1141c07117ebdc751b97086b06b7f75ee1554e03a96cb0ea75",
+      "v23": "e8af4502e8715b1141c07117ebdc751b97086b06b7f75ee1554e03a96cb0ea75",
+      "identical": true
+    },
+    "gameovers": {
+      "v22": "47a3f368c0a89ac56d9f44d0b447808988a4db61b258ef6455e5777bf02ab9b2",
+      "v23": "47a3f368c0a89ac56d9f44d0b447808988a4db61b258ef6455e5777bf02ab9b2",
+      "identical": true
+    },
+    "endings": {
+      "v22": "8050bcbefb9c1d0c11c7daa3dcd48e0c72f2c33772bf5a6701b41c39cd26b8e0",
+      "v23": "8050bcbefb9c1d0c11c7daa3dcd48e0c72f2c33772bf5a6701b41c39cd26b8e0",
+      "identical": true
+    }
+  },
+  "pass": true,
+  "note": "Narrative, evidence, death-return rules and endings are byte-equivalent after canonical JSON serialization; only metadata version/scope changed."
+}

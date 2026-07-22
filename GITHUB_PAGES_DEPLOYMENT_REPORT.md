@@ -1,39 +1,33 @@
-# GitHub Pages 移植レポート
+# GitHub Pages Deployment Report — Final Candidate 2.3
 
-## 公開方式
+## 対象
 
-- 公開対象：`site/`
-- デプロイ：GitHub Actions
-- ビルド工程：なし（静的HTML / CSS / JavaScript）
-- Jekyll：`.nojekyll` により無効化
-- 外部ランタイム依存：なし
-- 公開URLのサブパス対応：確認済み
+- Repository: `NOTO-ReBloom/fourth-bedroom`
+- Public URL: `https://noto-rebloom.github.io/fourth-bedroom/`
+- Deployment method: GitHub Actions
+- Published directory: `site/`
 
-## 自動検査
+## パッケージ側の検証
 
-push時に `scripts/validate-site.mjs` を実行し、次を検査します。
+- ルート絶対パスなし
+- `start_url`と`scope`は`./`
+- 404ページと`.nojekyll`を同梱
+- `site/`だけをPages artifactとしてアップロード
+- サービスワーカーのキャッシュ名を`fourth-bedroom-v2.3.0`へ更新
+- 動的人物画像はすべて`assets/characters/expressions/...`の相対パス
+- 78画像の存在とデコードを検証済み
 
-- 必須ファイルの存在
-- HTML / CSSのルート絶対パス混入
-- 参照される画像・スクリプトの存在
-- ゲームデータ700ノード・1621セグメントの読み込み
-- ノードIDの重複
-- 重要台詞の話者所有権
-- 引用ラベルの非会話化
-- 全5エンディングへの到達性
+## 公開前確認
 
-検査に失敗した場合、Pagesへのデプロイは実行されません。
+2026-07-22時点で公開URLは到達可能だが、表示上はFinal Candidate 2.0である。Final Candidate 2.3はこの成果物から既存GitHubへ上書きした後に公開される。
 
-## サブパス検証
+## 公開後の合格条件
 
-GitHub Pagesのプロジェクトサイトを想定し、次の形式で検証しました。
+- ページタイトル：`第四の寝室 — Final Candidate 2.3`
+- タイトル画面：`VERSION 2.3.0`
+- DevTools Networkで人物画像の404がない
+- PCとスマートフォンで人物が表示される
+- 既存セーブが読み込める
+- 強制再読み込み後も2.3.0が維持される
 
-```text
-/fourth-bedroom/
-```
-
-HTML、CSS、JavaScript、画像、manifestを含むローカル参照43件がすべてHTTP 200で取得できることを確認しています。詳細は `docs/GITHUB_PAGES_SUBPATH_TEST.json` を参照してください。
-
-## セーブデータ
-
-セーブ、設定、プレイ記録はブラウザのlocalStorageへ保存されます。保存領域は公開元のオリジンとパス構成に依存するため、URL変更時には既存セーブが自動移行されない場合があります。
+この環境からGitHubへのpush操作は行っていない。差分ZIPまたは完全版ZIPをリポジトリへ反映した後、Actionsと公開URLで最終確認する。

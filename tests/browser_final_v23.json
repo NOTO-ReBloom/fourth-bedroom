@@ -1,0 +1,117 @@
+{
+  "title_v23": true,
+  "meta_v23": true,
+  "title_version_text": true,
+  "all_78_portraits_loaded": true,
+  "portrait_asset_failures": [],
+  "portrait_map_count": true,
+  "save_version_v23": true,
+  "representative_portraits": {
+    "sumi": {
+      "present": true,
+      "mood": "down",
+      "loaded": true
+    },
+    "claire": {
+      "present": true,
+      "mood": "guarded",
+      "loaded": true
+    },
+    "marta": {
+      "present": true,
+      "mood": "soft",
+      "loaded": true
+    },
+    "marc": {
+      "present": true,
+      "mood": "down",
+      "loaded": true
+    },
+    "leon": {
+      "present": true,
+      "mood": "down",
+      "loaded": true
+    },
+    "andre": {
+      "present": true,
+      "mood": "alarm",
+      "loaded": true
+    }
+  },
+  "representative_portraits_pass": true,
+  "historical_series": {
+    "vincent": true,
+    "gauguin": true
+  },
+  "dialogue_nameplate": true,
+  "dialogue_mode": true,
+  "speaker_focus": true,
+  "thought_mode": true,
+  "thought_has_no_nameplate": true,
+  "no_inner_label": true,
+  "observation_narration_mode": true,
+  "observation_has_no_nameplate": true,
+  "desktop_face_clear": true,
+  "desktop_no_overflow": true,
+  "mobile_no_overflow": true,
+  "mobile_two_portraits": true,
+  "mobile_faces_clear": true,
+  "five_routes": [
+    {
+      "finalChoice": 0,
+      "end": "endBad1",
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ],
+      "ok": true
+    },
+    {
+      "finalChoice": 1,
+      "end": "endBad2",
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ],
+      "ok": true
+    },
+    {
+      "finalChoice": 2,
+      "end": "endBad3",
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ],
+      "ok": true
+    },
+    {
+      "finalChoice": 3,
+      "end": "endNormal",
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ],
+      "ok": true
+    },
+    {
+      "finalChoice": 4,
+      "end": "a631",
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ],
+      "ok": true
+    }
+  ],
+  "five_routes_pass": true,
+  "service_worker_v23_cache": true,
+  "runtime_contact_sheet_refs": false,
+  "page_errors": [],
+  "console_errors": [],
+  "pass": true
+}

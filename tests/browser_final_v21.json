@@ -1,0 +1,28 @@
+{
+  "checks": {
+    "title_v21": true,
+    "meta_v21": true,
+    "new_modes": true,
+    "no_inner_mode": true,
+    "legacy_namespace": true,
+    "narration_mode": true,
+    "narration_no_name": true,
+    "no_visible_pov_label": true,
+    "thought_mode": true,
+    "thought_no_name": true,
+    "thought_accessible_label": true,
+    "dialogue_mode": true,
+    "dialogue_nameplate": true,
+    "emotion_hidden": true,
+    "polished_line": true,
+    "p23_first_claire_beat": true,
+    "p23_second_claire_beat": true,
+    "mobile_no_overflow": true,
+    "mobile_narration_mode": true,
+    "no_runtime_exceptions": true,
+    "no_console_errors": true
+  },
+  "passed": true,
+  "exceptions": 0,
+  "consoleErrors": 0
+}

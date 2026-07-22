@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "title_v22": true,
+    "meta_v22": true,
+    "service_worker_file": true,
+    "music_setting": true,
+    "save_indicator_exists": true,
+    "narration_mode": true,
+    "cinematic_transition": true,
+    "camera_mode": true,
+    "dialogue_nameplate": true,
+    "portrait_line_staging": true,
+    "manual_save_feedback": true,
+    "choice_panel": true,
+    "choice_stagger": true,
+    "previous_line_peek": true,
+    "mobile_no_overflow": true,
+    "mobile_save_indicator": true,
+    "no_console_or_page_errors": true
+  },
+  "passed": true,
+  "errors": []
+}

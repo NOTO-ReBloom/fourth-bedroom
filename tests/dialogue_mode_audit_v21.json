@@ -1,0 +1,25 @@
+{
+  "version": "2.1.0",
+  "nodes": 700,
+  "segments": 1624,
+  "modes": {
+    "narration": 492,
+    "thought": 423,
+    "dialogue": 605,
+    "document": 78,
+    "system": 26
+  },
+  "dialogueCount": 605,
+  "dialogueBySpeaker": {
+    "少年": 2,
+    "澄": 198,
+    "クレール": 145,
+    "マルク": 20,
+    "レオン": 25,
+    "フィンセント": 119,
+    "ゴーギャン": 31,
+    "マルタ": 49,
+    "アンドレ": 16
+  },
+  "maxDialogueLength": 44
+}

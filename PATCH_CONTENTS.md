@@ -1,9 +1,26 @@
-# Narrative 1.9 差分パッケージ
+# Final Candidate 2.3 差分内容
 
-このフォルダの中身を、既存のGitHubリポジトリ`fourth-bedroom`の直下へ上書きアップロードする。
+差分ZIPはFinal Candidate 2.2へ上書きするためのファイルだけを収録する。
 
-更新対象はゲームデータ、表示エンジン、台詞演技CSS、タイトル表示、検証スクリプト、Narrative 1.9の設計・テスト資料である。
+## ゲーム本体
 
-`.github/workflows/deploy-pages.yml`と画像素材は変更しない。
+- バージョン表示2.3.0
+- 人物画選択ロジック
+- 人物の明度・モバイル配置調整
+- サービスワーカーキャッシュ更新
+- 架空人物6名×13表情の78画像
 
-詳しい手順は`UPDATE_EXISTING_GITHUB.md`を参照。
+## 検証
+
+- 静的サイト検証の2.3対応
+- 人物アセット検証スクリプト
+- Chromium PC／モバイル／5ルート検証
+- QA画像とJSON結果
+
+## 文書
+
+- 人物画制作基準
+- 人物画制作レポート
+- Final Candidate 2.3レポート
+- QAレポート
+- GitHub Pages更新手順
