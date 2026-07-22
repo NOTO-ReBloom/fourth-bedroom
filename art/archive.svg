@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"><defs>
+<filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="13" result="n"/><feColorMatrix in="n" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="soft-light"/></filter>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.009 0.025" numOctaves="2" seed="6" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/></filter>
+</defs>
+<rect width="1600" height="900" fill="#16171c"/>
+<g fill="#443a31" stroke="#776756" stroke-width="8"><rect x="55" y="75" width="420" height="720"/><rect x="590" y="75" width="420" height="720"/><rect x="1125" y="75" width="420" height="720"/></g>
+<g fill="#8d7659"><rect x="90" y="120" width="345" height="120"/><rect x="90" y="280" width="345" height="140"/><rect x="90" y="460" width="345" height="120"/><rect x="90" y="620" width="345" height="130"/><rect x="625" y="120" width="345" height="120"/><rect x="625" y="280" width="345" height="140"/><rect x="625" y="460" width="345" height="120"/><rect x="625" y="620" width="345" height="130"/><rect x="1160" y="120" width="345" height="120"/><rect x="1160" y="280" width="345" height="140"/><rect x="1160" y="460" width="345" height="120"/><rect x="1160" y="620" width="345" height="130"/></g>
+<g fill="#d5c5a1" opacity=".75"><rect x="122" y="145" width="140" height="72"/><rect x="667" y="305" width="180" height="88"/><rect x="1215" y="485" width="160" height="70"/></g>
+<path d="M720 0L930 900H570Z" fill="#e2c77c" opacity=".08"/>
+<g opacity=".2" filter="url(#paper)"><rect width="1600" height="900" fill="#fff"/></g>
+</svg>
