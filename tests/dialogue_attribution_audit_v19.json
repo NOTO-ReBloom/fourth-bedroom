@@ -1,0 +1,269 @@
+{
+  "version": "1.9.0",
+  "generated": "2026-07-22",
+  "passed": true,
+  "summary": {
+    "nodes": 700,
+    "segments": 1621,
+    "text_characters": 39738,
+    "modes": {
+      "inner": 915,
+      "dialogue": 602,
+      "document": 78,
+      "system": 26
+    },
+    "dialogue_speakers": {
+      "少年": {
+        "lines": 2,
+        "characters": 13,
+        "deliveries": {
+          "neutral": 2
+        },
+        "average_length": 6.5
+      },
+      "澄": {
+        "lines": 198,
+        "characters": 2905,
+        "deliveries": {
+          "controlled": 194,
+          "constrained": 4
+        },
+        "average_length": 14.7
+      },
+      "クレール": {
+        "lines": 144,
+        "characters": 2027,
+        "deliveries": {
+          "quick": 143,
+          "dry": 1
+        },
+        "average_length": 14.1
+      },
+      "マルク": {
+        "lines": 19,
+        "characters": 397,
+        "deliveries": {
+          "formal": 17,
+          "radio": 2
+        },
+        "average_length": 20.9
+      },
+      "レオン": {
+        "lines": 25,
+        "characters": 419,
+        "deliveries": {
+          "restrained": 25
+        },
+        "average_length": 16.8
+      },
+      "フィンセント": {
+        "lines": 119,
+        "characters": 1868,
+        "deliveries": {
+          "direct": 77,
+          "measured": 42
+        },
+        "average_length": 15.7
+      },
+      "ゴーギャン": {
+        "lines": 31,
+        "characters": 466,
+        "deliveries": {
+          "dry": 31
+        },
+        "average_length": 15
+      },
+      "マルタ": {
+        "lines": 48,
+        "characters": 981,
+        "deliveries": {
+          "precise": 48
+        },
+        "average_length": 20.4
+      },
+      "アンドレ": {
+        "lines": 16,
+        "characters": 268,
+        "deliveries": {
+          "persuasive": 16
+        },
+        "average_length": 16.8
+      }
+    }
+  },
+  "critical_ownership": [
+    {
+      "nodeId": "a203",
+      "text": "あなた、画面の中へ入ったように見えた",
+      "expectedSpeaker": "クレール",
+      "actualSpeaker": "クレール",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a209x3",
+      "text": "でも、次に危ないことをするなら、理由の代わりに手順を見せて",
+      "expectedSpeaker": "クレール",
+      "actualSpeaker": "クレール",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a275",
+      "text": "次は",
+      "expectedSpeaker": "澄",
+      "actualSpeaker": "澄",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a305a",
+      "text": "似ているからといって、同じ扱いをするな",
+      "expectedSpeaker": "フィンセント",
+      "actualSpeaker": "フィンセント",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a306x1",
+      "text": "今見えているものと、覚えているものを使う",
+      "expectedSpeaker": "フィンセント",
+      "actualSpeaker": "フィンセント",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a308",
+      "text": "そこ。強く引くな。張りが変わる",
+      "expectedSpeaker": "フィンセント",
+      "actualSpeaker": "フィンセント",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a406x2",
+      "text": "この画面を、何だと思います",
+      "expectedSpeaker": "マルタ",
+      "actualSpeaker": "マルタ",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a408a",
+      "text": "私は、同じにならない場所を見ています",
+      "expectedSpeaker": "マルタ",
+      "actualSpeaker": "マルタ",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a412x2",
+      "text": "記憶は、嘘ではありません。だから扱いにくい",
+      "expectedSpeaker": "マルタ",
+      "actualSpeaker": "マルタ",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a421",
+      "text": "会ったことはありません。手紙では、面倒な人です",
+      "expectedSpeaker": "マルタ",
+      "actualSpeaker": "マルタ",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a422x1",
+      "text": "説明しやすい一語より、面倒な具体の方が多い",
+      "expectedSpeaker": "マルタ",
+      "actualSpeaker": "マルタ",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a505x1",
+      "text": "正面を撮るか、裏を撮るか。どの光を当てるか。あなたも選んでいる",
+      "expectedSpeaker": "アンドレ",
+      "actualSpeaker": "アンドレ",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a505x2",
+      "text": "あなたは、選んだことを消して、最初から一つしかなかったように見せている",
+      "expectedSpeaker": "澄",
+      "actualSpeaker": "澄",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a520x4",
+      "text": "報告には、分かったこと、分からないこと、研究所が送信を遅らせた事実を分けて書きます",
+      "expectedSpeaker": "澄",
+      "actualSpeaker": "澄",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a522x1",
+      "text": "そうすれば、その下に残ったものだけは救えると",
+      "expectedSpeaker": "レオン",
+      "actualSpeaker": "レオン",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a602",
+      "text": "コーヒー、飲む？　砂糖は",
+      "expectedSpeaker": "クレール",
+      "actualSpeaker": "クレール",
+      "mode": "dialogue",
+      "passed": true
+    },
+    {
+      "nodeId": "a612x2",
+      "text": "いい。今の停止は、私がログを見て決めた",
+      "expectedSpeaker": "クレール",
+      "actualSpeaker": "クレール",
+      "mode": "dialogue",
+      "passed": true
+    }
+  ],
+  "quoted_labels_not_spoken": [
+    {
+      "nodeId": "r14",
+      "spoken": [],
+      "passed": true
+    },
+    {
+      "nodeId": "a260x1",
+      "spoken": [],
+      "passed": true
+    },
+    {
+      "nodeId": "a263d",
+      "spoken": [],
+      "passed": true
+    },
+    {
+      "nodeId": "a265",
+      "spoken": [],
+      "passed": true
+    },
+    {
+      "nodeId": "earlyEnd",
+      "spoken": [],
+      "passed": true
+    },
+    {
+      "nodeId": "a508",
+      "spoken": [],
+      "passed": true
+    },
+    {
+      "nodeId": "a618",
+      "spoken": [],
+      "passed": true
+    }
+  ]
+}

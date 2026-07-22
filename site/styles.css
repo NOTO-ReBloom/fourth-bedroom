@@ -824,3 +824,38 @@ button.primary{background:linear-gradient(135deg,#efca73,#c79b45);box-shadow:0 1
 .gameover-repeat{margin-left:.55rem;color:#b9a56f}
 .reduce-motion .beat-card.beat-in,.reduce-motion .hotspot.hinted{animation:none}
 @media(max-width:640px){.beat-card{min-width:90vw;padding:1rem 1.2rem}.investigation-actions{width:100%;justify-content:stretch}.investigation-actions button{flex:1}.select-row{grid-template-columns:1fr;gap:.45rem}.playtest-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.playtest-table{font-size:.78rem}.playtest-table th,.playtest-table td{padding:.58rem .4rem}}
+
+
+/* Narrative 1.9 — limited POV plus character-specific dialogue delivery and performance rhythm. */
+.dialogue-panel[data-voice="inner"] .speaker-row::before{
+  content:"POV";font:600 .62rem/1 system-ui,sans-serif;letter-spacing:.18em;color:rgba(243,217,145,.58);
+  border:1px solid rgba(243,217,145,.22);padding:.28rem .42rem;margin-right:.15rem
+}
+.dialogue-panel[data-voice="inner"] .speaker-name{color:#e6d5ae;font-weight:500}
+.dialogue-panel[data-voice="inner"] .emotion-label{color:rgba(230,213,174,.58)}
+.dialogue-panel[data-voice="inner"] .dialogue-text{font-style:normal;letter-spacing:.025em;color:#eee7d8}
+.dialogue-panel[data-voice="document"]{
+  background:linear-gradient(110deg,rgba(30,27,23,.96),rgba(16,17,22,.97));
+  border-color:rgba(198,174,121,.36)
+}
+.dialogue-panel[data-voice="document"]:before{background:linear-gradient(180deg,transparent,#bca374 30% 70%,transparent)}
+.dialogue-panel[data-voice="document"] .speaker-name{color:#d8c398;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.dialogue-panel[data-voice="document"] .emotion-label{color:rgba(216,195,152,.55)}
+.dialogue-panel[data-voice="document"] .dialogue-text{
+  color:#e5dcc9;font-family:"Noto Serif JP","Yu Mincho",serif;letter-spacing:.045em
+}
+.dialogue-panel[data-voice="system"]{background:rgba(9,12,18,.95);border-color:rgba(152,177,194,.3)}
+.dialogue-panel[data-voice="system"] .speaker-name{color:#a8c3d2}
+.dialogue-panel[data-voice="dialogue"] .speaker-name{color:#f3d991}
+@media(max-width:820px){
+  .dialogue-panel[data-voice="inner"] .speaker-row::before{font-size:.55rem;padding:.24rem .34rem}
+}
+
+/* Narrative 1.9 — character cadence and delivery. The differences are intentionally subtle. */
+.dialogue-panel[data-delivery="quick"] .dialogue-text{letter-spacing:.005em}
+.dialogue-panel[data-delivery="measured"] .dialogue-text,
+.dialogue-panel[data-delivery="precise"] .dialogue-text,
+.dialogue-panel[data-delivery="formal"] .dialogue-text{letter-spacing:.014em}
+.dialogue-panel[data-delivery="restrained"] .dialogue-text{letter-spacing:.01em;color:color-mix(in srgb,var(--text) 93%,var(--muted))}
+.dialogue-panel[data-delivery="constrained"] .dialogue-text{letter-spacing:.025em;text-shadow:.045em 0 rgba(96,143,177,.18),-.045em 0 rgba(196,110,83,.14)}
+.dialogue-panel[data-delivery="radio"] .speaker-name:after{content:"  /  RADIO";font-size:.58em;letter-spacing:.16em;color:var(--muted)}

@@ -1,0 +1,77 @@
+{
+  "version": "1.9.0",
+  "generated": "2026-07-22",
+  "passed": true,
+  "routes": [
+    {
+      "ending": "BAD END 1",
+      "expected": "endBad1",
+      "reached": "endBad1",
+      "passed": true,
+      "error": null,
+      "steps": 602,
+      "unique_nodes": 602,
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "ending": "BAD END 2",
+      "expected": "endBad2",
+      "reached": "endBad2",
+      "passed": true,
+      "error": null,
+      "steps": 601,
+      "unique_nodes": 601,
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "ending": "BAD END 3",
+      "expected": "endBad3",
+      "reached": "endBad3",
+      "passed": true,
+      "error": null,
+      "steps": 601,
+      "unique_nodes": 601,
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "ending": "NORMAL END",
+      "expected": "endNormal",
+      "reached": "endNormal",
+      "passed": true,
+      "error": null,
+      "steps": 600,
+      "unique_nodes": 600,
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    },
+    {
+      "ending": "TRUE END",
+      "expected": "a631",
+      "reached": "a631",
+      "passed": true,
+      "error": null,
+      "steps": 622,
+      "unique_nodes": 622,
+      "deaths": [
+        "GO01",
+        "GO04",
+        "GO26"
+      ]
+    }
+  ]
+}

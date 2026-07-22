@@ -4,8 +4,8 @@
   const DATA = window.GAME_DATA;
   const nodes = new Map(DATA.nodes.map(n => [n.id, n]));
   const nodeOrder = new Map(DATA.nodes.map((n, i) => [n.id, i]));
-  const SAVE_PREFIX = 'fourth-bedroom-production-v17';
-  const LEGACY_SAVE_PREFIX = 'fourth-bedroom-production-v16';
+  const SAVE_PREFIX = 'fourth-bedroom-production-v19';
+  const LEGACY_SAVE_PREFIX = 'fourth-bedroom-production-v18';
   const SAVE_KEYS = {
     auto: `${SAVE_PREFIX}-autosave`,
     slot1: `${SAVE_PREFIX}-slot1`,
@@ -78,6 +78,8 @@
     evidence: [],
     visited: [],
     readNodes: {},
+    readSegments: {},
+    segmentIndex: 0,
     log: [],
     deaths: 0,
     currentChapter: 'PROLOGUE',
@@ -88,7 +90,7 @@
     playStartedAt: Date.now(),
     totalPlayMs: 0,
     metrics: defaultMetrics(),
-    saveVersion: '1.7.0'
+    saveVersion: '1.9.0'
   });
 
   let state = defaultState();
@@ -111,6 +113,9 @@
   let currentWasRead = false;
   let lastSceneBg = '';
   let afterTextRanFor = null;
+  let currentScript = [];
+  let currentSegment = null;
+  let segmentIndex = 0;
 
   function normalizeState(saved) {
     const base = defaultState();
@@ -120,6 +125,7 @@
       settings: {...base.settings, ...((saved && saved.settings) || {})},
       flags: {...((saved && saved.flags) || {})},
       readNodes: {...((saved && saved.readNodes) || {})},
+      readSegments: {...((saved && saved.readSegments) || {})},
       metrics: {...base.metrics, ...((saved && saved.metrics) || {}),
         nodeVisits: {...(((saved && saved.metrics) || {}).nodeVisits || {})},
         choiceSelections: {...(((saved && saved.metrics) || {}).choiceSelections || {})},
@@ -133,7 +139,7 @@
     }
     normalized.playStartedAt = Date.now();
     normalized.metrics.lastNodeAt = Date.now();
-    normalized.saveVersion = '1.7.0';
+    normalized.saveVersion = '1.9.0';
     return normalized;
   }
 
@@ -448,7 +454,7 @@
     els.gameover.classList.add('hidden');
     els.ending.classList.add('hidden');
     els.game.classList.remove('hidden');
-    renderNode(state.nodeId, false, true);
+    renderNode(state.nodeId, false, true, Number(state.segmentIndex || 0));
     saveGame(false, SAVE_KEYS.auto);
   }
 
@@ -670,7 +676,63 @@
     els.progressFill.style.width = `${pct}%`;
   }
 
-  function renderNode(id, save = true, suppressCards = false) {
+  function scriptForNode(n) {
+    if (Array.isArray(n?.script) && n.script.length) return n.script;
+    return [{
+      mode: n?.voice === 'inner' ? 'inner' : (n?.type === 'evidenceText' ? 'document' : 'dialogue'),
+      speaker: n?.speaker || (n?.voice === 'inner' ? '澄' : ''),
+      emotion: n?.emotion || '',
+      voice: n?.voice || (n?.speaker === '澄（内心）' ? 'inner' : 'normal'),
+      text: n?.text || ''
+    }];
+  }
+
+  function segmentPresentation(n, seg) {
+    return {
+      ...n,
+      ...seg,
+      bg: seg?.bg || n.bg,
+      ambient: seg?.ambient || n.ambient,
+      visualState: seg?.visualState || n.visualState,
+      sceneTone: seg?.sceneTone || n.sceneTone,
+      characters: seg?.characters || n.characters,
+      character: seg?.character || n.character,
+      mood: seg?.mood || n.mood,
+      listenerMood: seg?.listenerMood || n.listenerMood,
+      speaker: seg?.speaker ?? n.speaker ?? '',
+      emotion: seg?.emotion ?? '',
+      text: seg?.text ?? ''
+    };
+  }
+
+  function renderSegment(index, save = true) {
+    if (!node) return;
+    segmentIndex = Math.max(0, Math.min(index, Math.max(0, currentScript.length - 1)));
+    state.segmentIndex = segmentIndex;
+    currentSegment = currentScript[segmentIndex] || {mode:'inner',speaker:'澄',emotion:'内心',voice:'inner',text:''};
+    const presentation = segmentPresentation(node, currentSegment);
+    afterTextRanFor = null;
+    const segmentKey = `${node.id}:${segmentIndex}`;
+    currentWasRead = !!state.readSegments[segmentKey];
+    state.readSegments[segmentKey] = true;
+    els.readStatus.textContent = `${currentWasRead ? '既読' : ''}${currentScript.length > 1 ? `${currentWasRead ? ' · ' : ''}${segmentIndex + 1}/${currentScript.length}` : ''}`;
+    setScene(presentation);
+    const cue = currentSegment.sfx || (segmentIndex === 0 ? node.sfx : null);
+    if (cue) setTimeout(() => audio?.sfx(cue), currentSegment.sfxDelay || node.sfxDelay || 40);
+    els.speaker.textContent = currentSegment.speaker || (currentSegment.mode === 'inner' ? '澄' : '');
+    els.emotion.textContent = currentSegment.emotion || ({inner:'内心',document:'文書',system:'観察'}[currentSegment.mode] || '');
+    els.dialogue.dataset.voice = currentSegment.voice || currentSegment.mode || 'normal';
+    els.dialogue.dataset.delivery = currentSegment.delivery || 'neutral';
+    fullText = currentSegment.text || '';
+    if (['investigate','investigatePainting','puzzle'].includes(node.type) && !fullText) els.dialogue.classList.add('hidden');
+    else els.dialogue.classList.remove('hidden');
+    addLog(node, currentSegment, segmentIndex);
+    typeText(fullText, () => afterTextComplete(node));
+    if (save) saveGame(false, SAVE_KEYS.auto);
+    updateMenuStatus();
+  }
+
+  function renderNode(id, save = true, suppressCards = false, resumeSegment = 0) {
     clearTyping(); clearAutoTimer(); hideTransient(); afterTextRanFor = null;
     const nextNode = nodes.get(id);
     if (!nextNode) { console.error('missing node', id); return; }
@@ -679,44 +741,32 @@
     const previousChapter = state.currentChapter;
     const previousLocation = state.currentLocation;
     const previousTime = state.currentTime;
-    currentWasRead = !!state.readNodes[id];
     node = nextNode;
     state.nodeId = id;
     if (!state.visited.includes(id)) state.visited.push(id);
-    state.readNodes[id] = true;
     if (node.set) applySet(node.set);
     if (node.chapter) state.currentChapter = node.chapter;
     if (node.location) state.currentLocation = node.location;
     if (node.time) state.currentTime = node.time;
     state.savedAt = Date.now();
+    state.readNodes[id] = true;
 
     els.chapter.textContent = state.currentChapter;
     els.location.textContent = state.currentLocation;
     els.time.textContent = state.currentTime;
     els.loop.textContent = state.paintingLoop ? `絵画記録 ${String(state.paintingLoop).padStart(2,'0')}` : `記録 ${String(state.loop).padStart(2,'0')}`;
-    els.readStatus.textContent = currentWasRead ? '既読' : '';
     updateProgress(id);
-    setScene(node);
-    if (node.sfx) setTimeout(() => audio?.sfx(node.sfx), node.sfxDelay || 40);
 
     if (!suppressCards && canonicalChapter(state.currentChapter) !== canonicalChapter(previousChapter)) showChapterCard(state.currentChapter);
     if (!suppressCards && (state.currentLocation !== previousLocation || state.currentTime !== previousTime)) showPlaceCard(state.currentLocation, state.currentTime);
     if (!suppressCards && node.beat) showBeatCard(node.beat);
 
-    els.speaker.textContent = node.speaker || '';
-    els.emotion.textContent = node.emotion || '';
-    els.dialogue.dataset.voice = node.voice || (node.speaker === '澄（内心）' ? 'inner' : 'normal');
-    fullText = node.text || '';
-    if (['investigate','investigatePainting','puzzle'].includes(node.type)) els.dialogue.classList.add('hidden');
-
-    addLog(node);
-    typeText(fullText, () => afterTextComplete(node));
+    currentScript = scriptForNode(node);
     if (node.evidence && !state.evidence.includes(node.evidence)) {
       addEvidence(node.evidence, false);
       pendingEvidenceToast = node.evidence;
     }
-    if (save) saveGame(false, SAVE_KEYS.auto);
-    updateMenuStatus();
+    renderSegment(Number.isFinite(resumeSegment) ? resumeSegment : 0, save);
   }
 
   function applySet(obj) {
@@ -727,7 +777,7 @@
   }
 
   function typingDelayFor(char) {
-    const pace = Number(node?.pace || 1);
+    const pace = Number(currentSegment?.pace || node?.pace || 1);
     const base = Number(state.settings.speed) * pace;
     if (base === 0 || state.settings.reduceMotion) return 0;
     if (char === '。' || char === '！' || char === '？' || char === '\n') return base + 80;
@@ -784,16 +834,22 @@
     let delay;
     if (skipMode && (!state.settings.skipReadOnly || currentWasRead)) delay = 110;
     else {
-      delay = Number(state.settings.autoDelay) + Math.min(2100, (n.text || '').length * 18) + Number(n.autoExtra || 0);
-      if (isDangerNode(n)) delay += 900;
+      const presented = segmentPresentation(n, currentSegment || {});
+      const deliveryPause = ({quick:-80,direct:40,measured:220,dry:120,precise:180,formal:150,restrained:200,persuasive:80,controlled:80,constrained:420,radio:140}[currentSegment?.delivery] || 0);
+      delay = Number(state.settings.autoDelay) + Math.min(2100, (currentSegment?.text || n.text || '').length * 18) + Number(currentSegment?.autoExtra || n.autoExtra || 0) + deliveryPause;
+      delay = Math.max(220, delay);
+      if (isDangerNode(presented)) delay += 900;
     }
     autoTimer = setTimeout(() => advance(true), delay);
   }
 
   function afterTextComplete(n) {
-    if (!n || afterTextRanFor === n.id) return;
-    afterTextRanFor = n.id;
+    const segmentKey = n ? `${n.id}:${segmentIndex}` : '';
+    if (!n || afterTextRanFor === segmentKey) return;
+    afterTextRanFor = segmentKey;
     typingDone = true;
+    const finalSegment = segmentIndex >= currentScript.length - 1;
+    if (!finalSegment) { scheduleAuto(n); return; }
     if (pendingEvidenceToast) {
       const ev = pendingEvidenceToast; pendingEvidenceToast = null; showEvidenceToast(ev);
     }
@@ -808,9 +864,13 @@
   function advance(fromAuto = false) {
     if (completeTyping()) return;
     if (!node) return;
-    if (isInteractiveNode(node)) return;
     clearAutoTimer();
     if (!fromAuto) audio?.sfx('advance');
+    if (segmentIndex < currentScript.length - 1) {
+      renderSegment(segmentIndex + 1, true);
+      return;
+    }
+    if (isInteractiveNode(node)) return;
     if (node.type === 'deathSequence') { showGameover(node.death); return; }
     if (node.next) renderNode(node.next);
   }
@@ -1092,15 +1152,17 @@
   function renderLog() {
     const query = ($('#log-search')?.value || '').trim().toLowerCase();
     const entries = state.log.slice(-400).filter(x => !query || `${x.speaker} ${x.text}`.toLowerCase().includes(query));
-    $('#log-content').innerHTML = entries.reverse().map(x => `<div class="log-entry"><b>${escapeHtml(x.speaker || '地の文')}</b><p>${escapeHtml(x.text)}</p></div>`).join('') || '<p class="empty-state">条件に合う会話はありません。</p>';
+    $('#log-content').innerHTML = entries.reverse().map(x => `<div class="log-entry"><b>${escapeHtml(x.speaker || (x.mode === 'inner' ? '澄' : x.mode === 'document' ? '記録' : '観察'))}</b><p>${escapeHtml(x.text)}</p></div>`).join('') || '<p class="empty-state">条件に合う会話はありません。</p>';
   }
 
-  function addLog(n) {
-    if (!n.text) return;
+  function addLog(n, seg = null, index = 0) {
+    const text = seg?.text ?? n.text;
+    if (!text) return;
+    const key = `${n.id}:${index}`;
     const prev = state.log[state.log.length - 1];
-    if (prev?.nodeId === n.id) return;
-    state.log.push({nodeId:n.id, speaker:n.speaker || '', text:n.text, chapter:state.currentChapter});
-    if (state.log.length > 700) state.log.shift();
+    if (prev?.segmentKey === key) return;
+    state.log.push({nodeId:n.id, segmentKey:key, mode:seg?.mode || 'dialogue', speaker:seg?.speaker || n.speaker || '', text, chapter:state.currentChapter});
+    if (state.log.length > 1200) state.log.shift();
   }
 
   function renderSaveSlots() {
