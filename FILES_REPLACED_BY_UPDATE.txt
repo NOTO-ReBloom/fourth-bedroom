@@ -1,0 +1,10 @@
+site/                                      # 公開サイト全体を完全置換
+.github/workflows/deploy-pages.yml         # 2.15専用検証を使うPagesデプロイ定義
+scripts/validate-site-v215.mjs             # 2.15専用検証
+scripts/validate-site.mjs                  # 標準検証を2.15へ同期
+.gitignore
+README.md
+CHANGELOG_V215.md
+FINAL_CANDIDATE_REPORT_V215.md
+FINAL_QA_REPORT_V215.md
+DIAGNOSTIC_ATLAS_REPORT_V215.md

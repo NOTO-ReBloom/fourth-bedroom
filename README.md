@@ -1,35 +1,29 @@
-# 第四の寝室 — Final Candidate 2.3
+# 第四の寝室 — Final Candidate 2.15
 
-死に戻り型美術史サスペンス『第四の寝室』のGitHub Pages公開用完成候補版です。Final Candidate 2.2の物語・分岐・表示文法を維持し、架空人物6名の人物画を「人物ごとの単独透過画像＋表情差分」へ置き換えました。
+死んで知った真実を、現在の証拠だけで証明する、美術調査サスペンスADV。
+
+## 2.15の中心
+
+- 第四版を同一座標の診断画像10モードで比較
+- 可視光・斜光・赤外線をゲーム本編の調査へ直接統合
+- 紫外線、X線、裏面、1948年層、1967年層、年代層分解、最終保存状態を証拠取得に応じて解放
+- 基準画像との重ね合わせ、透明度、拡大率の操作
+- 証拠接写17点を観察手帳と拡大ビューへ統合
+- 調査・停止・救助など9場面へアクションカットインを追加
+- 2.14までのイベントCG、年代層マップ、再開整理、人物協力、共同署名を維持
 
 ## 起動
 
-`site/index.html`を静的サーバーまたはGitHub Pagesで公開します。
+`site/index.html`をWebサーバーから配信するか、リポジトリをGitHub Pagesへ公開してください。相対参照のみで構成され、`/fourth-bedroom/`サブパスに対応しています。
 
-```bash
-python -m http.server 8000 --directory site
-```
+## 更新
 
-## 主な仕様
-
-- 全700ノード、TRUE／NORMAL／BAD END 3種の計5エンディング
-- 必須死亡 `GO01 → GO04 → GO26` と死に戻り規則を維持
-- 水瀬澄の限定視点
-- 会話／心の声／観察／文書／システム表示の分離
-- セーブ、AUTO、既読SKIP、観察手帳、会話ログ
-- PC・スマートフォン対応
-- GitHub Pagesサブパス対応、サービスワーカー対応
-- 架空人物6名 × 13表情、計78枚の単独透過WebP
-- フィンセントとゴーギャンは史実上の自画像を用いる別系列表示
+2.14から更新する場合は、PATCH_ONLY ZIPの内容をリポジトリ直下へ上書きしてください。既存セーブはV215形式へ正規化され、V210〜V214の読込分岐を維持します。
 
 ## 検証
 
-```bash
-node scripts/validate-site.mjs
-python scripts/validate-character-assets.py
-python tests/chromium_final_v23.py
-```
-
-## 既存サイトの更新
-
-`UPDATE_EXISTING_GITHUB.md`に従い、差分ZIPの中身を既存リポジトリへ上書きしてください。保存キーはFinal Candidate 2.1／2.2と同じ名前空間を維持しています。
+- 静的検証：`node scripts/validate-site-v215.mjs site`
+- 2.14保護監査：`python scripts/audit-diagnostic-atlas-v215.py --baseline <V214/site> --current site`
+- 診断アトラス：`python scripts/browser-diagnostic-atlas-v215.py`
+- TRUE END通し：`PYTHONPATH=tests python tests/chromium_full_route_v215.py`
+- GitHub Pages：`python tests/github_pages_subpath_v215.py`
