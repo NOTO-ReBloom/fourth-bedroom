@@ -1,0 +1,33 @@
+{
+  "version": "2.16.0",
+  "desktop": {
+    "semantic": {
+      "p01": "burden",
+      "p36": "leak",
+      "v01x1": "painted",
+      "a401": "provenance",
+      "a623": "dawn"
+    },
+    "archive_thumbs": 5,
+    "chapter_art": "url(\"assets/chapter-art/act5.webp\")",
+    "dims": {
+      "w": 1440,
+      "sw": 1440,
+      "bw": 1440
+    }
+  },
+  "mobile": {
+    "ending_box": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 844
+    },
+    "dims": {
+      "w": 390,
+      "sw": 390,
+      "bw": 390
+    }
+  },
+  "passed": true
+}

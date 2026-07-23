@@ -1,0 +1,20 @@
+{
+  "baseline_version": "2.15.0",
+  "current_version": "2.16.0",
+  "checks": {
+    "version_is_2_16_0": true,
+    "node_count_unchanged": true,
+    "evidence_count_unchanged": true,
+    "nodes_hash_unchanged": true,
+    "evidence_hash_unchanged": true,
+    "gameovers_hash_unchanged": true,
+    "endings_hash_unchanged": true
+  },
+  "hashes": {
+    "nodes": "92657bf612e273e0a83b77d1f3ea51fb3290cd6b570642e7fcf42ae6351d448c",
+    "evidence": "79ed40fe5d39a97c1b77b780ddf3a56cb62bd4abd70a962b630a31b5778f9462",
+    "gameovers": "ddc69f44b16e47f5f104d0abb778350ba6bb8b4aee48dfb1f65d737d6e0b4ae2",
+    "endings": "c92b7b0b9aaf4e6e7aa6b5f32a2fe891d54d0a899b2e094a7465279f927447b9"
+  },
+  "passed": true
+}

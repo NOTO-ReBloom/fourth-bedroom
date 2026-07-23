@@ -1,0 +1,12 @@
+{
+  "base_path": "/fourth-bedroom/",
+  "root_200": true,
+  "all_relative_references_200": true,
+  "reference_count": 73,
+  "root_absolute_html": false,
+  "root_absolute_css": false,
+  "dynamic_portrait_path_relative": true,
+  "service_worker_scope_relative": true,
+  "failed": {},
+  "pass": true
+}

@@ -1,0 +1,39 @@
+{
+  "version": "2.16.0",
+  "desktop": {
+    "modes": [
+      "visible",
+      "raking",
+      "infrared",
+      "ultraviolet",
+      "xray",
+      "reverse",
+      "marta1948",
+      "andre1967",
+      "stratigraphy",
+      "conserved"
+    ],
+    "thumbs": 12,
+    "opacity": 0.42,
+    "zoom": "1.5",
+    "dims": {
+      "w": 1440,
+      "sw": 1440,
+      "bw": 1440
+    }
+  },
+  "mobile": {
+    "canvas": {
+      "x": 18.796875,
+      "y": 153.953125,
+      "width": 352.390625,
+      "height": 254.53125
+    },
+    "dims": {
+      "w": 390,
+      "sw": 390,
+      "bw": 390
+    }
+  },
+  "passed": true
+}
