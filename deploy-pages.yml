@@ -1,8 +1,11 @@
-name: Deploy GitHub Pages
+name: Deploy Fourth Bedroom 2.19
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
+    paths:
+      - 'deploy_bundle_v219/**'
+      - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -11,8 +14,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -22,18 +25,81 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Validate static files
-        run: node scripts/validate-site.mjs
+      - name: Reconstruct and verify 2.19 package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd deploy_bundle_v219
+          sha256sum -c PART_SHA256SUMS.txt
+          cat site_v219.zip.part-* > /tmp/site_v219.zip
+          EXPECTED="$(awk '{print $1}' RECONSTRUCTED_ZIP_SHA256.txt)"
+          echo "${EXPECTED}  /tmp/site_v219.zip" | sha256sum -c -
+          cd "$GITHUB_WORKSPACE"
+          rm -rf _site
+          mkdir _site
+          unzip -q /tmp/site_v219.zip -d _site
+          test -f _site/index.html
+          test -f _site/version.json
+          test -f _site/asset-manifest.json
+          test ! -f _site/site/index.html
 
-      - name: Configure Pages
+      - name: Asset-integrity gate
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, re, sys
+          root=Path('_site')
+          errors=[]
+          info=json.loads((root/'version.json').read_text('utf-8'))
+          if info.get('version')!='2.19.0': errors.append('version.json is not 2.19.0')
+          manifest=json.loads((root/'asset-manifest.json').read_text('utf-8'))
+          entries=manifest['files']
+          listed=set()
+          for e in entries:
+              rel=e['path']; listed.add(rel); p=root/rel
+              if not p.is_file(): errors.append(f'manifest file missing: {rel}'); continue
+              data=p.read_bytes()
+              if len(data)!=e['size']: errors.append(f'size mismatch: {rel}')
+              if hashlib.sha256(data).hexdigest()!=e['sha256']: errors.append(f'hash mismatch: {rel}')
+          actual={p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and p.name!='asset-manifest.json'}
+          if listed!=actual:
+              errors.append(f'manifest inventory mismatch: missing={sorted(actual-listed)[:10]} extra={sorted(listed-actual)[:10]}')
+          required=[
+            'index.html','styles.css','game.js','data/game-data.js','service-worker.js','site.webmanifest','version.json',
+            'assets/painting-diagnostics/fourth_visible.webp',
+            'assets/historical/bedroom-1888-amsterdam.webp',
+            'assets/historical/bedroom-1889-chicago.webp',
+            'assets/historical/bedroom-1889-orsay.webp',
+            'assets/event-cg/painted_collapse.webp'
+          ]
+          for rel in required:
+              if not (root/rel).is_file(): errors.append(f'critical file missing: {rel}')
+          for d in ['audio','characters','event-cg','evidence-closeups','historical','painting-diagnostics']:
+              if not (root/'assets'/d).is_dir(): errors.append(f'critical directory missing: assets/{d}')
+          html=(root/'index.html').read_text('utf-8')
+          if html.count('id="new-game"')!=1: errors.append('start button id must occur exactly once')
+          if 'VERSION 2.19.0' not in html: errors.append('2.19 title label missing')
+          # Verify every literal local asset reference in production code.
+          for rel in ['index.html','styles.css','game.js','data/game-data.js','service-worker.js']:
+              text=(root/rel).read_text('utf-8')
+              for ref in set(re.findall(r'assets/[A-Za-z0-9_./-]+\.(?:webp|png|jpe?g|svg|mp3|wav|ogg|m4a)',text,re.I)):
+                  if not (root/ref).is_file(): errors.append(f'broken reference in {rel}: {ref}')
+          if errors:
+              print('\n'.join('ERROR: '+e for e in errors))
+              sys.exit(1)
+          print(f'PASS: version 2.19.0, {len(entries)} manifest files, {len(actual)+1} total files')
+          PY
+
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload verified site
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: site
+          path: ./_site
 
       - name: Deploy to GitHub Pages
         id: deployment
