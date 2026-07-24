@@ -1,9 +1,11 @@
-name: Deploy GitHub Pages
+name: Deploy Fourth Bedroom 2.19
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+    paths:
+      - 'UPLOAD_TO_REPOSITORY_ROOT/deploy_bundle_v219/**'
+      - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -20,20 +22,63 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Reconstruct 2.19 package
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUNDLE="$GITHUB_WORKSPACE/UPLOAD_TO_REPOSITORY_ROOT/deploy_bundle_v219"
+          test -d "$BUNDLE"
+          cd "$BUNDLE"
+          sha256sum -c PART_SHA256SUMS.txt
+          cat site_v219.zip.part-* > /tmp/site_v219.zip
+          EXPECTED="$(awk '{print $1}' RECONSTRUCTED_ZIP_SHA256.txt)"
+          echo "${EXPECTED}  /tmp/site_v219.zip" | sha256sum -c -
+
+          cd "$GITHUB_WORKSPACE"
+          rm -rf _site
+          mkdir _site
+          unzip -q /tmp/site_v219.zip -d _site
+
+      - name: Verify start screen and assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f _site/index.html
+          test -f _site/game.js
+          test -f _site/data/game-data.js
+          test -f _site/version.json
+          test -f _site/asset-manifest.json
+
+          node --check _site/game.js
+          node --check _site/data/game-data.js
+
+          grep -q 'VERSION 2.19.0' _site/index.html
+          grep -q 'id="new-game"' _site/index.html
+          grep -Fq "\$('#new-game').addEventListener" _site/game.js
+          grep -Fq 'function showPremonition' _site/game.js
+          grep -Fq 'function startGame' _site/game.js
+
+          test -f _site/assets/painting-diagnostics/fourth_visible.webp
+          test -f _site/assets/historical/bedroom-1888-amsterdam.webp
+          test -f _site/assets/historical/bedroom-1889-chicago.webp
+          test -f _site/assets/historical/bedroom-1889-orsay.webp
+          test -f _site/assets/event-cg/painted_collapse.webp
+
+          echo "PASS: Fourth Bedroom 2.19 package and start handlers verified."
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload game files
+      - name: Upload verified site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./site
+          path: ./_site
 
       - name: Deploy to GitHub Pages
         id: deployment
