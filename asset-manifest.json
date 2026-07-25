@@ -1,8 +1,8 @@
 {
   "title": "第四の寝室",
-  "version": "2.20.0",
-  "build": "offline-expression-clarity",
-  "fileCount": 271,
+  "version": "2.21.0",
+  "build": "player-guidance-investigation-log",
+  "fileCount": 273,
   "files": [
     {
       "path": ".nojekyll",
@@ -28,6 +28,11 @@
       "path": "RELEASE_NOTES_V220.md",
       "size": 787,
       "sha256": "0920c278fdc990bf3c3935ea3835805cd3a8cc7a9059b1cd44f910a4aad0bf05"
+    },
+    {
+      "path": "RELEASE_NOTES_V221.md",
+      "size": 874,
+      "sha256": "46531b88a3a1b15e942a07cacd33ba6d0cb7f48455e3e3316e3b8e62da0ca944"
     },
     {
       "path": "assets/action-cutin/carry.webp",
@@ -1321,8 +1326,8 @@
     },
     {
       "path": "data/game-data.js",
-      "size": 626362,
-      "sha256": "7c9208acda9c03373160b2a77cfcda818840ded3d62e2967f86c957604c334e3"
+      "size": 626357,
+      "sha256": "e51b7512738af56bed926ab7cfe4b6249fd638c6621cad6b446d3c75927df740"
     },
     {
       "path": "favicon.svg",
@@ -1331,33 +1336,33 @@
     },
     {
       "path": "game.js",
-      "size": 236115,
-      "sha256": "ac02919a1175b7fac76f482c3630da3439c06a1fc015b7353f90632fc88b7313"
+      "size": 249014,
+      "sha256": "401bd63dbfe1a2045d3a76e6135c3794ca459f473430a4e5f7d6d508485ea29c"
     },
     {
       "path": "index.html",
-      "size": 29748,
-      "sha256": "b7597b5bc1f22d9e3ff7e0c3ec7b399338b1e26e18ecc13d94403b7a16664bd2"
+      "size": 32293,
+      "sha256": "848676fd1839ba6f18fa004a54270e33a5350683431f7c12325fcb57c347e78f"
     },
     {
       "path": "service-worker.js",
       "size": 4566,
-      "sha256": "0fde57d37bb429d1a0ca6e64f3ca768adbcc8b55e677151441f40d8838c73157"
+      "sha256": "90bc5f91fcad5be2066fd32a78d42e0a5fbf23a0e1f87082b85bebc62a80b814"
     },
     {
       "path": "site.webmanifest",
-      "size": 498,
-      "sha256": "8560658c35167dc0d0794a0e279321694be2081c7a7eeff119b88e333669be52"
+      "size": 542,
+      "sha256": "854b2d15dfca7a0af9e7027912f086c50e17afb87f120e3c7e4bb7fc166c21ff"
     },
     {
       "path": "styles.css",
-      "size": 238410,
-      "sha256": "99a7b81484a670f437fa10f1d6292d2ee64cb5e189ceb1d9a1a65f9befb4741f"
+      "size": 246486,
+      "sha256": "b355525a4194dd8e148d80d0efd349a0a89d8fc25c4497f29e76307647a98716"
     },
     {
       "path": "version.json",
-      "size": 419,
-      "sha256": "3cbe65e777dde7a0e7e68d8d65fa438094b82be565c5590b7ee2c0e5391b5bb4"
+      "size": 678,
+      "sha256": "fb3198da8ad5f4f363255cde39cec2d579082568fd8af87fd64e9586ec1d1b9b"
     }
   ]
 }

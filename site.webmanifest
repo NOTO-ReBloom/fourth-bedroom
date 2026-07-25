@@ -1,16 +1,16 @@
 {
-  "name": "第四の寝室 Final Candidate 2.20",
-  "short_name": "第四の寝室 2.19",
-  "description": "死んで知った真実を、現在の証拠だけで証明する。Final Candidate 2.20.",
+  "name": "第四の寝室 Final Candidate 2.21",
+  "short_name": "第四の寝室 2.21",
+  "description": "死んで知った真実を、現在の証拠だけで証明する。理解補助と調査ログを強化したFinal Candidate 2.21。",
   "lang": "ja",
-  "start_url": "./?v=2.20.0",
+  "start_url": "./?v=2.21.0",
   "scope": "./",
   "display": "standalone",
   "background_color": "#11121a",
   "theme_color": "#11121a",
   "icons": [
     {
-      "src": "favicon.svg?v=2.20.0",
+      "src": "favicon.svg?v=2.21.0",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

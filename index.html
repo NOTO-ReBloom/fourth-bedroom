@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" data-build="2.20.0">
+<html lang="ja" data-build="2.21.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -9,14 +9,14 @@
   <meta property="og:locale" content="ja_JP">
   <meta property="og:title" content="第四の寝室">
   <meta property="og:description" content="死んで知った真実を、現在の証拠だけで証明する。絵画世界を渡る死に戻り型美術調査サスペンスADV。">
-  <link rel="icon" href="favicon.svg?v=2.20.0" type="image/svg+xml">
-  <link rel="manifest" href="site.webmanifest?v=2.20.0">
-  <link rel="preload" as="image" href="assets/characters/expressions/sumi/neutral.webp?v=2.20.0" type="image/webp">
-  <link rel="preload" as="image" href="assets/characters/expressions/claire/neutral.webp?v=2.20.0" type="image/webp">
-  <link rel="preload" as="image" href="assets/event-cg/painted_collapse.webp?v=2.20.0" type="image/webp">
+  <link rel="icon" href="favicon.svg?v=2.21.0" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest?v=2.21.0">
+  <link rel="preload" as="image" href="assets/characters/expressions/sumi/neutral.webp?v=2.21.0" type="image/webp">
+  <link rel="preload" as="image" href="assets/characters/expressions/claire/neutral.webp?v=2.21.0" type="image/webp">
+  <link rel="preload" as="image" href="assets/event-cg/painted_collapse.webp?v=2.21.0" type="image/webp">
         <meta name="description" content="死んで知った真実を、現在の証拠だけで証明する。絵画世界を渡る死に戻り型美術調査サスペンスADV『第四の寝室』。">
-  <title>第四の寝室 — Final Candidate 2.20</title>
-  <link rel="stylesheet" href="styles.css?v=2.20.0">
+  <title>第四の寝室 — Final Candidate 2.21</title>
+  <link rel="stylesheet" href="styles.css?v=2.21.0">
   <style id="launch-critical-css">
     /* Critical launch controls: deliberately inline so the game can always be started even if the main stylesheet is stale or delayed. */
     #title-screen{position:relative;min-height:100dvh}
@@ -36,11 +36,11 @@
     <div id="screen-reader-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
     <section id="title-screen" class="screen title-screen">
       <div class="title-art" aria-hidden="true">
-        <div class="paint-frame"><img src="assets/painting-diagnostics/fourth_visible.webp?v=2.20.0" alt=""></div>
+        <div class="paint-frame"><img src="assets/painting-diagnostics/fourth_visible.webp?v=2.21.0" alt=""></div>
         <div class="title-source-strip" aria-hidden="true">
-          <img src="assets/historical/bedroom-1888-amsterdam.webp?v=2.20.0" alt="">
-          <img src="assets/historical/bedroom-1889-chicago.webp?v=2.20.0" alt="">
-          <img src="assets/historical/bedroom-1889-orsay.webp?v=2.20.0" alt="">
+          <img src="assets/historical/bedroom-1888-amsterdam.webp?v=2.21.0" alt="">
+          <img src="assets/historical/bedroom-1889-chicago.webp?v=2.21.0" alt="">
+          <img src="assets/historical/bedroom-1889-orsay.webp?v=2.21.0" alt="">
           <span>?</span>
         </div>
         <span class="title-chair chair-a"></span><span class="title-chair chair-b"></span><span class="title-chair chair-c"></span>
@@ -56,7 +56,7 @@
           <span><b>02</b>描かれたものだけが存在する</span>
           <span><b>03</b>消された名前を記録で取り戻す</span>
         </div>
-        <p class="listening-note">暗い場所で、イヤホンまたはヘッドホンの使用を推奨します。</p>
+        <p class="listening-note">長編の物語です。章ごとに自動保存されます。暗い場所ではイヤホンまたはヘッドホンの使用を推奨します。</p>
 
         <div class="title-sub-actions">
           <button id="title-settings" class="text-button">設定</button>
@@ -64,12 +64,13 @@
           <button id="title-credits" class="text-button">作品情報</button>
           <button id="title-archive" class="text-button hidden">結末記録</button>
         </div>
-        <div id="offline-library-status" class="offline-library-status" data-state="preparing" role="status" aria-live="polite">
+        <div id="offline-library-status" class="offline-library-status" data-state="idle" role="status" aria-live="polite">
           <span class="offline-library-dot" aria-hidden="true"></span>
-          <span id="offline-library-text">オフライン資料を準備しています</span>
-          <span id="offline-library-progress">0%</span>
+          <span class="offline-library-copy"><strong id="offline-library-text">必要な素材はプレイ中に読み込みます</strong><small>全編保存は約41MB・Wi-Fi推奨</small></span>
+          <span id="offline-library-progress"></span>
+          <button id="offline-library-action" type="button">全編をオフライン保存</button>
         </div>
-        <p class="version">FINAL CANDIDATE · VERSION 2.20.0 · OFFLINE / EXPRESSION CLARITY</p>
+        <p class="version">FINAL CANDIDATE · VERSION 2.21.0 · PLAYER GUIDANCE / INVESTIGATION LOG</p>
       </div>
       <div id="title-launch-dock" role="group" aria-label="ゲーム開始メニュー">
         <button id="new-game" class="primary" type="button">調査を始める</button>
@@ -80,7 +81,7 @@
     </section>
 
     <section id="premonition-screen" class="screen premonition-screen hidden" aria-label="断片的な未来の記憶">
-      <div class="premonition-art" aria-hidden="true"><img src="assets/event-cg/painted_collapse.webp?v=2.20.0" alt=""><span></span></div>
+      <div class="premonition-art" aria-hidden="true"><img src="assets/event-cg/painted_collapse.webp?v=2.21.0" alt=""><span></span></div>
       <div class="premonition-copy">
         <p class="eyebrow">MEMORY WITHOUT EVIDENCE</p>
         <p id="premonition-line" class="premonition-line"></p>
@@ -104,7 +105,7 @@
         <div id="environment-layer" class="environment-layer" aria-label="場面内の観察可能な痕跡"></div>
         <aside id="observation-trace" class="observation-trace hidden" aria-live="polite"><button type="button" aria-label="閉じる">×</button><p class="eyebrow">OBSERVATION TRACE</p><h2></h2><ol><li><span>01</span><div><strong>見える</strong><p data-step="seen"></p></div></li><li><span>02</span><div><strong>比べる</strong><p data-step="compare"></p></div></li><li><span>03</span><div><strong>記録</strong><p data-step="record"></p></div></li></ol></aside>
         <div id="painting-stage" class="painting-stage uses-diagnostic hidden" aria-label="調査対象の絵画">
-          <img id="painting-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.20.0" alt="複数年代の制作層を持つ第四版候補・可視光撮影">
+          <img id="painting-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.21.0" alt="複数年代の制作層を持つ第四版候補・可視光撮影">
           <div class="fourth-overlay night-window"></div>
           <div class="fourth-overlay third-chair"><span></span></div>
           <div class="fourth-overlay mystery-portrait"></div>
@@ -178,6 +179,11 @@
         </div>
       </header>
 
+      <aside id="objective-ribbon" class="objective-ribbon" aria-label="現在の調査目的">
+        <div><span id="objective-era">現在</span><strong id="objective-question">調査の目的を確認する</strong></div>
+        <button id="objective-open-log" type="button">要点を整理</button>
+      </aside>
+
       <section id="dialogue-panel" class="dialogue-panel" tabindex="0">
         <div class="speaker-row">
           <span id="speaker-name" class="speaker-name"></span>
@@ -224,7 +230,7 @@
     </section>
 
     <section id="ending-screen" class="screen ending-screen hidden">
-      <div class="ending-painting"><img id="ending-image" src="assets/ending-thumbs/normal.webp?v=2.20.0" alt="到達した結末を象徴する場面"></div>
+      <div class="ending-painting"><img id="ending-image" src="assets/ending-thumbs/normal.webp?v=2.21.0" alt="到達した結末を象徴する場面"></div>
       <div class="ending-content">
         <p class="eyebrow">CHAPTER COMPLETE</p>
         <h2>記録は次の層へ続く。</h2>
@@ -248,17 +254,23 @@
 
     <dialog id="menu-dialog" class="modal">
       <div class="modal-header"><h2>メニュー</h2><button class="close-modal" aria-label="閉じる">×</button></div>
-      <div class="menu-grid">
-        <button data-open="notebook">観察手帳</button>
-        <button data-open="log">会話ログ</button>
-        <button data-open="saves">記録／読込</button>
-        <button data-open="settings">設定</button>
-        <button data-open="playtest">プレイ記録</button>
-        <button data-open="diagnostics">診断画像</button>
-        <button id="menu-layer-map" type="button">年代層マップ</button>
-        <button data-open="archive">結末記録</button>
-        <button id="manual-save">クイック保存</button>
-        <button id="go-title">タイトルへ</button>
+      <div class="menu-sections">
+        <section class="menu-section menu-section-primary"><h3>調査を整理</h3><div class="menu-grid">
+          <button data-open="log" class="menu-emphasis">調査ログ</button>
+          <button data-open="notebook">観察手帳</button>
+          <button id="menu-layer-map" type="button">年代層マップ</button>
+        </div></section>
+        <section class="menu-section"><h3>資料と記録</h3><div class="menu-grid">
+          <button data-open="diagnostics">診断画像</button>
+          <button data-open="saves">記録／読込</button>
+          <button id="manual-save">クイック保存</button>
+          <button data-open="archive">結末記録</button>
+        </div></section>
+        <section class="menu-section menu-section-system"><h3>環境</h3><div class="menu-grid">
+          <button data-open="settings">設定</button>
+          <button data-open="playtest">プレイ記録</button>
+          <button id="go-title">タイトルへ</button>
+        </div></section>
       </div>
       <div class="menu-status" id="menu-status"></div>
     </dialog>
@@ -270,6 +282,9 @@
         <button type="button" data-notebook-view="people" role="tab" aria-selected="false">人物</button>
         <button type="button" data-notebook-view="records" role="tab" aria-selected="false">証拠・観察</button>
       </div>
+      <div class="evidence-legend" aria-label="記録種別">
+        <span data-evidence-type="current">現在の物証</span><span data-evidence-type="historical">過去の記録</span><span data-evidence-type="memory">未来の記憶</span><span data-evidence-type="observation">観察・解釈</span>
+      </div>
       <div class="notebook-tools">
         <input id="notebook-search" type="search" placeholder="人物・記録を検索" aria-label="観察手帳を検索">
         <select id="notebook-filter" aria-label="分類で絞り込む"><option value="all">すべての分類</option></select>
@@ -278,10 +293,22 @@
       <div id="notebook-content" class="notebook-content"></div>
     </dialog>
 
-    <dialog id="log-dialog" class="modal wide-modal">
-      <div class="modal-header"><h2>会話ログ</h2><button class="close-modal" aria-label="閉じる">×</button></div>
-      <div class="log-tools"><input id="log-search" type="search" placeholder="会話を検索" aria-label="会話ログを検索"></div>
-      <div id="log-content" class="log-content"></div>
+    <dialog id="log-dialog" class="modal wide-modal investigation-log-dialog">
+      <div class="modal-header"><div><p class="eyebrow">INVESTIGATION LOG</p><h2>調査ログ</h2></div><button class="close-modal" aria-label="閉じる">×</button></div>
+      <div class="log-view-tabs" role="tablist" aria-label="調査ログの表示">
+        <button type="button" class="active" data-log-view="summary" role="tab" aria-selected="true">現在の要点</button>
+        <button type="button" data-log-view="dialogue" role="tab" aria-selected="false">会話・観察</button>
+        <button type="button" data-log-view="decisions" role="tab" aria-selected="false">選択の記録</button>
+      </div>
+      <div id="log-summary" class="log-summary"></div>
+      <div id="log-tools" class="log-tools hidden">
+        <input id="log-search" type="search" placeholder="会話・観察を検索" aria-label="会話と観察を検索">
+        <select id="log-mode-filter" aria-label="文章の種類で絞り込む">
+          <option value="all">すべての文章</option><option value="dialogue">発言</option><option value="thought">澄の心の声</option><option value="narration">観察</option><option value="document">文書</option><option value="system">システム</option>
+        </select>
+      </div>
+      <div id="log-content" class="log-content hidden"></div>
+      <div id="decision-log-content" class="decision-log-content hidden"></div>
     </dialog>
 
     <dialog id="diagnostics-dialog" class="modal diagnostic-dialog">
@@ -289,8 +316,8 @@
       <div class="diagnostic-layout">
         <div class="diagnostic-viewer">
           <div id="diagnostic-canvas" class="diagnostic-canvas">
-            <img id="diagnostic-base-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.20.0" alt="可視光基準画像">
-            <img id="diagnostic-active-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.20.0" alt="選択中の診断画像">
+            <img id="diagnostic-base-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.21.0" alt="可視光基準画像">
+            <img id="diagnostic-active-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.21.0" alt="選択中の診断画像">
             <span class="diagnostic-crosshair" aria-hidden="true"></span>
           </div>
           <div class="diagnostic-controls">
@@ -360,6 +387,7 @@
       </label>
       <label class="check-row"><input id="skip-read-only" type="checkbox" checked> SKIPは既読文章だけにする</label>
       <label class="check-row"><input id="chapter-briefings" type="checkbox" checked> 章の区切りで整理カードを表示する</label>
+      <label class="check-row"><input id="objective-ribbon-setting" type="checkbox" checked> 現在の目的を画面に表示する</label>
       <p class="help">Enter / Space：文章を進める　1〜9：選択肢　A：AUTO　S：SKIP　H：UI表示切替　G：調査ヒント　Esc：メニュー　N：手帳　L：ログ　M：層位図　F：焦点　D：診断画像　↑：直前の文章</p>
     </dialog>
 
@@ -402,8 +430,8 @@
       </div>
     </dialog>
   </main>
-  <script src="data/game-data.js?v=2.20.0"></script>
-  <script src="game.js?v=2.20.0"></script>
+  <script src="data/game-data.js?v=2.21.0"></script>
+  <script src="game.js?v=2.21.0"></script>
   <script>
     (function(){
       var status=document.getElementById('title-launch-status');

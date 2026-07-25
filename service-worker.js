@@ -1,14 +1,14 @@
-const CACHE = 'fourth-bedroom-v2.20.0';
-const MANIFEST_URL = './asset-manifest.json?v=2.20.0';
+const CACHE = 'fourth-bedroom-v2.21.0';
+const MANIFEST_URL = './asset-manifest.json?v=2.21.0';
 const CORE = [
-  './', './index.html', './styles.css?v=2.20.0', './game.js?v=2.20.0',
-  './data/game-data.js?v=2.20.0', './favicon.svg?v=2.20.0', './site.webmanifest?v=2.20.0',
+  './', './index.html', './styles.css?v=2.21.0', './game.js?v=2.21.0',
+  './data/game-data.js?v=2.21.0', './favicon.svg?v=2.21.0', './site.webmanifest?v=2.21.0',
   './version.json', MANIFEST_URL,
-  './assets/painting-diagnostics/fourth_visible.webp?v=2.20.0',
-  './assets/historical/bedroom-1888-amsterdam.webp?v=2.20.0',
-  './assets/historical/bedroom-1889-chicago.webp?v=2.20.0',
-  './assets/historical/bedroom-1889-orsay.webp?v=2.20.0',
-  './assets/event-cg/painted_collapse.webp?v=2.20.0'
+  './assets/painting-diagnostics/fourth_visible.webp?v=2.21.0',
+  './assets/historical/bedroom-1888-amsterdam.webp?v=2.21.0',
+  './assets/historical/bedroom-1889-chicago.webp?v=2.21.0',
+  './assets/historical/bedroom-1889-orsay.webp?v=2.21.0',
+  './assets/event-cg/painted_collapse.webp?v=2.21.0'
 ];
 
 let cacheJob = null;

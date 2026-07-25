@@ -14,7 +14,7 @@
   };
   const PROFILE_KEY = 'fourth-bedroom-profile-v212';
 
-  const RELEASE_VERSION = '2.20.0';
+  const RELEASE_VERSION = '2.21.0';
   const SAVE_FORMAT = 'FOURTH_BEDROOM_SAVE_V216';
   const COMPATIBLE_SAVE_FORMATS = new Set(['FOURTH_BEDROOM_SAVE_V210', 'FOURTH_BEDROOM_SAVE_V211', 'FOURTH_BEDROOM_SAVE_V212', 'FOURTH_BEDROOM_SAVE_V213', 'FOURTH_BEDROOM_SAVE_V214', 'FOURTH_BEDROOM_SAVE_V215', SAVE_FORMAT]);
   const JUDGEMENT_LABELS = {
@@ -194,6 +194,18 @@
     'ACT 5':{question:'秘密の傑作という物語は、いつ、どの資料から作られたのか。',goal:'購入票と来歴草稿を分類し、本物の移管記録まで偽造と一括しない。',rule:'紙の古さ、文書の作成年代、書かれた内容を別々に検証する。'},
     'ACT 6':{question:'知っている未来を使わず、現在の証拠で全員を動かせるか。',goal:'人命、作品、原本、外部記録を役割分担と共同署名へ接続する。',rule:'完全な報告は、一人の確信ではなく、現在確認できる責任範囲の連鎖で作る。'},
     ENDING:{question:'発見した履歴を、どの言葉で未来へ残すか。',goal:'確定事実、未確認事項、保存・公開判断を分けた報告を選ぶ。',rule:'書かなかったことも、制度上は一つの判断として残る。'}
+  };
+
+
+  const CHAPTER_GUIDANCE = {
+    PROLOGUE:{period:'現在｜研究所',person:'水瀬澄・クレール・マルク・レオン',purpose:'目録にない第四版を、作品・設備・人物の利害へ分けて調査する。',confirmed:'第四版には、既知三作品と一致しない要素がある。',unresolved:'その差異がいつ、誰によって、何のために加えられたか。'},
+    'ACT 1':{period:'現在と描かれた空間',person:'水瀬澄',purpose:'絵画世界で実在する足場の条件を確かめる。',confirmed:'見えている奥行きと、歩ける床は同じではない。',unresolved:'描かれた線と影のどこまでが現在の足場になるか。'},
+    'ACT 2':{period:'1888年｜アルル',person:'フィンセントとポール',purpose:'二人が同じ部屋と共同生活へ何を期待したかを記録する。',confirmed:'椅子、費用、予定には、別々の期待が残っている。',unresolved:'同じ部屋を望みながら、どこで時間の想定がずれたか。'},
+    'ACT 3':{period:'1889年｜描き直された部屋',person:'フィンセント',purpose:'1888年と1889年の制作判断を別作品として比較する。',confirmed:'同じ構図でも、支持体、目的、細部は同じではない。',unresolved:'失われた関係を、後の作品へどこまで読み込めるか。'},
+    'ACT 4':{period:'1948年｜マルタの工房',person:'マルタ・デ・フリース',purpose:'三つの《寝室》を比較する再構成の目的と工程を復元する。',confirmed:'第三椅子などの四要素は、この段階には存在しない。',unresolved:'マルタの名前と制作目的を、現在の資料でどう結び直すか。'},
+    'ACT 5':{period:'1967年｜アンドレの資料',person:'アンドレ・ヴァン・ホーフ',purpose:'後加筆と来歴操作を、本物の移管記録から分ける。',confirmed:'市場向けの物語を支える四要素が後から加えられた。',unresolved:'どの文書が事実で、どの文書が価値を作るための草稿か。'},
+    'ACT 6':{period:'現在｜最終周回',person:'澄・クレール・マルク・レオン',purpose:'未来の記憶を使わず、現在の証拠と役割分担で全員を動かす。',confirmed:'人命、作品、原本、外部記録は一人では同時に守れない。',unresolved:'四つの責任を、現在時刻の共同署名へどう接続するか。'},
+    ENDING:{period:'夜明け｜最終報告',person:'調査チーム',purpose:'確定事実、未確定事項、保存・公開判断を分けて残す。',confirmed:'ゴッホ、マルタ、アンドレ、経年変化は同じ作者欄へまとめられない。',unresolved:'何を断定せず、誰の責任範囲として未来へ渡すか。'}
   };
 
   const LAYER_MAP = [
@@ -385,7 +397,8 @@
     emergencyDoor: $('#emergency-door'), smokeLayer: $('#smoke-layer'), actionCutIn: $('#action-cut-in'), memoryDelta: $('#memory-delta'), srStatus: $('#screen-reader-status'),
     environmentLayer: $('#environment-layer'), observationTrace: $('#observation-trace'), focusToggle: $('#focus-toggle'), insightPanel: $('#insight-panel'),
     caseFocus: $('#case-focus'), caseFocusToggle: $('#case-focus-toggle'), layerMap: $('#layer-map'), layerMapToggle: $('#layer-map-toggle'), layerMapContent: $('#layer-map-content'), archiveContent: $('#archive-content'), reconsiderReport: $('#reconsider-report'),
-    resumeDialog: $('#resume-dialog'), resumeBriefing: $('#resume-briefing'), chapterBriefingDialog: $('#chapter-briefing-dialog'), chapterBriefingContent: $('#chapter-briefing-content')
+    resumeDialog: $('#resume-dialog'), resumeBriefing: $('#resume-briefing'), chapterBriefingDialog: $('#chapter-briefing-dialog'), chapterBriefingContent: $('#chapter-briefing-content'),
+    objectiveRibbon: $('#objective-ribbon'), objectiveEra: $('#objective-era'), objectiveQuestion: $('#objective-question')
   };
 
   const defaultSettings = () => ({
@@ -402,7 +415,8 @@
     highContrast: false,
     skipReadOnly: true,
     assistMode: 'standard',
-    chapterBriefings: true
+    chapterBriefings: true,
+    objectiveRibbon: true
   });
 
   const defaultMetrics = () => ({
@@ -482,6 +496,7 @@
   let lastAutoIndicatorAt = 0;
   let previousLogCursor = -1;
   let notebookView = 'all';
+  let logView = 'summary';
   let spectralState = null;
   let previousSystemValue = null;
   let focusMode = false;
@@ -741,6 +756,7 @@
     $('#high-contrast').checked = s.highContrast;
     $('#skip-read-only').checked = s.skipReadOnly;
     if ($('#chapter-briefings')) $('#chapter-briefings').checked = s.chapterBriefings !== false;
+    if ($('#objective-ribbon-setting')) $('#objective-ribbon-setting').checked = s.objectiveRibbon !== false;
     if ($('#assist-mode')) $('#assist-mode').value = s.assistMode || 'standard';
     if (audio) {
       audio.enabled = s.ambient;
@@ -750,6 +766,7 @@
       audio.refreshVolume();
     }
     updateModeButtons();
+    renderObjectiveRibbon();
   }
 
   class AudioSystem {
@@ -1307,7 +1324,7 @@
       if (!(key in state.judgement)) return;
       state.judgement[key] = Math.max(-9, Math.min(20, Number(state.judgement[key] || 0) + Number(amount || 0)));
     });
-    state.choiceHistory.push({nodeId,index:index+1,impact,at:Date.now()});
+    state.choiceHistory.push({nodeId,index:index+1,impact,chapter:state.currentChapter,location:state.currentLocation,time:state.currentTime,at:Date.now()});
     if (state.choiceHistory.length > 120) state.choiceHistory.shift();
     const strongest=Object.entries(impact).sort((a,b)=>Math.abs(Number(b[1]||0))-Math.abs(Number(a[1]||0)))[0];
     if(strongest){state.flags.pendingDecisionEcho={key:strongest[0],amount:Number(strongest[1]||0)};}
@@ -1604,7 +1621,18 @@
     return null;
   }
 
+  function renderObjectiveRibbon() {
+    if (!els.objectiveRibbon) return;
+    const chapter = canonicalChapter(state.currentChapter);
+    const focus = CASE_FOCUS[chapter] || CASE_FOCUS.PROLOGUE;
+    const guidance = CHAPTER_GUIDANCE[chapter] || CHAPTER_GUIDANCE.PROLOGUE;
+    els.objectiveEra.textContent = guidance.period;
+    els.objectiveQuestion.textContent = focus.goal;
+    els.objectiveRibbon.classList.toggle('hidden', !state.settings.objectiveRibbon || els.game.classList.contains('hidden'));
+  }
+
   function renderCaseFocus() {
+    renderObjectiveRibbon();
     if (!els.caseFocus) return;
     const chapter = canonicalChapter(state.currentChapter);
     const cfg = CASE_FOCUS[chapter] || CASE_FOCUS.PROLOGUE;
@@ -1725,9 +1753,10 @@
     const previous = canonicalChapter(previousChapter || 'PROLOGUE');
     const prevFocus = CASE_FOCUS[previous] || CASE_FOCUS.PROLOGUE;
     const nextFocus = CASE_FOCUS[current] || CASE_FOCUS.PROLOGUE;
+    const guide = CHAPTER_GUIDANCE[current] || CHAPTER_GUIDANCE.PROLOGUE;
     const recent = recentEvidenceTitles(state, 4);
     const info = CHAPTER_INFO[current] || [current,current,''];
-    els.chapterBriefingContent.innerHTML = `<div class="chapter-briefing-title"><span>${escapeHtml(info[0])} / EVIDENCE HANDOFF</span><h3>${escapeHtml(info[1])}</h3><p>${escapeHtml(info[2] || nextFocus.question)}</p></div><div class="chapter-briefing-grid"><section class="chapter-briefing-block"><h4>ここまでに確認した記録</h4><ul>${(recent.length?recent:['まだ記録は少ない。']).map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul></section><section class="chapter-briefing-block"><h4>残しておく未解決</h4><p>${escapeHtml(prevFocus.question)}</p></section><section class="chapter-briefing-block chapter-briefing-next"><h4>次の層で確かめること</h4><p><strong>${escapeHtml(nextFocus.question)}</strong><br>${escapeHtml(nextFocus.rule)}</p></section></div>`;
+    els.chapterBriefingContent.innerHTML = `<div class="chapter-briefing-title"><span>${escapeHtml(info[0])} / ORIENTATION CARD</span><h3>${escapeHtml(info[1])}</h3><p>${escapeHtml(info[2] || nextFocus.question)}</p></div><div class="orientation-card"><div><span>時代・場所</span><strong>${escapeHtml(guide.period)}</strong></div><div><span>中心人物</span><strong>${escapeHtml(guide.person)}</strong></div><div><span>この層の目的</span><p>${escapeHtml(guide.purpose)}</p></div><div><span>現在の未解決</span><p>${escapeHtml(guide.unresolved)}</p></div></div><div class="chapter-briefing-grid"><section class="chapter-briefing-block"><h4>ここまでに確認した記録</h4><ul>${(recent.length?recent:['まだ記録は少ない。']).map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul></section><section class="chapter-briefing-block"><h4>確定していること</h4><p>${escapeHtml(guide.confirmed)}</p></section><section class="chapter-briefing-block chapter-briefing-next"><h4>次に確かめること</h4><p><strong>${escapeHtml(nextFocus.question)}</strong><br>${escapeHtml(nextFocus.rule)}</p></section><section class="chapter-briefing-block"><h4>前の層から残る問い</h4><p>${escapeHtml(prevFocus.question)}</p></section></div>`;
     metricIncrementScalar('chapterBriefingsShown');
     saveGame(false, SAVE_KEYS.auto);
     showAccessibleDialog(els.chapterBriefingDialog);
@@ -2365,6 +2394,16 @@
   }
 
 
+  function knowledgeSplitHtml(id, gameover) {
+    const proofNeeds = {
+      GO01:'圧力値、漏れ、管理カード、停止権限を、事故前の現在時刻で再確認する。',
+      GO04:'床線、影、床板をその場で照合し、描かれた範囲だけを足場として記録する。',
+      GO26:'役割分担、煙曝露、削除予約、外部受領を、同じ周回の記録へ閉じる。'
+    };
+    const need = proofNeeds[id] || '死の直前に見たことを手掛かりに、現在の物証を取り直す。';
+    return `<section class="knowledge-split"><article data-kind="memory"><span>未来で知ったこと</span><p>${escapeHtml(gameover.residue || '死の直前の観察が残った。')}</p><small>探索の索引にはなるが、報告書の証拠には使えない。</small></article><article data-kind="proof"><span>現在で証明すること</span><p>${escapeHtml(need)}</p><small>次周回で確認し直した記録だけが、他者へ渡せる証拠になる。</small></article></section>`;
+  }
+
   function renderLoopReconstruction(id) {
     const cfg = LOOP_RECONSTRUCTION[id];
     els.returnButton.disabled = false; els.returnButton.textContent = '記録点へ戻る';
@@ -2427,7 +2466,7 @@
       els.gameoverBody.innerHTML = `
         <section class="cause-chain"><div class="cause-step"><span>01</span><div><h3>判断</h3><p>${escapeHtml(cause || '原因を特定できなかった。')}</p></div></div>
         <div class="cause-step"><span>02</span><div><h3>事前に確認できた兆候</h3><ol class="warning-list">${warnings}</ol></div></div>
-        <div class="cause-step residue-step"><span>03</span><div><h3>最後に残った観察</h3><p>${escapeHtml(g.residue || '持ち越せる観察はない。')}</p></div></div></section>`;
+        <div class="cause-step residue-step"><span>03</span><div><h3>最後に残った観察</h3><p>${escapeHtml(g.residue || '持ち越せる観察はない。')}</p></div></div></section>${knowledgeSplitHtml(id, g)}`;
       renderLoopReconstruction(id);
       audio?.set('void');
       saveGame(false, SAVE_KEYS.auto);
@@ -2967,6 +3006,15 @@
     saveGame(false, SAVE_KEYS.auto);
   }
 
+  function evidenceRecordType(entry) {
+    const group = entry?.group || '';
+    if (entry?.kind === 'person' || /人物/.test(group)) return {id:'person',label:'人物観察'};
+    if (/未来記憶|残像/.test(group) || /^loop_plan_/.test(entry?.id || '') || ['altered_words','body_memory_split','successful_loop_loss'].includes(entry?.id)) return {id:'memory',label:'未来の記憶'};
+    if (/1888年|1889年|1948年|1967年|来歴|マルタ|三つの《寝室》|実在作品比較|初回比較/.test(group)) return {id:'historical',label:'過去の記録'};
+    if (/施設|現代|研究所|事故|証拠|最終周回|最終分析|報告書|最終報告|TRUE END|NORMAL END/.test(group)) return {id:'current',label:'現在の物証'};
+    return {id:'observation',label:'観察・解釈'};
+  }
+
   function renderNotebook() {
     const query = ($('#notebook-search')?.value || '').trim().toLowerCase();
     const selectedFilter = $('#notebook-filter')?.value || 'all';
@@ -2988,7 +3036,7 @@
     visible.forEach(e => (grouped[e.group] ??= []).push(e));
     $('#notebook-count').textContent = `${visible.length} / ${allItems.length}件`;
     const renderPerson = e => `<article class="note-item person-note" data-person="${escapeHtml(e.personId || '')}"><div class="person-note-heading"><div><strong>${escapeHtml(e.title)}</strong><span>${escapeHtml(e.role || '')}</span></div><span class="person-note-status">現時点</span></div><div class="person-note-grid"><section><h4>確認できた事実</h4><ul>${(e.facts || []).map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul></section><section><h4>澄の現在の見方</h4><p>${escapeHtml(e.currentView || e.text || '')}</p></section></div><div class="person-note-stake"><b>この夜に失うもの</b><p>${escapeHtml(e.stake || 'まだ分からない。')}</p></div></article>`;
-    const renderRecord = e => { const imageKey=EVIDENCE_IMAGE_MAP[e.id]; const imageSrc=imageKey ? `assets/evidence-closeups/${imageKey}.webp` : ''; return `<article class="note-item ${imageSrc?'has-evidence-image':''}">${imageSrc?`<button type="button" class="evidence-thumb" data-evidence-src="${escapeHtml(imageSrc)}" data-evidence-title="${escapeHtml(e.title)}" aria-label="${escapeHtml(e.title)}の画像を拡大"><img src="${escapeHtml(imageSrc)}" alt="" loading="lazy"></button>`:''}<div><strong>${escapeHtml(e.title)}</strong><p>${escapeHtml(e.text)}</p></div></article>`; };
+    const renderRecord = e => { const imageKey=EVIDENCE_IMAGE_MAP[e.id]; const imageSrc=imageKey ? `assets/evidence-closeups/${imageKey}.webp` : ''; const type=evidenceRecordType(e); return `<article class="note-item ${imageSrc?'has-evidence-image':''}">${imageSrc?`<button type="button" class="evidence-thumb" data-evidence-src="${escapeHtml(imageSrc)}" data-evidence-title="${escapeHtml(e.title)}" aria-label="${escapeHtml(e.title)}の画像を拡大"><img src="${escapeHtml(imageSrc)}" alt="" loading="lazy"></button>`:''}<div><div class="note-record-heading"><strong>${escapeHtml(e.title)}</strong><span class="evidence-type-badge" data-evidence-type="${type.id}">${type.label}</span></div><p>${escapeHtml(e.text)}</p></div></article>`; };
     $('#notebook-content').innerHTML = Object.entries(grouped).map(([g, items]) => `<section class="note-group ${g === '人物観察' ? 'people-group' : ''}"><div class="note-group-heading"><h3>${escapeHtml(g)}</h3><span>${items.length}</span></div>${items.map(e => e.kind === 'person' ? renderPerson(e) : renderRecord(e)).join('')}</section>`).join('') || '<p class="empty-state">条件に合う記録はありません。</p>';
     document.querySelectorAll('.evidence-thumb').forEach(button=>button.addEventListener('click',()=>openEvidenceImage(button.dataset.evidenceSrc,button.dataset.evidenceTitle,button.closest('.note-item')?.querySelector('p')?.textContent||'')));
     document.querySelectorAll('[data-notebook-view]').forEach(button => {
@@ -2998,10 +3046,50 @@
     });
   }
 
-  function renderLog() {
+  function logSpeakerLabel(entry) {
+    return entry.speaker || (entry.mode === 'thought' ? '澄の心の声' : entry.mode === 'narration' ? '観察' : entry.mode === 'document' ? '文書' : entry.mode === 'system' ? 'システム' : '発言');
+  }
+
+  function renderInvestigationSummary() {
+    const holder = $('#log-summary'); if (!holder) return;
+    const chapter = canonicalChapter(state.currentChapter);
+    const focus = CASE_FOCUS[chapter] || CASE_FOCUS.PROLOGUE;
+    const guide = CHAPTER_GUIDANCE[chapter] || CHAPTER_GUIDANCE.PROLOGUE;
+    const recent = [...state.evidence].slice(-6).reverse().map(id => ({id,...DATA.evidence[id]})).filter(x => x.title);
+    const plan = latestLoopPlan();
+    const classifiedEvidence = state.evidence.map(id => ({id,...DATA.evidence[id]})).map(e => ({...e,recordType:evidenceRecordType(e).id}));
+    const memoryCount = classifiedEvidence.filter(e => e.recordType === 'memory').length;
+    const verifiedCount = classifiedEvidence.filter(e => e.recordType !== 'memory' && e.recordType !== 'person').length;
+    holder.innerHTML = `<section class="log-orientation"><div><span>${escapeHtml(guide.period)}</span><h3>${escapeHtml(guide.person)}</h3><p>${escapeHtml(guide.purpose)}</p></div><dl><div><dt>現在の問い</dt><dd>${escapeHtml(focus.question)}</dd></div><div><dt>現在の目的</dt><dd>${escapeHtml(focus.goal)}</dd></div><div><dt>扱いの原則</dt><dd>${escapeHtml(focus.rule)}</dd></div></dl></section><section class="log-proof-balance"><article><span>現在で確認した記録</span><strong>${verifiedCount}</strong><p>物証・過去資料・観察を、現在の記録として保持。</p></article><article><span>未来の記憶</span><strong>${memoryCount}</strong><p>調査先を示す索引。報告には直接使えない。</p></article></section><section class="log-recent"><div class="log-section-head"><h3>直近の確認記録</h3><span>${state.evidence.length}件中</span></div>${recent.length ? recent.map(e=>{const type=evidenceRecordType(e);return `<article><span class="evidence-type-badge" data-evidence-type="${type.id}">${type.label}</span><div><strong>${escapeHtml(e.title)}</strong><p>${escapeHtml(e.text)}</p></div></article>`;}).join('') : '<p class="empty-state">まだ記録はありません。</p>'}</section><section class="log-open-question"><div><span>確定していること</span><p>${escapeHtml(guide.confirmed)}</p></div><div><span>まだ分からないこと</span><p>${escapeHtml(guide.unresolved)}</p></div>${plan?`<div class="log-plan"><span>次周回の検証計画</span><p>${escapeHtml(plan.carry)}</p></div>`:''}</section>`;
+  }
+
+  function renderDialogueLog() {
     const query = ($('#log-search')?.value || '').trim().toLowerCase();
-    const entries = state.log.slice(-400).filter(x => !query || `${x.speaker} ${x.text}`.toLowerCase().includes(query));
-    $('#log-content').innerHTML = entries.reverse().map(x => `<div class="log-entry"><b>${escapeHtml(x.speaker || (x.mode === 'thought' ? '澄' : x.mode === 'narration' ? '観察' : x.mode === 'document' ? '記録' : '観察'))}</b><p>${escapeHtml(x.text)}</p></div>`).join('') || '<p class="empty-state">条件に合う会話はありません。</p>';
+    const mode = $('#log-mode-filter')?.value || 'all';
+    const entries = state.log.slice(-500).filter(x => (mode === 'all' || x.mode === mode) && (!query || `${x.speaker} ${x.text} ${x.chapter}`.toLowerCase().includes(query)));
+    $('#log-content').innerHTML = entries.reverse().map(x => `<article class="log-entry" data-mode="${escapeHtml(x.mode || 'dialogue')}"><div><b>${escapeHtml(logSpeakerLabel(x))}</b><span>${escapeHtml(canonicalChapter(x.chapter || ''))}</span></div><p>${escapeHtml(x.text)}</p></article>`).join('') || '<p class="empty-state">条件に合う会話・観察はありません。</p>';
+  }
+
+  function renderDecisionLog() {
+    const holder = $('#decision-log-content'); if (!holder) return;
+    const history = [...(state.choiceHistory || [])].reverse();
+    holder.innerHTML = history.length ? history.map((item,index) => {
+      const source = nodes.get(item.nodeId); const choice = source?.choices?.[Math.max(0,Number(item.index||1)-1)];
+      const impacts = Object.entries(item.impact || {}).filter(([,value])=>Number(value)!==0).sort((a,b)=>Math.abs(Number(b[1]))-Math.abs(Number(a[1]))).map(([key])=>JUDGEMENT_LABELS[key]?.[0] || key);
+      return `<article class="decision-log-entry"><div><span>${String(history.length-index).padStart(2,'0')}</span><small>${escapeHtml(canonicalChapter(item.chapter || source?.chapter || state.currentChapter))}</small></div><section><p class="decision-question">${escapeHtml(source?.text || '選択')}</p><strong>${escapeHtml(choice?.text || `選択肢 ${item.index}`)}</strong>${impacts.length?`<p class="decision-impact">この場面で重視した軸：${[...new Set(impacts)].slice(0,2).map(escapeHtml).join(' / ')}</p>`:'<p class="decision-impact">物語上の選択として記録</p>'}</section></article>`;
+    }).join('') : '<p class="empty-state">まだ選択の記録はありません。</p>';
+  }
+
+  function renderLog() {
+    const summary = $('#log-summary'), tools = $('#log-tools'), content = $('#log-content'), decisions = $('#decision-log-content');
+    summary?.classList.toggle('hidden', logView !== 'summary');
+    tools?.classList.toggle('hidden', logView !== 'dialogue');
+    content?.classList.toggle('hidden', logView !== 'dialogue');
+    decisions?.classList.toggle('hidden', logView !== 'decisions');
+    if (logView === 'summary') renderInvestigationSummary();
+    if (logView === 'dialogue') renderDialogueLog();
+    if (logView === 'decisions') renderDecisionLog();
+    document.querySelectorAll('[data-log-view]').forEach(button => { const active=button.dataset.logView===logView; button.classList.toggle('active',active); button.setAttribute('aria-selected',String(active)); });
   }
 
   function addLog(n, seg = null, index = 0) {
@@ -3299,6 +3387,7 @@
   $('#high-contrast').addEventListener('change', e => { state.settings.highContrast = e.target.checked; applySettings(); });
   $('#skip-read-only').addEventListener('change', e => { state.settings.skipReadOnly = e.target.checked; applySettings(); });
   $('#chapter-briefings')?.addEventListener('change', e => { state.settings.chapterBriefings = e.target.checked; applySettings(); });
+  $('#objective-ribbon-setting')?.addEventListener('change', e => { state.settings.objectiveRibbon = e.target.checked; renderObjectiveRibbon(); saveGame(false, SAVE_KEYS.auto); });
   $('#assist-mode').addEventListener('change', e => { state.settings.assistMode = e.target.value; applySettings(); if (invState) configureInvestigationHint(); });
   $('#export-playtest').addEventListener('click', exportPlaytest);
   $('#reset-playtest').addEventListener('click', resetPlaytestMetrics);
@@ -3309,6 +3398,9 @@
   $('#notebook-filter').addEventListener('change', renderNotebook);
   document.querySelectorAll('[data-notebook-view]').forEach(button => button.addEventListener('click', () => { notebookView = button.dataset.notebookView || 'all'; $('#notebook-filter').value = 'all'; renderNotebook(); }));
   $('#log-search').addEventListener('input', renderLog);
+  $('#log-mode-filter')?.addEventListener('change', renderLog);
+  document.querySelectorAll('[data-log-view]').forEach(button => button.addEventListener('click', () => { logView = button.dataset.logView || 'summary'; renderLog(); }));
+  $('#objective-open-log')?.addEventListener('click', () => { logView='summary'; openDialog('log'); });
 
   function showPreviousLine() {
     if (!state.log.length) return;
@@ -3343,14 +3435,30 @@
 
   window.addEventListener('beforeunload', () => { if (!els.game.classList.contains('hidden')) saveGame(false, SAVE_KEYS.auto); });
 
+  let offlineRegistration = null;
+
   function setOfflineLibraryStatus(stateName, text, percent = null) {
     const box = document.getElementById('offline-library-status');
     const label = document.getElementById('offline-library-text');
     const value = document.getElementById('offline-library-progress');
-    if (!box || !label || !value) return;
+    const action = document.getElementById('offline-library-action');
+    if (!box || !label || !value || !action) return;
     box.dataset.state = stateName;
     label.textContent = text;
     value.textContent = percent === null ? '' : `${Math.max(0, Math.min(100, Math.round(percent)))}%`;
+    action.disabled = stateName === 'preparing' || stateName === 'ready' || stateName === 'unsupported';
+    action.textContent = stateName === 'ready' ? '保存済み' : stateName === 'preparing' ? '保存中…' : stateName === 'error' ? '保存を再試行' : '全編をオフライン保存';
+  }
+
+  function offlineWorker() {
+    return offlineRegistration?.active || offlineRegistration?.waiting || offlineRegistration?.installing || navigator.serviceWorker.controller;
+  }
+
+  function startOfflineLibrary() {
+    const worker = offlineWorker();
+    if (!worker) { setOfflineLibraryStatus('error','保存処理の準備ができていません',null); return; }
+    setOfflineLibraryStatus('preparing','全編オフライン資料を保存中',0);
+    worker.postMessage({type:'CACHE_ALL_ASSETS'});
   }
 
   async function prepareOfflineLibrary() {
@@ -3367,26 +3475,28 @@
         localStorage.setItem('fourthBedroomOfflineReady', RELEASE_VERSION);
         setOfflineLibraryStatus('ready', '全編をオフラインで再生できます', 100);
       } else if (data.type === 'CACHE_ERROR') {
-        setOfflineLibraryStatus('error', 'オフライン保存を再試行します', data.percent ?? null);
+        setOfflineLibraryStatus('error', '一部を保存できませんでした', data.percent ?? null);
       } else if (data.type === 'CACHE_STATUS') {
-        if (data.complete) setOfflineLibraryStatus('ready', '全編をオフラインで再生できます', 100);
-        else if (data.total) setOfflineLibraryStatus('preparing', '全編オフライン資料を保存中', (data.completed / data.total) * 100);
+        if (data.complete) {
+          localStorage.setItem('fourthBedroomOfflineReady', RELEASE_VERSION);
+          setOfflineLibraryStatus('ready', '全編をオフラインで再生できます', 100);
+        } else if (data.total && data.completed) {
+          setOfflineLibraryStatus('idle', '保存途中の資料があります', (data.completed / data.total) * 100);
+        }
       }
     });
     try {
-      if (localStorage.getItem('fourthBedroomOfflineReady') === RELEASE_VERSION) {
-        setOfflineLibraryStatus('ready', '全編をオフラインで再生できます', 100);
-      }
-      const registration = await navigator.serviceWorker.register(`service-worker.js?v=${RELEASE_VERSION}`);
+      offlineRegistration = await navigator.serviceWorker.register(`service-worker.js?v=${RELEASE_VERSION}`);
       await navigator.serviceWorker.ready;
-      const worker = registration.active || registration.waiting || registration.installing;
-      worker?.postMessage({type:'GET_CACHE_STATUS'});
-      worker?.postMessage({type:'CACHE_ALL_ASSETS'});
+      if (localStorage.getItem('fourthBedroomOfflineReady') === RELEASE_VERSION) setOfflineLibraryStatus('ready', '全編をオフラインで再生できます', 100);
+      else setOfflineLibraryStatus('idle', '必要な素材はプレイ中に読み込みます', null);
+      offlineWorker()?.postMessage({type:'GET_CACHE_STATUS'});
     } catch (error) {
-      setOfflineLibraryStatus('error', 'オフライン保存を開始できませんでした', null);
+      setOfflineLibraryStatus('error', 'オフライン保存を準備できませんでした', null);
     }
   }
 
+  $('#offline-library-action')?.addEventListener('click', startOfflineLibrary);
   window.addEventListener('load', prepareOfflineLibrary);
 
   window.FB_DEBUG = {
@@ -3418,6 +3528,7 @@
     showGameover: id => showGameover(id),
     showEnding: kind => showEnding(kind),
     renderEndingArchive: () => renderEndingArchive(),
+    renderInvestigationSummary: () => { logView='summary'; renderLog(); },
     eventCg: () => ({node:node?.id || null,active:els.scene.classList.contains('cg-active'),src:els.eventCgImage?.getAttribute('src') || '',label:els.eventCg?.dataset.label || ''})
   };
 
