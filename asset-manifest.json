@@ -1,0 +1,1363 @@
+{
+  "title": "第四の寝室",
+  "version": "2.20.0",
+  "build": "offline-expression-clarity",
+  "fileCount": 271,
+  "files": [
+    {
+      "path": ".nojekyll",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "404.html",
+      "size": 1149,
+      "sha256": "fd5db2b525968202761724afd719024ae89c209e1e7bbc4fc63b074f276b7971"
+    },
+    {
+      "path": "CREDITS_AND_SOURCES.md",
+      "size": 7072,
+      "sha256": "b4b08ff302c086e6fe5cf711307aa454f3b48774806decd802ada30b0091c9ed"
+    },
+    {
+      "path": "RELEASE_NOTES_V219.md",
+      "size": 670,
+      "sha256": "933bb2490a02806886bf2b96226e45ab640c9bbf27353d64dd03138d288fe5b2"
+    },
+    {
+      "path": "RELEASE_NOTES_V220.md",
+      "size": 787,
+      "sha256": "0920c278fdc990bf3c3935ea3835805cd3a8cc7a9059b1cd44f910a4aad0bf05"
+    },
+    {
+      "path": "assets/action-cutin/carry.webp",
+      "size": 13148,
+      "sha256": "2e3aa95b9179da3f2a3e26afd87f500c4768fa0cefa9e113e3df05de96789e40"
+    },
+    {
+      "path": "assets/action-cutin/coffee.webp",
+      "size": 13142,
+      "sha256": "fc44c62ba7a3ccafcf287541f45c2c12c647b086d85d401bfd846c770f982d68"
+    },
+    {
+      "path": "assets/action-cutin/door.webp",
+      "size": 11236,
+      "sha256": "9bfe8cd16106a37eb9fc763e3413ac10429d328ef6734c7307d6ba410e61ce70"
+    },
+    {
+      "path": "assets/action-cutin/power.webp",
+      "size": 6008,
+      "sha256": "8e057f631324a9fb04b59dab4d355d7a776b46df3bb444896e4f695feda00c43"
+    },
+    {
+      "path": "assets/action-cutin/scan.webp",
+      "size": 11534,
+      "sha256": "b8e5716c83b2307b51221c01cd51f36681e493d4927e2e61cbe5aee14ce273ea"
+    },
+    {
+      "path": "assets/action-cutin/sequence.webp",
+      "size": 11526,
+      "sha256": "e61f959055622b2e6503b3a410e1f950ee2b20662ca70f8a02de855d8a9a93ae"
+    },
+    {
+      "path": "assets/action-cutin/signal.webp",
+      "size": 13444,
+      "sha256": "2cd0d1380e1fe28274377945592d92e790b3914a5a9836c20ee5f26bae103a07"
+    },
+    {
+      "path": "assets/action-cutin/stop.webp",
+      "size": 12702,
+      "sha256": "48657d3ba8c5b31dac8f01ebdec704fa37764f4c40d90eabe4b22deca8cc9c21"
+    },
+    {
+      "path": "assets/action-cutin/terminal.webp",
+      "size": 6890,
+      "sha256": "432fe4551b2a485caf392cec346bb3f2dcbcd5747aeb4e24186b092b8d641f1c"
+    },
+    {
+      "path": "assets/art/archive.svg",
+      "size": 1707,
+      "sha256": "b39421ab93d4b84e34d8d6e6fb57a1f042a172da4317c1169c4ce64380d52d00"
+    },
+    {
+      "path": "assets/art/arles.svg",
+      "size": 1955,
+      "sha256": "692d8b027568f1729932e71b50a10d10fe5af2f4c84e4ef21178df9867aa216c"
+    },
+    {
+      "path": "assets/art/break-room.svg",
+      "size": 1679,
+      "sha256": "ee67567d87eccdff1cac11a66a288f0b0af7136d98335bbab3ce1a490c147294"
+    },
+    {
+      "path": "assets/art/corridor.svg",
+      "size": 1539,
+      "sha256": "fd56881f37495746a3c6cb13abed19142b4d5cf33f4b307418ab7498afd16e5c"
+    },
+    {
+      "path": "assets/art/dawn.svg",
+      "size": 1561,
+      "sha256": "0e807ee80f4869c3ac7146c87cdd74cc3222d44635596481c0a0278cc019866a"
+    },
+    {
+      "path": "assets/art/documents.svg",
+      "size": 1356,
+      "sha256": "abfc9362763e3772ed5bd6e5c7b9c1fa7ec7bbf3dcaf917c7dd60d3d183caa87"
+    },
+    {
+      "path": "assets/art/equipment.svg",
+      "size": 1661,
+      "sha256": "9e54c2bb55c61b98c02e4c33a96df5f7618f06947f6e0487966d2d605f1be2b3"
+    },
+    {
+      "path": "assets/art/fire.svg",
+      "size": 1802,
+      "sha256": "35b54aa448f93a31628e372ea95fec059c89bc7df9b64cbcb70d83e3e28619e7"
+    },
+    {
+      "path": "assets/art/gallery.svg",
+      "size": 1487,
+      "sha256": "d0a588cd1ce6b9ad78dae1050fd732b65d76df099b6d8f4470c4d689f5842610"
+    },
+    {
+      "path": "assets/art/institute.svg",
+      "size": 1972,
+      "sha256": "40c10bab1edc3e49141d6409b853872ba3cfe3bea498415fcd9b9185bba862d9"
+    },
+    {
+      "path": "assets/art/lab.svg",
+      "size": 2080,
+      "sha256": "8331126cd56251a6b86e9c75c077556b29eea87be6bd95e2299292f409883b8e"
+    },
+    {
+      "path": "assets/art/loading-bay.svg",
+      "size": 1803,
+      "sha256": "97ccacfe00bae270754b8ce4bb3097dce077e104bce167f4ea6ea4cf0d37b527"
+    },
+    {
+      "path": "assets/art/marta-workshop.svg",
+      "size": 2102,
+      "sha256": "50ccaecc43d399be9912292a00fa0441c7f7cd63bcfab08e0b1aa07dd8d65155"
+    },
+    {
+      "path": "assets/art/saint-remy.svg",
+      "size": 1663,
+      "sha256": "89de4744c1ec17d99646812af59850538c655b8c3dc85137f346eb45c6985fa9"
+    },
+    {
+      "path": "assets/art/train.svg",
+      "size": 1965,
+      "sha256": "5556130c2ddec6c290c09cd1ad091e2a88550ba4be9eb2a163e44c4b4820e84d"
+    },
+    {
+      "path": "assets/art/warehouse.svg",
+      "size": 1976,
+      "sha256": "c5a97070b880c7109f4f4828be773aad1e279ce6dbbf3848a98fbea1fea6de33"
+    },
+    {
+      "path": "assets/art/yellow-house.svg",
+      "size": 1982,
+      "sha256": "54ff1926ccf548f9020e6708b5557a30cce035dab2eafd08427b4bb221c97b9f"
+    },
+    {
+      "path": "assets/art-cinematic/archive-lamp.webp",
+      "size": 299176,
+      "sha256": "698bfa4c096e62fd54a4e6f874f676b83b7816b03a1f9983de9c3d581ce19e73"
+    },
+    {
+      "path": "assets/art-cinematic/arles-alley.webp",
+      "size": 200710,
+      "sha256": "4678d9807b2917b750d2f0a2319fa4e8e8beae3bbf20c764e6cd1d7aa613b1f3"
+    },
+    {
+      "path": "assets/art-cinematic/arles-avenue.webp",
+      "size": 176732,
+      "sha256": "491236800386388879446936fb9aad44d41a138c2884ae80a51de1c2237be371"
+    },
+    {
+      "path": "assets/art-cinematic/arles-evening.webp",
+      "size": 169934,
+      "sha256": "31e699969bf00828d5444aa793843045418d10674b638b64c59f1e3c82181b87"
+    },
+    {
+      "path": "assets/art-cinematic/breakroom-rain.webp",
+      "size": 296528,
+      "sha256": "37797d749d97217563e0c66610d21f33c96e8e3ef8ea709d9eaeaae074b038d4"
+    },
+    {
+      "path": "assets/art-cinematic/corridor-cold.webp",
+      "size": 306904,
+      "sha256": "2659e818dacd78ae02d1b784f63b8bb4228fef51713d05dc5bd7aba0dc5a8414"
+    },
+    {
+      "path": "assets/art-cinematic/corridor-emergency.webp",
+      "size": 285008,
+      "sha256": "ea9def1a8ff969899485b9ef2556a4b48a175846416e0a55d0fcbcbcf77514d9"
+    },
+    {
+      "path": "assets/art-cinematic/dawn-gold.webp",
+      "size": 340572,
+      "sha256": "40b85615f39daf4df73b9ecc6f16d5c107607290e520a02b548058a9f0ad57cf"
+    },
+    {
+      "path": "assets/art-cinematic/documents-close.webp",
+      "size": 334894,
+      "sha256": "cf3be6c16db5c39ddbe97fd02166c47457e6e085748ebf10db05083d7414593f"
+    },
+    {
+      "path": "assets/art-cinematic/equipment-low.webp",
+      "size": 285716,
+      "sha256": "5e305ca240429a048cad47154932c75d04e09d5835ad70085eaffa71e8ce22a8"
+    },
+    {
+      "path": "assets/art-cinematic/fire-control.webp",
+      "size": 333438,
+      "sha256": "a5e7a4f0aee368866aa8164947bacd06835468b06b068d9592d49b292b1f5135"
+    },
+    {
+      "path": "assets/art-cinematic/gallery-dark.webp",
+      "size": 258372,
+      "sha256": "fe6a1419b2b9a24b5e23a26f955c7de84c3837ac945c1772710020ee3cce8c02"
+    },
+    {
+      "path": "assets/art-cinematic/gallery-final.webp",
+      "size": 301760,
+      "sha256": "17a0c805790091e80025ef36aeec681bd2ff05c94b54830216c15f8c10a045ab"
+    },
+    {
+      "path": "assets/art-cinematic/institute-rain.webp",
+      "size": 233516,
+      "sha256": "93fd9fafee7d822138150d315ab1f6aca4f1222cd9046c46eac4cd1678496f63"
+    },
+    {
+      "path": "assets/art-cinematic/lab-clean.webp",
+      "size": 314082,
+      "sha256": "9702eee89f7ee7d810c6d784afa6539bf23b932515e373066797800bedc75fd3"
+    },
+    {
+      "path": "assets/art-cinematic/lab-emergency.webp",
+      "size": 261504,
+      "sha256": "af269df6b18fd532f8ff32b0580d5d51a404613d1acdb2f87836a99961821cc5"
+    },
+    {
+      "path": "assets/art-cinematic/lab-infrared.webp",
+      "size": 367552,
+      "sha256": "fbfcaf6074664614bf93fddf790c3d715e7fa99eb32269c47affd71b6ceb4845"
+    },
+    {
+      "path": "assets/art-cinematic/lab-scan.webp",
+      "size": 294100,
+      "sha256": "209bc9536502578abea01aa980e1fc0451d6823d479685576f491a100dba60b3"
+    },
+    {
+      "path": "assets/art-cinematic/loading-bay-night.webp",
+      "size": 296818,
+      "sha256": "4ad7cc9cb22301deebef91b24d84086df3866d04a7560acf1dd6f692e4f234e1"
+    },
+    {
+      "path": "assets/art-cinematic/train-night.webp",
+      "size": 201492,
+      "sha256": "23db7b830eb85c6de3fafcd4871aad6cc643fba7f339669fbf17216ac422cb8b"
+    },
+    {
+      "path": "assets/art-cinematic/warehouse-deep.webp",
+      "size": 287742,
+      "sha256": "f28c57c83308034f01988309290e505af226dd9a27f73d933b4cf3f9e752e1a7"
+    },
+    {
+      "path": "assets/art-cinematic/warehouse-solvent.webp",
+      "size": 282964,
+      "sha256": "d10c99abf3e03f721f087117d452d1cc4209b74262ffeb90c75c238e5463e9b9"
+    },
+    {
+      "path": "assets/art-cinematic/workshop-rain.webp",
+      "size": 332016,
+      "sha256": "4ef6091742f67d01adc54a41ea07ec8e0cf6a42f4d71b8f746b6c7e3f0b46030"
+    },
+    {
+      "path": "assets/art-cinematic/yellow-house-room.webp",
+      "size": 587298,
+      "sha256": "601a0abe024c0ddd1f3f6a89c695c0d67f34f94e76681e72b2644db1efd7b677"
+    },
+    {
+      "path": "assets/art-raster/archive.webp",
+      "size": 319110,
+      "sha256": "6ae524df107c35198cc734c3248d385d31abbe0a1ae01f43e71349da505cb115"
+    },
+    {
+      "path": "assets/art-raster/break-room.webp",
+      "size": 312864,
+      "sha256": "b9d79307f98542add195d875c384593fb57b41e875cb77b8433ea9ca20eec072"
+    },
+    {
+      "path": "assets/art-raster/corridor.webp",
+      "size": 311618,
+      "sha256": "eb5c32437b0440651c1822bcf7820dea086996b6de281be7fab81aa96b5a6f32"
+    },
+    {
+      "path": "assets/art-raster/dawn.webp",
+      "size": 309664,
+      "sha256": "99f54326fb82a75252e2024b245907861fed6f8c6f806c44b3e458448e3afe7e"
+    },
+    {
+      "path": "assets/art-raster/documents.webp",
+      "size": 318524,
+      "sha256": "d6992f837cd42569ed994732e6cc7b6578e48112278e14835d28ec466e4f7846"
+    },
+    {
+      "path": "assets/art-raster/equipment.webp",
+      "size": 315746,
+      "sha256": "96b3bf40117855a9f50407e45b059ac2350f2923e85c75f103ac6e0c8c0d3aba"
+    },
+    {
+      "path": "assets/art-raster/fire.webp",
+      "size": 360360,
+      "sha256": "32ccb5473b7c2e1a680fe1d81d03d3c90eeb9996fe36802b761a08f24b0bfd9d"
+    },
+    {
+      "path": "assets/art-raster/gallery.webp",
+      "size": 309970,
+      "sha256": "3cad4463c7246ae33fb22546cb72b46f838fba3dcd4bcfbac3e67b54002af47a"
+    },
+    {
+      "path": "assets/art-raster/institute.webp",
+      "size": 307196,
+      "sha256": "88d45d83a97aa1aa7abf7e92ea0cba3b8e482ca93fb77e17e013b46c02f7bc3e"
+    },
+    {
+      "path": "assets/art-raster/lab.webp",
+      "size": 324586,
+      "sha256": "2430b3dd00d63e2bfd4a9a45dee22fd66237a3e0435a2ed70c103492af6c4c31"
+    },
+    {
+      "path": "assets/art-raster/loading-bay.webp",
+      "size": 320082,
+      "sha256": "b6b9ea1af64a8f47098daf9531fd87ee7c2175d7d40527c19fbc5a49e79aece0"
+    },
+    {
+      "path": "assets/art-raster/marta-workshop.webp",
+      "size": 319646,
+      "sha256": "db0551c6a837adfd16e0170e88eae4e2db08d68f1944214ca1d73325f660cfb0"
+    },
+    {
+      "path": "assets/art-raster/rhone.webp",
+      "size": 479926,
+      "sha256": "9ac1aed2ae9fafcc599181306af0d46decd79d620a0a5787999d58ba596ef7a0"
+    },
+    {
+      "path": "assets/art-raster/saint-remy.webp",
+      "size": 516578,
+      "sha256": "a6848a664038a4c60bfe2d150ca7279274bad325aae046468aa1761cc4b2b96d"
+    },
+    {
+      "path": "assets/art-raster/warehouse.webp",
+      "size": 315912,
+      "sha256": "f0e8ec751099471dcb671c79734c4a59a7c6c4eed203d7b3aa182e7f7313158d"
+    },
+    {
+      "path": "assets/art-raster/yellow-house.webp",
+      "size": 368338,
+      "sha256": "90121a4c5d1654bdfafa6373905224a301f692ae066e1d312d27780ab43e497e"
+    },
+    {
+      "path": "assets/audio/ambient/archive.mp3",
+      "size": 289196,
+      "sha256": "7b9c85d34507e08d42dc56c78e68459dda43ea09d02024f9e0744748d7f1a050"
+    },
+    {
+      "path": "assets/audio/ambient/arles-night.mp3",
+      "size": 289196,
+      "sha256": "a140f7002c84fb200d3995d0f205b7b40a9721047495a8f5b3bc8c9199978c9f"
+    },
+    {
+      "path": "assets/audio/ambient/dawn.mp3",
+      "size": 289196,
+      "sha256": "1cd9ce5ae4c7009646f51d732d9443ee93cbe85df8c59b466a805190cd129b3e"
+    },
+    {
+      "path": "assets/audio/ambient/fire.mp3",
+      "size": 289196,
+      "sha256": "f3b03c5bf4a08721861cb38a8f228214c438815107aa472e3c2f0fc50df58496"
+    },
+    {
+      "path": "assets/audio/ambient/gallery.mp3",
+      "size": 289196,
+      "sha256": "fd2fc55c4c7156d25d24c695f771a6903607751438ee38cf684976151b227f0d"
+    },
+    {
+      "path": "assets/audio/ambient/institute.mp3",
+      "size": 289196,
+      "sha256": "3be7dda357ca4c25b66f231bd7aabff1b81c79f0b7b99ac78b43cb469011ba43"
+    },
+    {
+      "path": "assets/audio/ambient/lab.mp3",
+      "size": 289196,
+      "sha256": "553d774e6355956c81c83bc2894da7e015796aff1ae472cb25a408ec1c31961b"
+    },
+    {
+      "path": "assets/audio/ambient/rain.mp3",
+      "size": 289196,
+      "sha256": "025d1a77eb966b2d0ad14a62569227f609d788d56babe3e7f4781530a7c0b649"
+    },
+    {
+      "path": "assets/audio/ambient/scanner.mp3",
+      "size": 289196,
+      "sha256": "e0c62aadfb0d3c2c49ef542fd86b817ff2bca0e546c74c9abcbfa4518200dfad"
+    },
+    {
+      "path": "assets/audio/ambient/train.mp3",
+      "size": 289196,
+      "sha256": "0b7a821d1818aaae57afd221e563b622a76f8e7a0edcbf63038a41a604e62253"
+    },
+    {
+      "path": "assets/audio/ambient/void.mp3",
+      "size": 289196,
+      "sha256": "6c1f01350a11b9e1a5588e039591c581cf32fe933391dae6dbfbe2a29cbefa78"
+    },
+    {
+      "path": "assets/audio/ambient/warehouse.mp3",
+      "size": 289196,
+      "sha256": "5bb79bdfcb28b8e6909ea48a8eba88172ca570ad74021a0ffe02216661ca93e2"
+    },
+    {
+      "path": "assets/audio/music/arles.mp3",
+      "size": 385388,
+      "sha256": "c51fd8647481d92a9c6473095fec02c321bed3d55799dbadde44e9248e788c70"
+    },
+    {
+      "path": "assets/audio/music/danger.mp3",
+      "size": 385388,
+      "sha256": "5026b046c796d6ac25dd3febeca5e7a63b7c9cb1bb5ebf8f99fc02d820573bde"
+    },
+    {
+      "path": "assets/audio/music/final.mp3",
+      "size": 385388,
+      "sha256": "f36d23221d13719c8fc78a869e074b5b0ac63d160845ad7d95bcca180e42112f"
+    },
+    {
+      "path": "assets/audio/music/forgery.mp3",
+      "size": 385388,
+      "sha256": "4eba89ffba8793295e4ce8010bc095bd750fcf7059e6cf958d29893bafee7e8f"
+    },
+    {
+      "path": "assets/audio/music/marta.mp3",
+      "size": 385388,
+      "sha256": "b19d53edb55d16b8a75915a75ff19ad1bf7b7c4574be3c7df9cd4891e915b525"
+    },
+    {
+      "path": "assets/audio/music/memory.mp3",
+      "size": 385388,
+      "sha256": "fc8412b6e0bb9248540be3f622564544bce31081411cc3dcc138c1d1775e5528"
+    },
+    {
+      "path": "assets/audio/music/modern.mp3",
+      "size": 385388,
+      "sha256": "fd4052392980fa5417991b893b1e29902c9f63937bd1e7a867140dd9dff20632"
+    },
+    {
+      "path": "assets/audio/music/saint.mp3",
+      "size": 385388,
+      "sha256": "3cd8c6999a2a13965d5dfed8c26cbf175c108adaa4db7963c0ec10be2c04b35b"
+    },
+    {
+      "path": "assets/audio/sfx/advance.wav",
+      "size": 28204,
+      "sha256": "cce843f5369f9e277fe9f8ae535cda856777b1259a1b9d26e4997d465125916e"
+    },
+    {
+      "path": "assets/audio/sfx/bell.wav",
+      "size": 179244,
+      "sha256": "0c6292a2bbf1b43eb0ca44843fa9f3aeaa7389a8244d8e92562fcbb73a424704"
+    },
+    {
+      "path": "assets/audio/sfx/chapter.wav",
+      "size": 243244,
+      "sha256": "87fc4f74f9685349c3889ce8285f44cdbce662b56814f55cb5d43a04f530fa44"
+    },
+    {
+      "path": "assets/audio/sfx/choice.wav",
+      "size": 44844,
+      "sha256": "041787c00ae6bffcf0bedc332321c89482b7efebd56234d0e4cd079ce0a19034"
+    },
+    {
+      "path": "assets/audio/sfx/death.wav",
+      "size": 230444,
+      "sha256": "ce285b36040c06c32c24a453cfad3bdb6c9e84f8db7aa4c42501ff78ccde8de3"
+    },
+    {
+      "path": "assets/audio/sfx/door.wav",
+      "size": 140844,
+      "sha256": "0b24a3bb77558f5d4dc2b429b0e9bd4020f993bd4f9e6408363cd1c6eba57bec"
+    },
+    {
+      "path": "assets/audio/sfx/error.wav",
+      "size": 70444,
+      "sha256": "74e29a80f823d3f2d4a80fe4f59d0d91c3b13add53eab895c26c5029d6da7783"
+    },
+    {
+      "path": "assets/audio/sfx/evidence.wav",
+      "size": 128044,
+      "sha256": "8195045cb0f179ea09097ec1b5986acf14607c714cd8802d0f2d5cad03eaf7b8"
+    },
+    {
+      "path": "assets/audio/sfx/hash.wav",
+      "size": 108844,
+      "sha256": "d171a27e2e3e6d3eb27d7a22a8d309672182a746c9a4dde62bf07e934b6da725"
+    },
+    {
+      "path": "assets/audio/sfx/heartbeat.wav",
+      "size": 57644,
+      "sha256": "be639b9687ea3f6496de995b8728f72a03ec84da7f884e4a17e1ffb8977f8ae0"
+    },
+    {
+      "path": "assets/audio/sfx/layerShift.wav",
+      "size": 153644,
+      "sha256": "4dae8313f381fdc31313923d67a2a84e5b367f4df6381b9c95eea9e6d405a148"
+    },
+    {
+      "path": "assets/audio/sfx/paper.wav",
+      "size": 83244,
+      "sha256": "9e6337977de6ddef6f417a4d6eefddabdd492f65ff27d55d6e924da3ab35bf00"
+    },
+    {
+      "path": "assets/audio/sfx/powerdown.wav",
+      "size": 96044,
+      "sha256": "b79409fef90380a49c7330da0a9eb4f8f0231a0ba04cda4d675c8e1ac1e90c87"
+    },
+    {
+      "path": "assets/audio/sfx/save.wav",
+      "size": 115244,
+      "sha256": "f8044a74b5bc0f7de8dcf0624575cd35f8af4d3f43507c407e1f88a09f9d6de5"
+    },
+    {
+      "path": "assets/audio/sfx/stamp.wav",
+      "size": 57644,
+      "sha256": "81ba01155d72ed0cef48bd58f77fc5be18da7bde2644ed5aeb7411d6b4a8eefd"
+    },
+    {
+      "path": "assets/audio/sfx/typewriter.wav",
+      "size": 70444,
+      "sha256": "0e77854219babedb03c64cf9275b31b40901f7dedaff305b75ce0f6ff0a1d1f3"
+    },
+    {
+      "path": "assets/chapter-art/act1.webp",
+      "size": 110996,
+      "sha256": "043d5571f0afa7f2c2bfb67effe5ab5d60c917b260555e338147bd5c72b35edf"
+    },
+    {
+      "path": "assets/chapter-art/act2.webp",
+      "size": 159922,
+      "sha256": "10e4382c57afb520e0a47c1dd1e41f8bf8db504e90934e281fd54bce140bfc4b"
+    },
+    {
+      "path": "assets/chapter-art/act3.webp",
+      "size": 219094,
+      "sha256": "78390cdc5f6e534042c67a6f635e81e8ffe2560484c312542810c47738a1d5cc"
+    },
+    {
+      "path": "assets/chapter-art/act4.webp",
+      "size": 100772,
+      "sha256": "3cc4157ad04df1ba2c285b93c87b0e50d30a95be6a40cd60c9e9cd94502a6843"
+    },
+    {
+      "path": "assets/chapter-art/act5.webp",
+      "size": 78334,
+      "sha256": "ebc5b18d49cfe76482266973954c39d4b8f478c047a3ccc3d90b88746076765f"
+    },
+    {
+      "path": "assets/chapter-art/act6.webp",
+      "size": 135080,
+      "sha256": "623b0a91a8e455e6588901b4ee640686da0ca3285363427a7d0614067ff5f414"
+    },
+    {
+      "path": "assets/chapter-art/ending.webp",
+      "size": 124716,
+      "sha256": "22b17d5587aa3a0fd478dce067d1d6638a8eb33d6b5685bdf4ef155d4495b1a3"
+    },
+    {
+      "path": "assets/chapter-art/prologue.webp",
+      "size": 103128,
+      "sha256": "b5b4f3846295bf8a8afe989af0379597a6e5cf9d29db51b714a71fc7c07c5b34"
+    },
+    {
+      "path": "assets/character-models/andre_model_sheet.webp",
+      "size": 161136,
+      "sha256": "7077a0ec9aae36e668b38b08e0ed892487a6d9242a6035715265eb7625ea83ea"
+    },
+    {
+      "path": "assets/character-models/claire_model_sheet.webp",
+      "size": 235852,
+      "sha256": "6c101f0a10d290ced7d5da0baa6f59bf0884dc50b7462485cde076cbc1190664"
+    },
+    {
+      "path": "assets/character-models/leon_model_sheet.webp",
+      "size": 128210,
+      "sha256": "54d857e9c1f5b1978db15de729cbf57abc56995736f9ca107fe50e98ab566d27"
+    },
+    {
+      "path": "assets/character-models/marc_model_sheet.webp",
+      "size": 110600,
+      "sha256": "87ac506d773ff8468f3cfa80ce20941ad77a1ce198135bb57900950530047be5"
+    },
+    {
+      "path": "assets/character-models/marta_model_sheet.webp",
+      "size": 141454,
+      "sha256": "523ebd555f75a4440ac1050df274126819832c00c0c2f475b28c8c93a9b90def"
+    },
+    {
+      "path": "assets/character-models/sumi_model_sheet.webp",
+      "size": 212518,
+      "sha256": "19d3f58fd4545feb6d0215821e2e578e66d907fa8cd585743960943d0a40a577"
+    },
+    {
+      "path": "assets/characters/andre.webp",
+      "size": 97778,
+      "sha256": "b3875021bed0601dc979e721fd83fe346629d308c9ecd82cf0b52c7ac9cad43f"
+    },
+    {
+      "path": "assets/characters/claire.webp",
+      "size": 125150,
+      "sha256": "beee7939c0bf890a61cc3031a5ecaab8cb1246b40f89389d6dfd81ca5e485e3f"
+    },
+    {
+      "path": "assets/characters/expressions/andre/alarm.webp",
+      "size": 79380,
+      "sha256": "690516ad5b4496d0ad694320f1f0cd74485ba47e5f2ebdc503578d356bdec125"
+    },
+    {
+      "path": "assets/characters/expressions/andre/breathless.webp",
+      "size": 76114,
+      "sha256": "6e46112ad15a53389f73a68fb247070b49d5ff5288ec7ada9f5014abc046bd77"
+    },
+    {
+      "path": "assets/characters/expressions/andre/down.webp",
+      "size": 76540,
+      "sha256": "17a5c694ef20e466a25b31251c6afb654e9a432b9144a86a3b62f5bc7d6156d7"
+    },
+    {
+      "path": "assets/characters/expressions/andre/focused.webp",
+      "size": 81782,
+      "sha256": "abb4031942a9a300bafe3dc81a99bf639b562d06e3256fde246be002a3f9700b"
+    },
+    {
+      "path": "assets/characters/expressions/andre/guarded.webp",
+      "size": 82432,
+      "sha256": "624a944935a06308557297645e8f7cbc0f0669178712759927941ed37e8b5f34"
+    },
+    {
+      "path": "assets/characters/expressions/andre/neutral.webp",
+      "size": 81556,
+      "sha256": "cf017b1223a7234afba179ad66ac27e6a3ed3aa94279d4c96d4c1f89ba782ade"
+    },
+    {
+      "path": "assets/characters/expressions/andre/quiet.webp",
+      "size": 80238,
+      "sha256": "f06a2c99031114146c10c91a66d4de61a3de2b17c09b969bd8c57e0747fb82bf"
+    },
+    {
+      "path": "assets/characters/expressions/andre/resolved.webp",
+      "size": 86860,
+      "sha256": "71512d5ea6e0676a9ed6bb52e6f0f92e03ade3941346bedc74260b5548434581"
+    },
+    {
+      "path": "assets/characters/expressions/andre/shaken.webp",
+      "size": 79352,
+      "sha256": "f13bf7f98d71f81c03889b5fe3e0aa61a45dc4de5ec61cd6e240310255b10479"
+    },
+    {
+      "path": "assets/characters/expressions/andre/soft.webp",
+      "size": 83066,
+      "sha256": "7f32e8e0f716ccef9ec5c60daaf39ef6bfd567535e4a6aa35bd4a44f1790ee08"
+    },
+    {
+      "path": "assets/characters/expressions/andre/tense.webp",
+      "size": 81898,
+      "sha256": "e62f74bef7325fa5bcd2cdbd9051c946de10fc5ff458b2bd340f3feec4c605f2"
+    },
+    {
+      "path": "assets/characters/expressions/andre/wary.webp",
+      "size": 81096,
+      "sha256": "d30e7798fe2767c3c7b4b5f7330111324accaf7d9cf19947ecf0e44a421ab4ee"
+    },
+    {
+      "path": "assets/characters/expressions/andre/working.webp",
+      "size": 83842,
+      "sha256": "2c4522570f54d3ec20f261cab85ca8e42cd61be9abe0c6abc290a6a7b55bfbd9"
+    },
+    {
+      "path": "assets/characters/expressions/claire/alarm.webp",
+      "size": 118150,
+      "sha256": "01652f77ff22eb60d0161c6d276fd61ca63b29df321955e8b5cd7996a36368cc"
+    },
+    {
+      "path": "assets/characters/expressions/claire/breathless.webp",
+      "size": 112882,
+      "sha256": "9aa5d2d10867be2e5e7a388beab3356772beb1c53b43a375b64c77bef370e7b1"
+    },
+    {
+      "path": "assets/characters/expressions/claire/down.webp",
+      "size": 113598,
+      "sha256": "ceb571db19f79be05ac7829b403cff40e98949732bdafc1e93665bd84b94eae7"
+    },
+    {
+      "path": "assets/characters/expressions/claire/focused.webp",
+      "size": 119876,
+      "sha256": "67115f6ca1defc3e562d40ce4edec1f24f96c0e2f3fb19b26406fdb63bbcc0c5"
+    },
+    {
+      "path": "assets/characters/expressions/claire/guarded.webp",
+      "size": 119296,
+      "sha256": "95c75bbc40d4d3340f04ec19c15b52cfe7d1f11f0aa7f7be751d96700a4fb793"
+    },
+    {
+      "path": "assets/characters/expressions/claire/neutral.webp",
+      "size": 118610,
+      "sha256": "50ad631f22e8ae25c7021a2879788b6bbd43016ec4b33c28796e82719d6b8170"
+    },
+    {
+      "path": "assets/characters/expressions/claire/quiet.webp",
+      "size": 116224,
+      "sha256": "004319da3d477acb6da5cdcc721b23efee70c1f715a6c3ac367c4011f49c7f1f"
+    },
+    {
+      "path": "assets/characters/expressions/claire/resolved.webp",
+      "size": 127652,
+      "sha256": "27c3d1ec7a1b930bbc9973b23c66a1b4572abcd4bb82da6fa13f44eed6a30d85"
+    },
+    {
+      "path": "assets/characters/expressions/claire/shaken.webp",
+      "size": 118606,
+      "sha256": "33a2b54da690cfe9d12ee964b1f6ad8a6c99e390fd90e42d7c237726432582ac"
+    },
+    {
+      "path": "assets/characters/expressions/claire/soft.webp",
+      "size": 121072,
+      "sha256": "e477b98c9136a1ce30d824c1695a5299dbd7a31fb763f6ff3ecfd197f8247e8c"
+    },
+    {
+      "path": "assets/characters/expressions/claire/tense.webp",
+      "size": 117864,
+      "sha256": "fcb94a63ede9082386295e94dafd107cc19809ff12d9a0af382a511e54f07a49"
+    },
+    {
+      "path": "assets/characters/expressions/claire/wary.webp",
+      "size": 117168,
+      "sha256": "74585bf5aafceb93fe0a209648b5309d2dc5ceb845b25d4c8d23ef0b0c0b8cb5"
+    },
+    {
+      "path": "assets/characters/expressions/claire/working.webp",
+      "size": 122530,
+      "sha256": "a868472bd1e3d61f018e96733ce69e8fc70f2ac07d7d9ce601e4723d27f3076f"
+    },
+    {
+      "path": "assets/characters/expressions/leon/alarm.webp",
+      "size": 65376,
+      "sha256": "f139ff0611886719afd2975b0215cbfbf97ae6d51413a0c191fbb0eff53b48b9"
+    },
+    {
+      "path": "assets/characters/expressions/leon/breathless.webp",
+      "size": 63270,
+      "sha256": "516e9cdd5b7ad8eee26387bce6675583e358aa61e3b05bfa6ba9ceea9fa5df97"
+    },
+    {
+      "path": "assets/characters/expressions/leon/down.webp",
+      "size": 63590,
+      "sha256": "6ba28cf731a3af805eb3c70996fba53ed3018c70758daccd5c2e5707265a3623"
+    },
+    {
+      "path": "assets/characters/expressions/leon/focused.webp",
+      "size": 67860,
+      "sha256": "61bd21c7c67a5e083418b304d53196c43b15089e5fa6d9e525a80668ea10499d"
+    },
+    {
+      "path": "assets/characters/expressions/leon/guarded.webp",
+      "size": 67772,
+      "sha256": "2e4623281c2ff9eecada219c901db7357419006e657dc86c8a77d7700a011c11"
+    },
+    {
+      "path": "assets/characters/expressions/leon/neutral.webp",
+      "size": 67212,
+      "sha256": "a978a971f3e25d32e5ffc5dc5df6be3777daba9fe1c9810988b87ede166c8cd8"
+    },
+    {
+      "path": "assets/characters/expressions/leon/quiet.webp",
+      "size": 65850,
+      "sha256": "71f4e6cc11173a43af3d7018b01d4c2a9fc7483351f0ff8aaa2e269eddde1dee"
+    },
+    {
+      "path": "assets/characters/expressions/leon/resolved.webp",
+      "size": 71456,
+      "sha256": "3ae43a1c4919e379ab9b2af6651a86873b23dab4331f353a68665621a4dbbe6b"
+    },
+    {
+      "path": "assets/characters/expressions/leon/shaken.webp",
+      "size": 66704,
+      "sha256": "051112cc05ac65ce59301ba2a07848370b60d07631787facbe108cd54fa28923"
+    },
+    {
+      "path": "assets/characters/expressions/leon/soft.webp",
+      "size": 67918,
+      "sha256": "edf9fcf9a62aa344c81f6098d7889fc5e7c63e86e8551f6d7b5d159789314036"
+    },
+    {
+      "path": "assets/characters/expressions/leon/tense.webp",
+      "size": 66848,
+      "sha256": "b0bdbf72a0a3a0dea075e2981cedcae2d2f7392ee2f4257714469fd70d9da176"
+    },
+    {
+      "path": "assets/characters/expressions/leon/wary.webp",
+      "size": 66460,
+      "sha256": "32ae45042c38800fb0509ff018e1e8a5608612caf7b95d2f9e09ca2a9c6f96a5"
+    },
+    {
+      "path": "assets/characters/expressions/leon/working.webp",
+      "size": 69558,
+      "sha256": "e845699c968e948f93955d393fcd1f3c28537b43367316366cb776829b6088ad"
+    },
+    {
+      "path": "assets/characters/expressions/marc/alarm.webp",
+      "size": 56878,
+      "sha256": "c13764f998b20eb6799823c221ae0d12b74b1513c30bee4f557d40343df25ded"
+    },
+    {
+      "path": "assets/characters/expressions/marc/breathless.webp",
+      "size": 54180,
+      "sha256": "244f04f032036fbf2dfed109fce0fbdcb9ec7e2c180bc12ed1b7e70a8f6f64a3"
+    },
+    {
+      "path": "assets/characters/expressions/marc/down.webp",
+      "size": 54182,
+      "sha256": "e06dbfb78d00e5ba7b0df24a0373c513a0310894049cdf180f2eb463694867aa"
+    },
+    {
+      "path": "assets/characters/expressions/marc/focused.webp",
+      "size": 58132,
+      "sha256": "0e0cb6dca5407689653146d601d58f61172af93fca078f0d2eac2031cdbf89e3"
+    },
+    {
+      "path": "assets/characters/expressions/marc/guarded.webp",
+      "size": 58218,
+      "sha256": "f4ac176009771c36497e8f4829a3fc239e0f05c2c1449a77be243c0dc00ce676"
+    },
+    {
+      "path": "assets/characters/expressions/marc/neutral.webp",
+      "size": 57232,
+      "sha256": "eab0b28d6921813dd2773bc2e47d060cb810dc871375fbc74b4eb9ff8e77b4e3"
+    },
+    {
+      "path": "assets/characters/expressions/marc/quiet.webp",
+      "size": 56466,
+      "sha256": "298d8fe565f28ad1e142ad0b898bb830538bd9e3f79eb99bd489432835bf39c1"
+    },
+    {
+      "path": "assets/characters/expressions/marc/resolved.webp",
+      "size": 61552,
+      "sha256": "7eed485630020b600fd780b6ef7df04d45669340e67aab1cae2c89963ad6e155"
+    },
+    {
+      "path": "assets/characters/expressions/marc/shaken.webp",
+      "size": 56674,
+      "sha256": "10a1a2d187085340b4929a9b28cf2503c86ce1db00165290951760fde7ebad8b"
+    },
+    {
+      "path": "assets/characters/expressions/marc/soft.webp",
+      "size": 58948,
+      "sha256": "e368b7ed1b2780a3ddd71d34f1d2c0413bcb4435b2ec90988ff979a35ab080bd"
+    },
+    {
+      "path": "assets/characters/expressions/marc/tense.webp",
+      "size": 57690,
+      "sha256": "d6411abbec82509446a1ece789396fe73236166f43c28037bad540f245a92fe2"
+    },
+    {
+      "path": "assets/characters/expressions/marc/wary.webp",
+      "size": 57164,
+      "sha256": "5434319d6213ada0a0b05d40d0c9c4f9cbd7585edc056b4b48ad4a55744e85f3"
+    },
+    {
+      "path": "assets/characters/expressions/marc/working.webp",
+      "size": 59680,
+      "sha256": "d9ce0508f5b1c2a7a84de9c343770d63ca8a60501515ab6b4c1347247adae69c"
+    },
+    {
+      "path": "assets/characters/expressions/marta/alarm.webp",
+      "size": 73094,
+      "sha256": "71b9c9b3a9aa2b80e5b613b2e876157592ea5e0b425cc91e1c44f244e845a0c3"
+    },
+    {
+      "path": "assets/characters/expressions/marta/breathless.webp",
+      "size": 69684,
+      "sha256": "e390b26e0c66a4d14ced213afd4578fa01049b3d6a790e73038a4a0c060bbb79"
+    },
+    {
+      "path": "assets/characters/expressions/marta/down.webp",
+      "size": 70064,
+      "sha256": "2b136463876bed9aa468ba7d1bf47af5966a1631f25020e44b6454f4ba6543b9"
+    },
+    {
+      "path": "assets/characters/expressions/marta/focused.webp",
+      "size": 73800,
+      "sha256": "ca2c8d6b3ae30b34789f739f7bdaf6fc18038e1864f15ad1e68e89a906bf584f"
+    },
+    {
+      "path": "assets/characters/expressions/marta/guarded.webp",
+      "size": 74082,
+      "sha256": "b7e78635618d99a63f49b9ee05bed58c989ffb144bd786351347f1f7a41d9ef8"
+    },
+    {
+      "path": "assets/characters/expressions/marta/neutral.webp",
+      "size": 73802,
+      "sha256": "644184b2c7fcb15a809c29ad9ffe8253b0fda0a8e022bec255a838496b78c167"
+    },
+    {
+      "path": "assets/characters/expressions/marta/quiet.webp",
+      "size": 73006,
+      "sha256": "164dd04843e1883a340fb6c023e27c16e5e29e8b2ac37e3d2ac3917b2d5294f2"
+    },
+    {
+      "path": "assets/characters/expressions/marta/resolved.webp",
+      "size": 78458,
+      "sha256": "6d03c745d58b225374795c9676da10e7425baacb0c62fe855e01a3c55d99aa1f"
+    },
+    {
+      "path": "assets/characters/expressions/marta/shaken.webp",
+      "size": 73242,
+      "sha256": "dfc8244ac93fde2fbba34e9d99376b4321416b98f2bf4d78ce252fa4634e0616"
+    },
+    {
+      "path": "assets/characters/expressions/marta/soft.webp",
+      "size": 74756,
+      "sha256": "26d81d353ccb1ec37f6bc41695b03bcc2604ee653ea17a20bb79f223a929ae58"
+    },
+    {
+      "path": "assets/characters/expressions/marta/tense.webp",
+      "size": 73212,
+      "sha256": "7cb5d001bc53812c4571df6bb54ffddc393023441d42d79a13cc1c184e766fe8"
+    },
+    {
+      "path": "assets/characters/expressions/marta/wary.webp",
+      "size": 72764,
+      "sha256": "901cb0db5d55cd38e0daa2d73e7677c01f34c30fc09f3124f76a4cf3e4e4d58b"
+    },
+    {
+      "path": "assets/characters/expressions/marta/working.webp",
+      "size": 75454,
+      "sha256": "62876c4a332ffc4fc2bfecc5329845168ad3fe40c0578f3b09b5b45360bcd161"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/alarm.webp",
+      "size": 104030,
+      "sha256": "756909178258f1a5a6aa0f871fb4575d4d198c5593e021c263c28696b955104d"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/breathless.webp",
+      "size": 98070,
+      "sha256": "d8638b5f3ed40f0b962048dee17945ff049aa0782d67a91012ea2dc899e7f835"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/down.webp",
+      "size": 100892,
+      "sha256": "a48954f8bf23af72a8c71b904c1a05a75cbfc5c1fa56c2f815af4a76e71aac72"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/focused.webp",
+      "size": 103372,
+      "sha256": "02225a34fb4b8ea78eb8fca3ecf5038b63dedc3e712b181a9e5f0fb966f01bd6"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/guarded.webp",
+      "size": 103550,
+      "sha256": "8dca69454b3f09a4854345f057e0ddf1df3a255cc2631a3fee785fe9206d462c"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/neutral.webp",
+      "size": 102790,
+      "sha256": "33de9ffa9d79fb741114b1a622956c077da6e77e7e39f10b9cf3e3a4845262cc"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/quiet.webp",
+      "size": 100608,
+      "sha256": "bbd01d9c9d2420ae773f2091b0c634f8d8f4a4cd796e7db2d8f87a70d142bda0"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/resolved.webp",
+      "size": 113666,
+      "sha256": "daff951d5d4a996484c8e060b802f7e0829c127c8a30c8d1bbc2151e5bac2b98"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/shaken.webp",
+      "size": 104960,
+      "sha256": "4560b81953baff28c51a0759a65e426357cf7f6a90aec23ecbd189edabb59ce6"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/soft.webp",
+      "size": 105270,
+      "sha256": "603abde643dcc67c50dbe7bdba40c538c45b0aa6a67cc910d734ce92e4747f6f"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/tense.webp",
+      "size": 103112,
+      "sha256": "02df2422f44884d9de0d5592af0879b4d5771135a78dab66d951023d4ece3e4d"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/wary.webp",
+      "size": 102180,
+      "sha256": "d4494fe84907c2bcbfafe713556bb45875a12e07f573c2256507a21e2736cc00"
+    },
+    {
+      "path": "assets/characters/expressions/sumi/working.webp",
+      "size": 108740,
+      "sha256": "99774ee0ea6e792b05d4c623523bcb350c6914e0cba4a2fd50bf422391ad093c"
+    },
+    {
+      "path": "assets/characters/leon.webp",
+      "size": 99238,
+      "sha256": "277fd89e014a831c430a47425e0183fa7be3a0df13a26bae7519050accd79425"
+    },
+    {
+      "path": "assets/characters/marc.webp",
+      "size": 118168,
+      "sha256": "eca975d0b4580fcac4b7d30f97e474660acebcbe37db0c68de0dff05a445e2e9"
+    },
+    {
+      "path": "assets/characters/marta.webp",
+      "size": 129194,
+      "sha256": "f3c22164295494b0a92dc2b9f3e0d313440c5d679a228132a0f247b324f3b121"
+    },
+    {
+      "path": "assets/characters/sumi.webp",
+      "size": 111618,
+      "sha256": "7a94c36fa8a804eb0961a49d60c49b4ff051bc1480e329f75f58fdd0a96ced3d"
+    },
+    {
+      "path": "assets/ending-thumbs/bad1.webp",
+      "size": 49344,
+      "sha256": "c6f34e23b0f366f0b605b5e8c3ef2713a508f4c325bcfd35e9c2b2c505a9f790"
+    },
+    {
+      "path": "assets/ending-thumbs/bad2.webp",
+      "size": 48946,
+      "sha256": "f9261d6f7cd46c671e1bd6d0198dd9f785170d916f1fba3d29748770eaa015bb"
+    },
+    {
+      "path": "assets/ending-thumbs/bad3.webp",
+      "size": 11152,
+      "sha256": "a39660dbe82c60264ee385a837327a947fa44846087e68c675bef9fc468988a9"
+    },
+    {
+      "path": "assets/ending-thumbs/normal.webp",
+      "size": 72200,
+      "sha256": "9dc3df27d451934c713a94dcfb52c4ca3828745f4c055112a3154585f3d6f706"
+    },
+    {
+      "path": "assets/ending-thumbs/true.webp",
+      "size": 73788,
+      "sha256": "481e96b355d8b211a740887bb8d2f46ba127b59d77b35224a22d73ff22ee61c2"
+    },
+    {
+      "path": "assets/event-cg/andre_provenance.webp",
+      "size": 216484,
+      "sha256": "d54c4aabb5f26e10e4f4ca7cd24a662b1f69bb0a4a8bdcef91663e7ac30eaf9e"
+    },
+    {
+      "path": "assets/event-cg/andre_staging.webp",
+      "size": 236722,
+      "sha256": "740dff6d0c472285e3454179deb3a224c7138598992bf805a8d516082943ae48"
+    },
+    {
+      "path": "assets/event-cg/dawn_lab.webp",
+      "size": 328724,
+      "sha256": "6cc796a8ede349004aaf39e0908a4cd62b3b482ab02285dfb460e5e53ef1933f"
+    },
+    {
+      "path": "assets/event-cg/final_gallery.webp",
+      "size": 274218,
+      "sha256": "0871eb9ef52f295b477554f58643ee4d1206d668706736009c92aa4e370742b6"
+    },
+    {
+      "path": "assets/event-cg/lab_layers.webp",
+      "size": 264652,
+      "sha256": "717b90517c3155072aa4a1fa6030eb0b6bf75deed2444f2651f631937c7b5096"
+    },
+    {
+      "path": "assets/event-cg/lab_reveal.webp",
+      "size": 256666,
+      "sha256": "b925b825075471cd4e2a0b98cfc9eb2761118372ea9656083bfcd0a362a3b009"
+    },
+    {
+      "path": "assets/event-cg/marta_comparison.webp",
+      "size": 245010,
+      "sha256": "f85687c49ade73ddf6f4ae1a9bfeedf6f8f4215efd75dab0c02551de4864cc57"
+    },
+    {
+      "path": "assets/event-cg/marta_rain.webp",
+      "size": 241322,
+      "sha256": "190fee56b5d79cb60ae358595e4d4c1faca2360a79b67ab57f9abf6a04ff13ca"
+    },
+    {
+      "path": "assets/event-cg/painted_arrival.webp",
+      "size": 410076,
+      "sha256": "a2e0ad02afbe6394e2a6fa516f2d9ca05d7c8b12ac84e02364809a9c2b32df57"
+    },
+    {
+      "path": "assets/event-cg/painted_collapse.webp",
+      "size": 450298,
+      "sha256": "48a0e196e7bb2c79aafedabd88c7129cef2c1761e54ea00ecd0d33fb35836c37"
+    },
+    {
+      "path": "assets/evidence-closeups/archive_links.webp",
+      "size": 8388,
+      "sha256": "61608e19e082ad17a1c43af1d76b8b6018ad1afb81180a652564ab9a0c27c570"
+    },
+    {
+      "path": "assets/evidence-closeups/chair_shadows.webp",
+      "size": 8710,
+      "sha256": "35141f01c6db299835508e6d7d7edefafa6cc414e4dc131d7bcf3e93312dc6aa"
+    },
+    {
+      "path": "assets/evidence-closeups/cleanup_terminal.webp",
+      "size": 6904,
+      "sha256": "5655f49c44a63eeff84f90615e6f493d761eee78f8558147b8c8ca377ae1d050"
+    },
+    {
+      "path": "assets/evidence-closeups/coolant_joint.webp",
+      "size": 5162,
+      "sha256": "9094f0167bc20b86e8fcd321d3c07aee96947e4d3c3c62844543b57edcc90bb2"
+    },
+    {
+      "path": "assets/evidence-closeups/floor_line.webp",
+      "size": 88610,
+      "sha256": "6a74fd69f39489a6658797cffb02a72262574f3c8127efed8b0312fb2d522ec3"
+    },
+    {
+      "path": "assets/evidence-closeups/frame_scar.webp",
+      "size": 5484,
+      "sha256": "2d33c773d0d0224291a3737ad2e0b08698b0f91165abd489d8f5afbf42d17469"
+    },
+    {
+      "path": "assets/evidence-closeups/keyhole.webp",
+      "size": 51142,
+      "sha256": "c3acdee1b998688077136e0d07c8463c6b3dd1cdac0c47df3473856d77cb5534"
+    },
+    {
+      "path": "assets/evidence-closeups/marc_card.webp",
+      "size": 6724,
+      "sha256": "b79ed58988639e589f7ccd8103581f1d7a834fca28d987ea21c5c38fee75564d"
+    },
+    {
+      "path": "assets/evidence-closeups/mdv_signature.webp",
+      "size": 7672,
+      "sha256": "12488787d1f7b24176395fc332b2fcf89e23a3e8a386c404709b6b226a8d9c66"
+    },
+    {
+      "path": "assets/evidence-closeups/mystery_portrait.webp",
+      "size": 77026,
+      "sha256": "51ed0675fba03920a2e3f22699d150ef45363841e911e5f8b88847be32b9f7f8"
+    },
+    {
+      "path": "assets/evidence-closeups/night_window.webp",
+      "size": 75930,
+      "sha256": "414df9920832b365b51c6338a9d3726235ee27e916c1f74a4906644262f642c1"
+    },
+    {
+      "path": "assets/evidence-closeups/pressure_gauge.webp",
+      "size": 11670,
+      "sha256": "73fa0e914d1e5f3b6e1eb3fc69bb60dd04b6b9b1ee7a160fbb597f2addb29a1c"
+    },
+    {
+      "path": "assets/evidence-closeups/provenance_drafts.webp",
+      "size": 9676,
+      "sha256": "74e058a4f73c26558b9898422f66c41703feb904e905345f351643798780ede5"
+    },
+    {
+      "path": "assets/evidence-closeups/purple_swatches.webp",
+      "size": 5354,
+      "sha256": "69d5fff8db1cfd066e5c0d9c98b79531d7bd9bece95aee29502b3b5ec82971d4"
+    },
+    {
+      "path": "assets/evidence-closeups/third_chair.webp",
+      "size": 71432,
+      "sha256": "2024dd809b22dd47e52bd5fe5892ab0f6310f8de1a3ac505e49494f365d7b993"
+    },
+    {
+      "path": "assets/evidence-closeups/type_pressure.webp",
+      "size": 5984,
+      "sha256": "80296d193fba91212877599e5e2da3005c1fcdde1259546a9c47c88ce6f9986e"
+    },
+    {
+      "path": "assets/evidence-closeups/v17_ticket.webp",
+      "size": 6336,
+      "sha256": "7378b1e068b01d3a4cfe1b10019d7b5007318a91f1ef95faac590ef05cf614a8"
+    },
+    {
+      "path": "assets/fourth-bedroom-base.webp",
+      "size": 376686,
+      "sha256": "8dffcab2f37648eff4b56df942acaca56e8baf7138a2267ba35071076be5553b"
+    },
+    {
+      "path": "assets/historical/bedroom-1888-amsterdam.webp",
+      "size": 502920,
+      "sha256": "0281618f372e000a534f7cb6fd8efd452661a0328d0f74743e38df2e179ccf11"
+    },
+    {
+      "path": "assets/historical/bedroom-1889-chicago.webp",
+      "size": 508556,
+      "sha256": "89898b48e319080d5f0c824d8a313bac468a09cac6dfcfce80b138e148fc99fa"
+    },
+    {
+      "path": "assets/historical/bedroom-1889-orsay.webp",
+      "size": 528608,
+      "sha256": "55f208d9fcbe20bbcb02b8ebc4beb9945bfa4e4b2c2c955de0a02905f58322e9"
+    },
+    {
+      "path": "assets/historical/bedroom-letter-sketch.webp",
+      "size": 410420,
+      "sha256": "b97691ca126dc3723a061906ace1c9460ffb1804509b14e9b9ac4b8c6f327f41"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_andre_1967.webp",
+      "size": 236606,
+      "sha256": "2ecc8e48d38a958ac6e5f2eb9ec6da7c366b0456c47fe477f951c8fc05e54a5c"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_conserved.webp",
+      "size": 244556,
+      "sha256": "692312b83ea4b4eca4dd6496d51a08aa918a3c9810ab6b826fa5b3c446df1333"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_infrared.webp",
+      "size": 420638,
+      "sha256": "ed99e7a486822530bf6d831335259b3f834d025db860ccd3c563f6c93d03af75"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_marta_1948.webp",
+      "size": 236726,
+      "sha256": "74167a5914da5e346268440f3086c679afbb12ba7ce184882ac5c008a3d81bcd"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_raking.webp",
+      "size": 285836,
+      "sha256": "3a517a4bdb6845eb5ce44b35d3e4269daf3e3206861a56fd15420eca2314d396"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_reverse.webp",
+      "size": 23138,
+      "sha256": "162809abb9e7d14305f9bea8297a1ed6d93d9907f2bc57876de2dfab655bdc23"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_stratigraphy.webp",
+      "size": 205536,
+      "sha256": "1be1242e09502d2236645d38415344dd68409a548d2d950263c4b7731cc1a6fa"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_ultraviolet.webp",
+      "size": 106212,
+      "sha256": "9684fad1b57ed263935b0bcf7bddcbe710261822b6963f20ae98f06363b32c44"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_visible.webp",
+      "size": 249722,
+      "sha256": "f50a7b55192746765a87a785f0b206e371b5587b69dc5d8ef2dc1540cdc29c12"
+    },
+    {
+      "path": "assets/painting-diagnostics/fourth_xray.webp",
+      "size": 450270,
+      "sha256": "3fac15dfaecfc8531d46b8832a2e070c9b8b9aa07079f40d8a0fcab35d04ae13"
+    },
+    {
+      "path": "assets/portrait-gauguin.jpg",
+      "size": 221074,
+      "sha256": "18f480823476548a15040d5ddb5cbcc127c857eb22887b6ad919c2d0dab6e4e5"
+    },
+    {
+      "path": "assets/portrait-vincent.jpg",
+      "size": 399411,
+      "sha256": "2ef35c00564e12e8b5dd0f7a08b7b4caa3ef2d98a92e1a521a4818e90cf4255f"
+    },
+    {
+      "path": "assets/semantic-overlays/burden.webp",
+      "size": 2614,
+      "sha256": "ec5a31afe96c7c80d1408eb0119f695f25a8b320cfef6e22d4e48ac7981d08b4"
+    },
+    {
+      "path": "assets/semantic-overlays/closure.webp",
+      "size": 860,
+      "sha256": "6341a9b5ab85d1ee409b8380cb0d460348d7a40f42d470b309a564e1e21e5ba4"
+    },
+    {
+      "path": "assets/semantic-overlays/dawn.webp",
+      "size": 3108,
+      "sha256": "90a4d041d9867f318d8aeed2b699133ad677ac4d755ef01096b4e5098303f518"
+    },
+    {
+      "path": "assets/semantic-overlays/evidence.webp",
+      "size": 546,
+      "sha256": "f8ce0498020956af2094955e092aba05ec829a3461e12d0718da0409d58a6aaf"
+    },
+    {
+      "path": "assets/semantic-overlays/leak.webp",
+      "size": 4374,
+      "sha256": "83847dcaf5413e81273adb5bbf50b44ed3f8605a71f1d8cab7fc7fc86fda143e"
+    },
+    {
+      "path": "assets/semantic-overlays/memory.webp",
+      "size": 3778,
+      "sha256": "3ad74252e0b88add5823f45e1790bfc022e17b1b6344c1431951c5050bb0e22f"
+    },
+    {
+      "path": "assets/semantic-overlays/painted.webp",
+      "size": 9370,
+      "sha256": "f7e521999807ac13857b745167fdb1ebed3030bd8c8468738d3ccc637a7502eb"
+    },
+    {
+      "path": "assets/semantic-overlays/provenance.webp",
+      "size": 2326,
+      "sha256": "29b7f6898ea821a9484767a11cddd4bfaa91ac9a569a2bd6612c3bb4091508ba"
+    },
+    {
+      "path": "assets/the-bedroom-1889.webp",
+      "size": 541286,
+      "sha256": "068f17f70844799fe7ba02822847d9c07dfa265c2fcd317dfa60e85a8bf72263"
+    },
+    {
+      "path": "data/game-data.js",
+      "size": 626362,
+      "sha256": "7c9208acda9c03373160b2a77cfcda818840ded3d62e2967f86c957604c334e3"
+    },
+    {
+      "path": "favicon.svg",
+      "size": 389,
+      "sha256": "3168b8f4e510ce76d8be4b8ec41a3a0889d8305ccae39bec3335262fc0c00712"
+    },
+    {
+      "path": "game.js",
+      "size": 236115,
+      "sha256": "ac02919a1175b7fac76f482c3630da3439c06a1fc015b7353f90632fc88b7313"
+    },
+    {
+      "path": "index.html",
+      "size": 29748,
+      "sha256": "b7597b5bc1f22d9e3ff7e0c3ec7b399338b1e26e18ecc13d94403b7a16664bd2"
+    },
+    {
+      "path": "service-worker.js",
+      "size": 4566,
+      "sha256": "0fde57d37bb429d1a0ca6e64f3ca768adbcc8b55e677151441f40d8838c73157"
+    },
+    {
+      "path": "site.webmanifest",
+      "size": 498,
+      "sha256": "8560658c35167dc0d0794a0e279321694be2081c7a7eeff119b88e333669be52"
+    },
+    {
+      "path": "styles.css",
+      "size": 238410,
+      "sha256": "99a7b81484a670f437fa10f1d6292d2ee64cb5e189ceb1d9a1a65f9befb4741f"
+    },
+    {
+      "path": "version.json",
+      "size": 419,
+      "sha256": "3cbe65e777dde7a0e7e68d8d65fa438094b82be565c5590b7ee2c0e5391b5bb4"
+    }
+  ]
+}

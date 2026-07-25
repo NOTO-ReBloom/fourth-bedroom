@@ -1,0 +1,13 @@
+{
+  "title": "第四の寝室",
+  "version": "2.20.0",
+  "build": "offline-expression-clarity",
+  "base": "2.19.0",
+  "published": "2026-07-24",
+  "changes": [
+    "全プレイ素材をマニフェストから段階的に事前キャッシュ",
+    "中断後も再開できるオフライン保存進捗",
+    "13種の人物感情を照明・構図・動きで明確化",
+    "GitHub Actions Node.js 24対応"
+  ]
+}
