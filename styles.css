@@ -1714,3 +1714,89 @@ button.primary{background:linear-gradient(135deg,#efca73,#c79b45);box-shadow:0 1
 .offline-library-status{grid-template-columns:auto minmax(0,1fr) auto auto!important}.offline-library-copy{display:grid;gap:1px}.offline-library-copy strong{font-size:12px}.offline-library-copy small{font-size:10px;color:var(--muted,#aaa)}.offline-library-status button{padding:6px 8px;font-size:11px;white-space:nowrap}.offline-library-status[data-state="idle"] .offline-library-dot{animation:none;opacity:.55}.offline-library-status[data-state="ready"] button{opacity:.6}
 @media(max-width:760px){.objective-ribbon{top:72px;right:12px;left:12px;padding:8px 9px}.objective-ribbon strong{font-size:11px}.objective-ribbon button{font-size:10px}.log-orientation,.log-open-question,.knowledge-split{grid-template-columns:1fr}.log-proof-balance{grid-template-columns:1fr 1fr}.log-tools{grid-template-columns:1fr}.orientation-card{grid-template-columns:1fr}.offline-library-status{grid-template-columns:auto 1fr auto!important}.offline-library-status button{grid-column:2/-1;width:100%}}
 @media(max-width:430px){.objective-ribbon{top:64px}.objective-ribbon>div{max-width:calc(100% - 84px)}.log-proof-balance{grid-template-columns:1fr}.log-open-question .log-plan{grid-column:auto}.log-view-tabs button{min-width:0;font-size:11px;padding:8px 5px}.decision-log-entry{grid-template-columns:34px 1fr}}
+
+
+/* =========================================================
+   FINAL CANDIDATE 2.22 — VISUAL REMASTER
+   Replaces geometric placeholder environments with authored,
+   high-detail scene backgrounds. Story and route logic unchanged.
+   ========================================================= */
+:root{
+  --scene-remaster-shadow:rgba(1,3,7,.58);
+  --scene-remaster-warm:rgba(232,183,103,.11);
+  --scene-remaster-cool:rgba(91,150,189,.08);
+}
+.scene-back{
+  background-color:#080b11!important;
+  background-size:cover!important;
+  background-position:center!important;
+  transform:scale(1.012);
+}
+.scene-mid{
+  background:
+    radial-gradient(ellipse at 50% 34%,rgba(255,232,181,.035),transparent 38%),
+    linear-gradient(180deg,rgba(3,6,12,.02),rgba(3,5,10,.08) 52%,rgba(1,2,6,.38) 100%)!important;
+}
+.scene-front{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.2),transparent 16% 84%,rgba(0,0,0,.22)),
+    linear-gradient(180deg,transparent 52%,rgba(0,0,0,.34))!important;
+}
+.vignette{
+  background:radial-gradient(ellipse at 50% 42%,transparent 32%,rgba(2,3,7,.1) 58%,rgba(1,2,5,.66) 100%)!important;
+}
+.bg-train .scene-back{background-image:url("assets/backgrounds-v222/train-night.webp")!important;filter:brightness(.96) contrast(1.08) saturate(.9)!important}
+.bg-arles .scene-back{background-image:url("assets/backgrounds-v222/arles-station-evening.webp")!important;filter:brightness(.92) contrast(1.08) saturate(.9)!important}
+.bg-avenue .scene-back{background-image:url("assets/backgrounds-v222/arles-evening.webp")!important;filter:brightness(.9) contrast(1.07) saturate(1.02)!important}
+.bg-alley .scene-back{background-image:url("assets/backgrounds-v222/arles-alley.webp")!important;filter:brightness(.88) contrast(1.12) saturate(.9)!important}
+.bg-instituteExterior .scene-back{background-image:url("assets/backgrounds-v222/institute-exterior.webp")!important;filter:brightness(.94) contrast(1.06) saturate(.88)!important}
+.bg-loadingBay .scene-back{background-image:url("assets/backgrounds-v222/loading-bay.webp")!important;filter:brightness(.94) contrast(1.08) saturate(.8)!important}
+.bg-corridor .scene-back{background-image:url("assets/backgrounds-v222/institute-corridor.webp")!important;filter:brightness(.96) contrast(1.06) saturate(.82)!important}
+.bg-recovery .scene-back{background-image:url("assets/backgrounds-v222/recovery-corridor.webp")!important;filter:brightness(1.02) contrast(1.03) saturate(.72)!important}
+.bg-breakRoom .scene-back{background-image:url("assets/backgrounds-v222/break-room.webp")!important;filter:brightness(.98) contrast(1.06) saturate(.78)!important}
+.bg-courtyard .scene-back{background-image:url("assets/backgrounds-v222/institute-courtyard.webp")!important;filter:brightness(.96) contrast(1.08) saturate(.78)!important}
+.bg-labPainting .scene-back,.bg-finalLab .scene-back{background-image:url("assets/backgrounds-v222/lab-investigation.webp")!important;filter:brightness(.98) contrast(1.06) saturate(.8)!important}
+.bg-archive .scene-back{background-image:url("assets/backgrounds-v222/archive-room.webp")!important;filter:brightness(.98) contrast(1.05) saturate(.78)!important}
+.bg-paperArchive .scene-back{background-image:url("assets/backgrounds-v222/paper-archive.webp")!important;filter:brightness(1) contrast(1.05) saturate(.75)!important}
+.bg-equipment .scene-back{background-image:url("assets/backgrounds-v222/equipment-room.webp")!important;filter:brightness(.98) contrast(1.08) saturate(.78)!important}
+.bg-scan .scene-back,.bg-scanSafe .scene-back,.bg-screenGlow .scene-back{background-image:url("assets/backgrounds-v222/scan-room.webp")!important;filter:brightness(.98) contrast(1.06) saturate(.9)!important}
+.bg-infrared .scene-back{background-image:url("assets/backgrounds-v222/infrared-room.webp")!important;filter:brightness(.96) contrast(1.08) saturate(.86)!important}
+.bg-emergency .scene-back,.bg-smoke .scene-back,.bg-instituteFire .scene-back,.bg-fireControl .scene-back,.bg-electric .scene-back{background-image:url("assets/backgrounds-v222/lab-emergency.webp")!important;filter:brightness(.92) contrast(1.12) saturate(.82)!important}
+.bg-blackout .scene-back{background-image:url("assets/backgrounds-v222/lab-emergency.webp")!important;filter:brightness(.34) contrast(1.25) saturate(.35)!important}
+.bg-portal .scene-back{background-image:url("assets/backgrounds-v222/painted-portal.webp")!important;filter:brightness(.98) contrast(1.08) saturate(.92)!important}
+.bg-bedroomWorld .scene-back{background-image:url("assets/backgrounds-v222/painted-bedroom.webp")!important;filter:brightness(1) contrast(1.05) saturate(.9)!important}
+.bg-guestRoom .scene-back{background-image:url("assets/backgrounds-v222/yellow-house-guest-room.webp")!important;filter:brightness(.98) contrast(1.05) saturate(.9)!important}
+.bg-yellowHouse .scene-back{background-image:url("assets/backgrounds-v222/yellow-house.webp")!important;filter:brightness(.94) contrast(1.08) saturate(.94)!important}
+.bg-chairLayer .scene-back{background-image:url("assets/backgrounds-v222/chair-layer.webp")!important;filter:brightness(.98) contrast(1.1) saturate(.82)!important}
+.bg-keyholeRoom .scene-back{background-image:url("assets/backgrounds-v222/keyhole-room.webp")!important;filter:brightness(1.02) contrast(1.1) saturate(.72)!important}
+.bg-layerCollapse .scene-back,.bg-bedroomCrumble .scene-back{background-image:url("assets/backgrounds-v222/painted-collapse.webp")!important;filter:brightness(1.02) contrast(1.12) saturate(.62)!important}
+.bg-unpainted .scene-back{background-image:url("assets/backgrounds-v222/unpainted-space.webp")!important;filter:brightness(.9) contrast(1.08) saturate(.45)!important}
+.bg-saintRemy .scene-back{background-image:url("assets/backgrounds-v222/saint-remy.webp")!important;filter:brightness(.96) contrast(1.05) saturate(.9)!important}
+.bg-comparisonRoom .scene-back{background-image:url("assets/backgrounds-v222/comparison-room.webp")!important;filter:brightness(.98) contrast(1.06) saturate(.8)!important}
+.bg-martaWorkshop .scene-back{background-image:url("assets/backgrounds-v222/marta-workshop.webp")!important;filter:brightness(1) contrast(1.06) saturate(.68)!important}
+.bg-documentLayer .scene-back,.bg-provenanceRoom .scene-back{background-image:url("assets/backgrounds-v222/provenance-room.webp")!important;filter:brightness(1) contrast(1.07) saturate(.72)!important}
+.bg-andreWarehouse .scene-back,.bg-warehouseDeep .scene-back,.bg-warehouseDark .scene-back{background-image:url("assets/backgrounds-v222/warehouse.webp")!important;filter:brightness(.94) contrast(1.1) saturate(.65)!important}
+.bg-outsideDawn .scene-back{background-image:url("assets/backgrounds-v222/outside-dawn.webp")!important;filter:brightness(1.02) contrast(1.04) saturate(.82)!important}
+.bg-finalGallery .scene-back{background-image:url("assets/backgrounds-v222/final-gallery.webp")!important;filter:brightness(1) contrast(1.04) saturate(.78)!important}
+.bg-darkGallery .scene-back,.bg-void .scene-back{background-image:url("assets/backgrounds-v222/dark-gallery.webp")!important;filter:brightness(.82) contrast(1.12) saturate(.5)!important}
+
+/* Scene-specific framing prevents one master image from feeling reused. */
+.bg-loadingBay .scene-back{background-position:40% 54%!important}
+.bg-breakRoom .scene-back{background-position:35% 52%!important}
+.bg-equipment .scene-back{background-position:64% 50%!important}
+.bg-scan .scene-back,.bg-scanSafe .scene-back,.bg-screenGlow .scene-back,.bg-infrared .scene-back{background-position:58% 50%!important}
+.bg-keyholeRoom .scene-back{background-position:72% 50%!important}
+.bg-guestRoom .scene-back{background-position:52% 54%!important}
+.bg-paperArchive .scene-back{background-position:34% 52%!important}
+.bg-warehouseDeep .scene-back{background-position:68% 54%!important}
+.bg-warehouseDark .scene-back{filter:brightness(.55) contrast(1.2) saturate(.45)!important}
+.bg-screenGlow .scene-back{filter:brightness(.88) contrast(1.16) saturate(.98)!important}
+
+/* Slight parallax only on fully rendered backgrounds. */
+@media (min-width:801px) and (prefers-reduced-motion:no-preference){
+  .scene:not(.scene-changing) .scene-back{animation:v222-breath 18s ease-in-out infinite alternate}
+  .bg-train .scene-back{animation:v222-train-drift 14s ease-in-out infinite alternate}
+}
+@keyframes v222-breath{from{transform:scale(1.012) translate3d(-.15%,0,0)}to{transform:scale(1.026) translate3d(.15%,-.2%,0)}}
+@keyframes v222-train-drift{from{transform:scale(1.02) translateX(-.25%)}to{transform:scale(1.035) translateX(.25%)}}
+.reduce-motion .scene-back{animation:none!important;transform:scale(1.012)!important}

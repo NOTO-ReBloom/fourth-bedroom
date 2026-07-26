@@ -1,8 +1,8 @@
 {
   "title": "第四の寝室",
-  "version": "2.21.0",
-  "build": "player-guidance-investigation-log",
-  "fileCount": 273,
+  "version": "2.22.0",
+  "build": "VISUAL REMASTER / BACKGROUND REBUILD",
+  "fileCount": 307,
   "files": [
     {
       "path": ".nojekyll",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CREDITS_AND_SOURCES.md",
-      "size": 7072,
-      "sha256": "b4b08ff302c086e6fe5cf711307aa454f3b48774806decd802ada30b0091c9ed"
+      "size": 8429,
+      "sha256": "a8d7ccff83e05c4371fa7baad9b6a2411378797f4f4c23c48db800dbb220897f"
     },
     {
       "path": "RELEASE_NOTES_V219.md",
@@ -33,6 +33,11 @@
       "path": "RELEASE_NOTES_V221.md",
       "size": 874,
       "sha256": "46531b88a3a1b15e942a07cacd33ba6d0cb7f48455e3e3316e3b8e62da0ca944"
+    },
+    {
+      "path": "RELEASE_NOTES_V222.md",
+      "size": 1566,
+      "sha256": "91a9ce4c7e69e247ae4510f8290bbe05ecfffd149801d839423572f4473b2bc7"
     },
     {
       "path": "assets/action-cutin/carry.webp",
@@ -543,6 +548,171 @@
       "path": "assets/audio/sfx/typewriter.wav",
       "size": 70444,
       "sha256": "0e77854219babedb03c64cf9275b31b40901f7dedaff305b75ce0f6ff0a1d1f3"
+    },
+    {
+      "path": "assets/backgrounds-v222/archive-room.webp",
+      "size": 88258,
+      "sha256": "771b1067e5cc1d45fd92cefa6843cb8d6a4e2a3ffa52fb1e3699c63f18270bfb"
+    },
+    {
+      "path": "assets/backgrounds-v222/arles-alley.webp",
+      "size": 61220,
+      "sha256": "6ec0bd4ee2cc04876c9c82dc53fb16f95b96722de411e67e823810f948efb1e2"
+    },
+    {
+      "path": "assets/backgrounds-v222/arles-evening.webp",
+      "size": 104290,
+      "sha256": "d86c95e90a799b54a991c5796ee8b2c056a00341eae927f3110ee5a4d579bbcb"
+    },
+    {
+      "path": "assets/backgrounds-v222/arles-station-evening.webp",
+      "size": 87976,
+      "sha256": "ec024e5b824523f20f4398a21f16600e239207c3f529926bc743827796982f6c"
+    },
+    {
+      "path": "assets/backgrounds-v222/break-room.webp",
+      "size": 84164,
+      "sha256": "324e81fcbf82ae3da1c7112d9fdc9a0068c400e0085a92093198ab4158991100"
+    },
+    {
+      "path": "assets/backgrounds-v222/chair-layer.webp",
+      "size": 53392,
+      "sha256": "7b3f5be3f6ecd5c0fb5553dc1b4172071ae63691b384a8b63980634bad210a43"
+    },
+    {
+      "path": "assets/backgrounds-v222/comparison-room.webp",
+      "size": 104130,
+      "sha256": "a239c742f131658c09c8f2ef9e075efb69801041ccc651a5b4ccf598c4e42176"
+    },
+    {
+      "path": "assets/backgrounds-v222/dark-gallery.webp",
+      "size": 29384,
+      "sha256": "c7725a3ede289b67c366491d43c56c891e46dc100485993c52816a9e515d368f"
+    },
+    {
+      "path": "assets/backgrounds-v222/equipment-room.webp",
+      "size": 78254,
+      "sha256": "abf3fe0e0d5a60d90cb0cc643be1acc93e36ea0209bc12db2a32c09781034d86"
+    },
+    {
+      "path": "assets/backgrounds-v222/final-gallery.webp",
+      "size": 78704,
+      "sha256": "8f2c0b5db4c0585eedfb8d72916076b93d1b27bd0526710bf386a41c8f3845a0"
+    },
+    {
+      "path": "assets/backgrounds-v222/infrared-room.webp",
+      "size": 61104,
+      "sha256": "0116f9eccfca035664eec244a6bc64afe4d15b33cc9a9f60e52e7d2a3fbb8926"
+    },
+    {
+      "path": "assets/backgrounds-v222/institute-corridor.webp",
+      "size": 70760,
+      "sha256": "c0f06c8f8f29b5302fdf2ab7ecdf561249c640c13224dd9447ae4bd4a55d5822"
+    },
+    {
+      "path": "assets/backgrounds-v222/institute-courtyard.webp",
+      "size": 75918,
+      "sha256": "4c3fc39fd9ef1dfed77932c9af72c0ecbaec26f2344e7a3a5d16daf02f06a6d2"
+    },
+    {
+      "path": "assets/backgrounds-v222/institute-exterior.webp",
+      "size": 83754,
+      "sha256": "598a310d1a946d9db22e8c0c8ce1255ebfad41931843442b54349dc902600166"
+    },
+    {
+      "path": "assets/backgrounds-v222/keyhole-room.webp",
+      "size": 50110,
+      "sha256": "b0fd5b8b7f4eeae21d58ee1d4886d44b6551f166731e60d09349d06963b06066"
+    },
+    {
+      "path": "assets/backgrounds-v222/lab-emergency.webp",
+      "size": 45948,
+      "sha256": "57dde42bf9eb3646a7be61df3a1b2c74bf054a88103f85b39f8e102425c58e22"
+    },
+    {
+      "path": "assets/backgrounds-v222/lab-investigation.webp",
+      "size": 98056,
+      "sha256": "50e3c91a09dbbe0a11f5fd29fc12a55f0ad5e14f832b88019cfc9ca02c65f4f3"
+    },
+    {
+      "path": "assets/backgrounds-v222/loading-bay.webp",
+      "size": 44148,
+      "sha256": "99a2d8218713ce4cc8eee9774c70ff88289781a7173dd1fe5889abbfcd3b27a0"
+    },
+    {
+      "path": "assets/backgrounds-v222/marta-workshop.webp",
+      "size": 64896,
+      "sha256": "c93b343019d2ac6ed91c2c4106bc8b664f4bbe40d4cd415bce83f016a562e567"
+    },
+    {
+      "path": "assets/backgrounds-v222/outside-dawn.webp",
+      "size": 90344,
+      "sha256": "24236a27a76e3a2ef78669aaa948f5e905d8fc6c232dd03b8ba0b40f0267fefa"
+    },
+    {
+      "path": "assets/backgrounds-v222/painted-bedroom.webp",
+      "size": 77250,
+      "sha256": "82c9cf7c2e56ed8a6ed2a5983d03ce66d0cee54fa32a87ac5d7547fcb60bb3a6"
+    },
+    {
+      "path": "assets/backgrounds-v222/painted-collapse.webp",
+      "size": 38986,
+      "sha256": "5c7d15716bbd06a39b393d70532202e3d36d57c5f8d2f0b5f7aeee0471f23e06"
+    },
+    {
+      "path": "assets/backgrounds-v222/painted-portal.webp",
+      "size": 66904,
+      "sha256": "ae50b6cb8c3962f46ec9dd01764b67453300000a326019683c91fc3c53783f11"
+    },
+    {
+      "path": "assets/backgrounds-v222/paper-archive.webp",
+      "size": 74110,
+      "sha256": "2546bed91d352d21013cdbc019aeffad6693b35b7120e55c203afb3a48d7dfb6"
+    },
+    {
+      "path": "assets/backgrounds-v222/provenance-room.webp",
+      "size": 72072,
+      "sha256": "09d045338a20b39d311761e517ffc3c00ee7d7d114d3332b70c2d017abea56d1"
+    },
+    {
+      "path": "assets/backgrounds-v222/recovery-corridor.webp",
+      "size": 42314,
+      "sha256": "f47a0a70848a2324b4c1420d988bd6df375f3ef6f2a9cf9d68486a5e500fe437"
+    },
+    {
+      "path": "assets/backgrounds-v222/saint-remy.webp",
+      "size": 285510,
+      "sha256": "f9aed5e51968f0a64d839e5f933a81e5edd3f53863913c6b78f6734eb7def5c5"
+    },
+    {
+      "path": "assets/backgrounds-v222/scan-room.webp",
+      "size": 78502,
+      "sha256": "8a84e40cff6e8850b53e01c8a4a997731e3446b3eec469d40aa29fc2008efdcd"
+    },
+    {
+      "path": "assets/backgrounds-v222/train-night.webp",
+      "size": 67710,
+      "sha256": "87a63d43b5f07ea559ee0d6f1f677d1cee340c2786e2a782c61aa42f99f018c3"
+    },
+    {
+      "path": "assets/backgrounds-v222/unpainted-space.webp",
+      "size": 81722,
+      "sha256": "7041cd8be37cba59caa7f3de18f441ffb77b7da475612c0d4ca18a9bbecf225f"
+    },
+    {
+      "path": "assets/backgrounds-v222/warehouse.webp",
+      "size": 44344,
+      "sha256": "f659f95fdfd9768be3243c2114b35bd569c46ea784e7590169611eb10c1662b2"
+    },
+    {
+      "path": "assets/backgrounds-v222/yellow-house-guest-room.webp",
+      "size": 80476,
+      "sha256": "983c3ac54e68f150c6a6f89a6ffb2972b3ec49eb38d1799834872527f7ae160d"
+    },
+    {
+      "path": "assets/backgrounds-v222/yellow-house.webp",
+      "size": 161178,
+      "sha256": "8c64ee8cfc71a60b7ca3defff38c88e5fca8f6fd88bb07baef9d5c99b1877b1c"
     },
     {
       "path": "assets/chapter-art/act1.webp",
@@ -1326,8 +1496,8 @@
     },
     {
       "path": "data/game-data.js",
-      "size": 626357,
-      "sha256": "e51b7512738af56bed926ab7cfe4b6249fd638c6621cad6b446d3c75927df740"
+      "size": 626366,
+      "sha256": "2ec37cfd4e52dedc46cb2c3be5de635592a9c532a2063f35116c911ea306b6e9"
     },
     {
       "path": "favicon.svg",
@@ -1337,32 +1507,32 @@
     {
       "path": "game.js",
       "size": 249014,
-      "sha256": "401bd63dbfe1a2045d3a76e6135c3794ca459f473430a4e5f7d6d508485ea29c"
+      "sha256": "c1a5fac2d0d92b0b60a7085fd8ae9c671a95a9e06c1237e511413f37585fa636"
     },
     {
       "path": "index.html",
-      "size": 32293,
-      "sha256": "848676fd1839ba6f18fa004a54270e33a5350683431f7c12325fcb57c347e78f"
+      "size": 32403,
+      "sha256": "34b4063c3b341976c05a513f32bc96c8e4b3c9a72d862d0e2b08a290e7f2f391"
     },
     {
       "path": "service-worker.js",
       "size": 4566,
-      "sha256": "90bc5f91fcad5be2066fd32a78d42e0a5fbf23a0e1f87082b85bebc62a80b814"
+      "sha256": "88b6d317329c12521dbf3a57239decdf83d727c872a1fa300f757b479c9b375a"
     },
     {
       "path": "site.webmanifest",
-      "size": 542,
-      "sha256": "854b2d15dfca7a0af9e7027912f086c50e17afb87f120e3c7e4bb7fc166c21ff"
+      "size": 550,
+      "sha256": "d7e3a8629662e507f89fcc728c406e6e736d3e2c12c1226a3d7b986d9c5402f8"
     },
     {
       "path": "styles.css",
-      "size": 246486,
-      "sha256": "b355525a4194dd8e148d80d0efd349a0a89d8fc25c4497f29e76307647a98716"
+      "size": 255108,
+      "sha256": "5303ad570716c74a87edeb5958229e3fafbd8219837d76adbe409c5e5cbc05eb"
     },
     {
       "path": "version.json",
-      "size": 678,
-      "sha256": "fb3198da8ad5f4f363255cde39cec2d579082568fd8af87fd64e9586ec1d1b9b"
+      "size": 795,
+      "sha256": "44097747fece3cb599740856cb4877bebfd2edc1395a6021152db97f6d7c406c"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "title": "第四の寝室",
-  "version": "2.21.0",
+  "version": "2.22.0",
   "build": "player-guidance-investigation-log",
   "base": "2.20.0",
   "published": "2026-07-25",
@@ -11,5 +11,7 @@
     "死に戻り時に未来記憶と現在証拠を二列で区別",
     "現在の目的を画面上へ常時表示し、調査ログへ直結",
     "全編オフライン保存を約41MBの任意操作へ変更"
-  ]
+  ],
+  "name": "VISUAL REMASTER / BACKGROUND REBUILD",
+  "scope": "HIGH-DETAIL ENVIRONMENTS + ERA-SPECIFIC ART DIRECTION"
 }
