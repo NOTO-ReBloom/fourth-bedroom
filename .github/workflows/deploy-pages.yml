@@ -1,17 +1,18 @@
-name: Deploy Fourth Bedroom 2.22
+name: Deploy Fourth Bedroom 2.23
 
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/deploy-pages.yml'
-      - '404.html'
       - 'CREDITS_AND_SOURCES.md'
       - 'RELEASE_NOTES_V220.md'
       - 'RELEASE_NOTES_V221.md'
       - 'RELEASE_NOTES_V222.md'
+      - 'RELEASE_NOTES_V223.md'
       - 'asset-manifest.json'
       - 'assets/backgrounds-v222/**'
+      - 'assets/backgrounds-v223/**'
       - 'data/game-data.js'
       - 'game.js'
       - 'index.html'
@@ -66,22 +67,12 @@ jobs:
           set -euo pipefail
           cd "$GITHUB_WORKSPACE"
 
-          for file in \
-            404.html \
-            CREDITS_AND_SOURCES.md \
-            RELEASE_NOTES_V220.md \
-            asset-manifest.json \
-            game.js \
-            index.html \
-            service-worker.js \
-            site.webmanifest \
-            styles.css \
-            version.json; do
+          for file in             CREDITS_AND_SOURCES.md             asset-manifest.json             game.js             index.html             service-worker.js             site.webmanifest             styles.css             version.json; do
             test -f "$file"
             cp "$file" "_site/$file"
           done
 
-          for optional in RELEASE_NOTES_V221.md RELEASE_NOTES_V222.md; do
+          for optional in RELEASE_NOTES_V220.md RELEASE_NOTES_V221.md RELEASE_NOTES_V222.md RELEASE_NOTES_V223.md; do
             if test -f "$optional"; then
               cp "$optional" "_site/$optional"
             fi
@@ -91,10 +82,12 @@ jobs:
           mkdir -p _site/data
           cp data/game-data.js _site/data/game-data.js
 
-          if test -d assets/backgrounds-v222; then
-            mkdir -p _site/assets/backgrounds-v222
-            cp -R assets/backgrounds-v222/. _site/assets/backgrounds-v222/
-          fi
+          for asset_dir in assets/backgrounds-v222 assets/backgrounds-v223; do
+            if test -d "$asset_dir"; then
+              mkdir -p "_site/$asset_dir"
+              cp -R "$asset_dir/." "_site/$asset_dir/"
+            fi
+          done
 
       - name: Verify current package
         shell: bash
@@ -104,26 +97,22 @@ jobs:
           node --check _site/data/game-data.js
           node --check _site/service-worker.js
 
-          TARGET_VERSION="$(python - <<'PY'
-          import json
-          print(json.load(open('_site/version.json', encoding='utf-8'))['version'])
-          PY
-          )"
+          TARGET_VERSION="$(python -c 'import json; print(json.load(open("_site/version.json", encoding="utf-8"))["version"])')"
 
           case "$TARGET_VERSION" in
-            2.21.0)
-              test -f _site/RELEASE_NOTES_V221.md
-              grep -q 'VERSION 2.21.0' _site/index.html
-              ;;
             2.22.0)
               test -f _site/RELEASE_NOTES_V222.md
               grep -q 'VERSION 2.22.0' _site/index.html
-              grep -q 'VISUAL REMASTER / BACKGROUND REBUILD' _site/index.html
               test -d _site/assets/backgrounds-v222
-              test "$(find _site/assets/backgrounds-v222 -maxdepth 1 -type f -name '*.webp' | wc -l)" -eq 33
-              grep -q 'backgrounds-v222/train-night.webp' _site/styles.css
-              grep -q 'backgrounds-v222/painted-bedroom.webp' _site/styles.css
-              grep -q 'backgrounds-v222/comparison-room.webp' _site/styles.css
+              ;;
+            2.23.0)
+              test -f _site/RELEASE_NOTES_V223.md
+              grep -q 'VERSION 2.23.0' _site/index.html
+              grep -q 'VISUAL DIRECTION / UI INTEGRATION' _site/index.html
+              test -f _site/assets/backgrounds-v223/title-key-art.webp
+              grep -q 'backgrounds-v223/title-key-art.webp' _site/styles.css
+              grep -q 'scene-mid::before,.scene-mid::after' _site/styles.css
+              grep -q -- '--scene-brighten-alpha' _site/styles.css
               ;;
             *)
               echo "ERROR: unsupported release $TARGET_VERSION" >&2
@@ -136,11 +125,12 @@ jobs:
           grep -q 'id="objective-ribbon"' _site/index.html
           grep -q 'id="log-dialog"' _site/index.html
 
-          python - <<'PY'
+          python - <<'PY2'
           from pathlib import Path
           import hashlib
           import json
           import re
+          from collections import deque
 
           root = Path('_site')
           release = json.loads((root / 'version.json').read_text(encoding='utf-8'))['version']
@@ -152,8 +142,7 @@ jobs:
               path = root / item['path']
               assert path.is_file(), item['path']
               assert path.stat().st_size == item['size'], item['path']
-              digest = hashlib.sha256(path.read_bytes()).hexdigest()
-              assert digest == item['sha256'], item['path']
+              assert hashlib.sha256(path.read_bytes()).hexdigest() == item['sha256'], item['path']
 
           source = (root / 'data/game-data.js').read_text(encoding='utf-8')
           assert source.startswith('window.GAME_DATA=')
@@ -164,7 +153,8 @@ jobs:
           assert len(data['gameovers']) == 25
           assert sum(node.get('type') == 'ending' for node in data['nodes']) == 5
 
-          node_ids = {node['id'] for node in data['nodes']}
+          node_map = {node['id']: node for node in data['nodes']}
+          node_ids = set(node_map)
           invalid = []
           for node in data['nodes']:
               targets = []
@@ -178,18 +168,35 @@ jobs:
               invalid.extend((node['id'], target) for target in targets if target not in node_ids)
           assert not invalid, invalid
 
-          if release == '2.22.0':
-              bg_dir = root / 'assets/backgrounds-v222'
-              files = sorted(bg_dir.glob('*.webp'))
-              assert len(files) == 33
-              css = (root / 'styles.css').read_text(encoding='utf-8')
-              refs = set(re.findall(r'assets/backgrounds-v222/[^")]+\.webp', css))
-              assert len(refs) == 33, len(refs)
-              for ref in refs:
-                  assert (root / ref).is_file(), ref
+          queue = deque(['p01'])
+          seen = set()
+          while queue:
+              node_id = queue.popleft()
+              if node_id in seen:
+                  continue
+              seen.add(node_id)
+              node = node_map[node_id]
+              targets = []
+              if node.get('next'):
+                  targets.append(node['next'])
+              targets.extend(choice['next'] for choice in node.get('choices', []) if choice.get('next'))
+              if node.get('type') == 'deathSequence' and node.get('death'):
+                  target = data['gameovers'].get(node['death'], {}).get('returnTo')
+                  if target:
+                      targets.append(target)
+              queue.extend(target for target in targets if target in node_ids and target not in seen)
+          assert len(seen) == 730, len(seen)
 
-          print(f"PASS: release {release}, {len(data['nodes'])} nodes and {len(manifest['files'])} files verified")
-          PY
+          if release == '2.23.0':
+              css = (root / 'styles.css').read_text(encoding='utf-8')
+              refs = set(re.findall(r"assets/backgrounds-v222/[^\"')]+\.webp", css))
+              assert len(refs) == 33, len(refs)
+              assert all((root / ref).is_file() for ref in refs)
+              title = root / 'assets/backgrounds-v223/title-key-art.webp'
+              assert title.is_file() and title.stat().st_size > 250000
+
+          print(f"PASS: release {release}, {len(seen)} reachable nodes and {len(manifest['files'])} files verified")
+          PY2
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
