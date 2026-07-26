@@ -1,16 +1,16 @@
 {
-  "name": "第四の寝室 Final Candidate 2.22",
-  "short_name": "第四の寝室 2.22",
-  "description": "死んで知った真実を、現在の証拠だけで証明する。前編を中心に背景美術を全面刷新したFinal Candidate 2.22。",
+  "name": "第四の寝室 2.23",
+  "short_name": "第四の寝室",
+  "description": "背景・人物・UI・特殊演出を統合した2.23ビジュアルディレクション版。",
   "lang": "ja",
-  "start_url": "./?v=2.22.0",
+  "start_url": "./?v=2.23.0",
   "scope": "./",
   "display": "standalone",
   "background_color": "#11121a",
   "theme_color": "#11121a",
   "icons": [
     {
-      "src": "favicon.svg?v=2.22.0",
+      "src": "favicon.svg?v=2.23.0",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

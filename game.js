@@ -14,7 +14,7 @@
   };
   const PROFILE_KEY = 'fourth-bedroom-profile-v212';
 
-  const RELEASE_VERSION = '2.22.0';
+  const RELEASE_VERSION = '2.23.0';
   const SAVE_FORMAT = 'FOURTH_BEDROOM_SAVE_V216';
   const COMPATIBLE_SAVE_FORMATS = new Set(['FOURTH_BEDROOM_SAVE_V210', 'FOURTH_BEDROOM_SAVE_V211', 'FOURTH_BEDROOM_SAVE_V212', 'FOURTH_BEDROOM_SAVE_V213', 'FOURTH_BEDROOM_SAVE_V214', 'FOURTH_BEDROOM_SAVE_V215', SAVE_FORMAT]);
   const JUDGEMENT_LABELS = {
@@ -406,7 +406,8 @@
     autoDelay: 1050,
     fontSize: 18,
     lineHeight: 19,
-    panelOpacity: 90,
+    panelOpacity: 84,
+    sceneBrightness: 106,
     reduceMotion: false,
     ambient: true,
     ambientVolume: 65,
@@ -737,6 +738,11 @@
     document.documentElement.style.setProperty('--font-size', `${s.fontSize}px`);
     document.documentElement.style.setProperty('--dialogue-line-height', `${s.lineHeight / 10}`);
     document.documentElement.style.setProperty('--panel-opacity', `${s.panelOpacity / 100}`);
+    const sceneBrightness = Number(s.sceneBrightness ?? 106);
+    document.documentElement.style.setProperty('--scene-brightness', `${sceneBrightness / 100}`);
+    document.documentElement.style.setProperty('--scene-lift', `${Math.max(0, (sceneBrightness - 100) / 100)}`);
+    document.documentElement.style.setProperty('--scene-brighten-alpha', `${Math.max(0, (sceneBrightness - 100) / 130)}`);
+    document.documentElement.style.setProperty('--scene-darken-alpha', `${Math.max(0, (100 - sceneBrightness) / 75)}`);
     document.body.classList.toggle('reduce-motion', s.reduceMotion);
     document.body.classList.toggle('high-contrast', s.highContrast);
 
@@ -746,6 +752,7 @@
       '#font-size': s.fontSize,
       '#line-height': s.lineHeight,
       '#panel-opacity': s.panelOpacity,
+      '#scene-brightness': s.sceneBrightness ?? 106,
       '#ambient-volume': s.ambientVolume,
       '#music-volume': s.musicVolume,
       '#sfx-volume': s.sfxVolume
@@ -1566,6 +1573,23 @@
     els.scene.classList.add('cg-active');
   }
 
+  function sceneEraFor(n) {
+    const bg = n?.bg || 'train';
+    const painted = new Set(['portal','bedroomWorld','chairLayer','keyholeRoom','layerCollapse','bedroomCrumble','unpainted','void']);
+    const arles = new Set(['arles','avenue','alley','yellowHouse','guestRoom']);
+    const remy = new Set(['saintRemy','comparisonRoom']);
+    const marta = new Set(['martaWorkshop','paperArchive']);
+    const andre = new Set(['andreWarehouse','warehouseDeep','warehouseDark','documentLayer']);
+    const dawn = new Set(['outsideDawn','finalGallery']);
+    if (painted.has(bg)) return 'painted';
+    if (arles.has(bg)) return 'arles';
+    if (remy.has(bg)) return 'remy';
+    if (marta.has(bg)) return 'marta';
+    if (andre.has(bg)) return 'andre';
+    if (dawn.has(bg)) return 'dawn';
+    return 'modern';
+  }
+
   function setScene(n) {
     const newBg = n.bg || 'train';
     if (lastSceneBg && lastSceneBg !== newBg && !state.settings.reduceMotion) {
@@ -1579,6 +1603,7 @@
     els.scene.className = `scene bg-${newBg} state-${sceneState} tone-${sceneTone}${els.scene.classList.contains('scene-changing') ? ' scene-changing' : ''}`;
     els.scene.dataset.state = sceneState;
     els.scene.dataset.tone = sceneTone;
+    els.scene.dataset.era = sceneEraFor(n);
     els.scene.dataset.camera = cameraFor(n);
     const paintBgs = ['labPainting','scan','infrared','scanSafe','screenGlow','portal'];
     if (n.type === 'revealPainting') state.paintingRevealed = true;
@@ -1890,6 +1915,10 @@
     els.scene.dataset.textMode = textMode;
     els.dialogue.setAttribute('aria-label', ({dialogue: visibleSpeaker ? `${visibleSpeaker}の発言` : '発言', thought:'澄の心の声', narration:'澄が見聞きしたこと', document:'文書', system:'システム表示'}[textMode] || '文章'));
     fullText = currentSegment.text || '';
+    const visibleLength = [...fullText.replace(/\s/g, '')].length;
+    els.dialogue.dataset.length = visibleLength <= 34 ? 'short' : visibleLength <= 92 ? 'medium' : 'long';
+    els.dialogue.classList.toggle('compact-copy', visibleLength <= 34);
+    els.dialogue.classList.toggle('extended-copy', visibleLength > 132);
     if (['investigate','investigatePainting','spectralInvestigation','puzzle'].includes(node.type) && !fullText) els.dialogue.classList.add('hidden');
     else els.dialogue.classList.remove('hidden');
     addLog(node, currentSegment, segmentIndex);
@@ -3377,6 +3406,7 @@
     '#font-size': v => state.settings.fontSize = Number(v),
     '#line-height': v => state.settings.lineHeight = Number(v),
     '#panel-opacity': v => state.settings.panelOpacity = Number(v),
+    '#scene-brightness': v => state.settings.sceneBrightness = Number(v),
     '#ambient-volume': v => state.settings.ambientVolume = Number(v),
     '#music-volume': v => state.settings.musicVolume = Number(v),
     '#sfx-volume': v => state.settings.sfxVolume = Number(v)

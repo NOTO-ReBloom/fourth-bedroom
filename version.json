@@ -1,9 +1,9 @@
 {
   "title": "第四の寝室",
-  "version": "2.22.0",
-  "build": "player-guidance-investigation-log",
-  "base": "2.20.0",
-  "published": "2026-07-25",
+  "version": "2.23.0",
+  "build": "visual-direction-ui-integration",
+  "base": "2.22.0",
+  "published": "2026-07-26",
   "changes": [
     "調査ログを「現在の要点・会話観察・選択記録」の3画面へ再設計",
     "時代・人物・目的・確定事項・未解決を整理カードへ表示",
@@ -12,6 +12,15 @@
     "現在の目的を画面上へ常時表示し、調査ログへ直結",
     "全編オフライン保存を約41MBの任意操作へ変更"
   ],
-  "name": "VISUAL REMASTER / BACKGROUND REBUILD",
-  "scope": "HIGH-DETAIL ENVIRONMENTS + ERA-SPECIFIC ART DIRECTION"
+  "name": "VISUAL DIRECTION / UI INTEGRATION",
+  "scope": "TITLE KEY VISUAL + LEGACY OVERLAY REMOVAL + ERA LIGHTING + ADAPTIVE UI",
+  "summary": "背景の明暗、会話パネルの占有率、人物照明、時代別カラー、微細な環境演出を統合。物語・証拠・分岐・結末は2.22から変更なし。",
+  "features": [
+    "文章量に応じて高さと幅を変える適応型会話パネル",
+    "背景の細部を残す弱い周辺減光と場面別の光量調整",
+    "現代・1888年・1889年・1948年・1967年・絵画世界の色設計分離",
+    "場所の光源を人物立ち絵へ反映するリムライト",
+    "雨・走査線・埃・絵具光など抑制可能な微細環境演出",
+    "設定に背景の明るさ調整を追加"
+  ]
 }

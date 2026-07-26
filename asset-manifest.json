@@ -1,8 +1,8 @@
 {
   "title": "第四の寝室",
-  "version": "2.22.0",
-  "build": "VISUAL REMASTER / BACKGROUND REBUILD",
-  "fileCount": 307,
+  "version": "2.23.0",
+  "build": "VISUAL DIRECTION / UI INTEGRATION",
+  "fileCount": 309,
   "files": [
     {
       "path": ".nojekyll",
@@ -16,8 +16,8 @@
     },
     {
       "path": "CREDITS_AND_SOURCES.md",
-      "size": 8429,
-      "sha256": "a8d7ccff83e05c4371fa7baad9b6a2411378797f4f4c23c48db800dbb220897f"
+      "size": 8601,
+      "sha256": "64f891259b107cefe69d1f8fa1afa7efeb3cd5513556acc98c1e453189904d25"
     },
     {
       "path": "RELEASE_NOTES_V219.md",
@@ -37,7 +37,12 @@
     {
       "path": "RELEASE_NOTES_V222.md",
       "size": 1566,
-      "sha256": "91a9ce4c7e69e247ae4510f8290bbe05ecfffd149801d839423572f4473b2bc7"
+      "sha256": "97e8f4a4099ea9050374c24da0e61c54210583a32186a3293b4a1f1d4098f3e5"
+    },
+    {
+      "path": "RELEASE_NOTES_V223.md",
+      "size": 1305,
+      "sha256": "cfdfcc74126a1a9e876d705e79be9f168d1ddf2e277b99830b7e4adac45bbe19"
     },
     {
       "path": "assets/action-cutin/carry.webp",
@@ -713,6 +718,11 @@
       "path": "assets/backgrounds-v222/yellow-house.webp",
       "size": 161178,
       "sha256": "8c64ee8cfc71a60b7ca3defff38c88e5fca8f6fd88bb07baef9d5c99b1877b1c"
+    },
+    {
+      "path": "assets/backgrounds-v223/title-key-art.webp",
+      "size": 376574,
+      "sha256": "988b9115aec6fe5dadd98877bcd66d162d9f9a8f6f91b60a6f28e305891aae6b"
     },
     {
       "path": "assets/chapter-art/act1.webp",
@@ -1496,8 +1506,8 @@
     },
     {
       "path": "data/game-data.js",
-      "size": 626366,
-      "sha256": "2ec37cfd4e52dedc46cb2c3be5de635592a9c532a2063f35116c911ea306b6e9"
+      "size": 626355,
+      "sha256": "d390b99bf4a7ed531963a65286f8868f8cf73b625ad46507bca77d2088f4e0cc"
     },
     {
       "path": "favicon.svg",
@@ -1506,33 +1516,33 @@
     },
     {
       "path": "game.js",
-      "size": 249014,
-      "sha256": "c1a5fac2d0d92b0b60a7085fd8ae9c671a95a9e06c1237e511413f37585fa636"
+      "size": 250855,
+      "sha256": "14a8ff55b1255dc466fc53c668dbf213809b7cbb67f54da00db0d9d07265f8a6"
     },
     {
       "path": "index.html",
-      "size": 32403,
-      "sha256": "34b4063c3b341976c05a513f32bc96c8e4b3c9a72d862d0e2b08a290e7f2f391"
+      "size": 32646,
+      "sha256": "008edc964573e289e4327b9938c550a89b915c21c015d8d5f884e872da3e7da5"
     },
     {
       "path": "service-worker.js",
-      "size": 4566,
-      "sha256": "88b6d317329c12521dbf3a57239decdf83d727c872a1fa300f757b479c9b375a"
+      "size": 4625,
+      "sha256": "39226e46fbfe7de6aad14f10db4f797b77e0b8f1fd398f9a57d53107217c9b5f"
     },
     {
       "path": "site.webmanifest",
-      "size": 550,
-      "sha256": "d7e3a8629662e507f89fcc728c406e6e736d3e2c12c1226a3d7b986d9c5402f8"
+      "size": 483,
+      "sha256": "22b48a4d110e2ecf921cd9816915d6f528d8cd3dea482c5f76aa3741c7086e1e"
     },
     {
       "path": "styles.css",
-      "size": 255108,
-      "sha256": "5303ad570716c74a87edeb5958229e3fafbd8219837d76adbe409c5e5cbc05eb"
+      "size": 276039,
+      "sha256": "e1d4bbadad40ae788066c69f10cc64174d1c289c3b5471d9da60593032598ab1"
     },
     {
       "path": "version.json",
-      "size": 795,
-      "sha256": "44097747fece3cb599740856cb4877bebfd2edc1395a6021152db97f6d7c406c"
+      "size": 1465,
+      "sha256": "e9830855363e84f9a541d44b8fe6b026d08853eb7ef6748a0cdefe5cca098ebf"
     }
   ]
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" data-build="2.22.0">
+<html lang="ja" data-build="2.23.0">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -9,15 +9,16 @@
   <meta property="og:locale" content="ja_JP">
   <meta property="og:title" content="第四の寝室">
   <meta property="og:description" content="死んで知った真実を、現在の証拠だけで証明する。絵画世界を渡る死に戻り型美術調査サスペンスADV。">
-  <link rel="icon" href="favicon.svg?v=2.22.0" type="image/svg+xml">
-  <link rel="manifest" href="site.webmanifest?v=2.22.0">
-  <link rel="preload" as="image" href="assets/characters/expressions/sumi/neutral.webp?v=2.22.0" type="image/webp">
-  <link rel="preload" as="image" href="assets/characters/expressions/claire/neutral.webp?v=2.22.0" type="image/webp">
-  <link rel="preload" as="image" href="assets/event-cg/painted_collapse.webp?v=2.22.0" type="image/webp">
-  <link rel="preload" as="image" href="assets/backgrounds-v222/train-night.webp?v=2.22.0" type="image/webp">
+  <link rel="icon" href="favicon.svg?v=2.23.0" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest?v=2.23.0">
+  <link rel="preload" as="image" href="assets/characters/expressions/sumi/neutral.webp?v=2.23.0" type="image/webp">
+  <link rel="preload" as="image" href="assets/characters/expressions/claire/neutral.webp?v=2.23.0" type="image/webp">
+  <link rel="preload" as="image" href="assets/event-cg/painted_collapse.webp?v=2.23.0" type="image/webp">
+  <link rel="preload" as="image" href="assets/backgrounds-v222/train-night.webp?v=2.23.0" type="image/webp">
+  <link rel="preload" as="image" href="assets/backgrounds-v223/title-key-art.webp?v=2.23.0" type="image/webp">
         <meta name="description" content="死んで知った真実を、現在の証拠だけで証明する。絵画世界を渡る死に戻り型美術調査サスペンスADV『第四の寝室』。">
-  <title>第四の寝室 — Final Candidate 2.22</title>
-  <link rel="stylesheet" href="styles.css?v=2.22.0">
+  <title>第四の寝室 — Final Candidate 2.23</title>
+  <link rel="stylesheet" href="styles.css?v=2.23.0">
   <style id="launch-critical-css">
     /* Critical launch controls: deliberately inline so the game can always be started even if the main stylesheet is stale or delayed. */
     #title-screen{position:relative;min-height:100dvh}
@@ -37,11 +38,11 @@
     <div id="screen-reader-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
     <section id="title-screen" class="screen title-screen">
       <div class="title-art" aria-hidden="true">
-        <div class="paint-frame"><img src="assets/painting-diagnostics/fourth_visible.webp?v=2.22.0" alt=""></div>
+        <div class="paint-frame"><img src="assets/painting-diagnostics/fourth_visible.webp?v=2.23.0" alt=""></div>
         <div class="title-source-strip" aria-hidden="true">
-          <img src="assets/historical/bedroom-1888-amsterdam.webp?v=2.22.0" alt="">
-          <img src="assets/historical/bedroom-1889-chicago.webp?v=2.22.0" alt="">
-          <img src="assets/historical/bedroom-1889-orsay.webp?v=2.22.0" alt="">
+          <img src="assets/historical/bedroom-1888-amsterdam.webp?v=2.23.0" alt="">
+          <img src="assets/historical/bedroom-1889-chicago.webp?v=2.23.0" alt="">
+          <img src="assets/historical/bedroom-1889-orsay.webp?v=2.23.0" alt="">
           <span>?</span>
         </div>
         <span class="title-chair chair-a"></span><span class="title-chair chair-b"></span><span class="title-chair chair-c"></span>
@@ -71,7 +72,7 @@
           <span id="offline-library-progress"></span>
           <button id="offline-library-action" type="button">全編をオフライン保存</button>
         </div>
-        <p class="version">FINAL CANDIDATE · VERSION 2.22.0 · VISUAL REMASTER / BACKGROUND REBUILD</p>
+        <p class="version">FINAL CANDIDATE · VERSION 2.23.0 · VISUAL DIRECTION / UI INTEGRATION</p>
       </div>
       <div id="title-launch-dock" role="group" aria-label="ゲーム開始メニュー">
         <button id="new-game" class="primary" type="button">調査を始める</button>
@@ -82,7 +83,7 @@
     </section>
 
     <section id="premonition-screen" class="screen premonition-screen hidden" aria-label="断片的な未来の記憶">
-      <div class="premonition-art" aria-hidden="true"><img src="assets/event-cg/painted_collapse.webp?v=2.22.0" alt=""><span></span></div>
+      <div class="premonition-art" aria-hidden="true"><img src="assets/event-cg/painted_collapse.webp?v=2.23.0" alt=""><span></span></div>
       <div class="premonition-copy">
         <p class="eyebrow">MEMORY WITHOUT EVIDENCE</p>
         <p id="premonition-line" class="premonition-line"></p>
@@ -106,7 +107,7 @@
         <div id="environment-layer" class="environment-layer" aria-label="場面内の観察可能な痕跡"></div>
         <aside id="observation-trace" class="observation-trace hidden" aria-live="polite"><button type="button" aria-label="閉じる">×</button><p class="eyebrow">OBSERVATION TRACE</p><h2></h2><ol><li><span>01</span><div><strong>見える</strong><p data-step="seen"></p></div></li><li><span>02</span><div><strong>比べる</strong><p data-step="compare"></p></div></li><li><span>03</span><div><strong>記録</strong><p data-step="record"></p></div></li></ol></aside>
         <div id="painting-stage" class="painting-stage uses-diagnostic hidden" aria-label="調査対象の絵画">
-          <img id="painting-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.22.0" alt="複数年代の制作層を持つ第四版候補・可視光撮影">
+          <img id="painting-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.23.0" alt="複数年代の制作層を持つ第四版候補・可視光撮影">
           <div class="fourth-overlay night-window"></div>
           <div class="fourth-overlay third-chair"><span></span></div>
           <div class="fourth-overlay mystery-portrait"></div>
@@ -231,7 +232,7 @@
     </section>
 
     <section id="ending-screen" class="screen ending-screen hidden">
-      <div class="ending-painting"><img id="ending-image" src="assets/ending-thumbs/normal.webp?v=2.22.0" alt="到達した結末を象徴する場面"></div>
+      <div class="ending-painting"><img id="ending-image" src="assets/ending-thumbs/normal.webp?v=2.23.0" alt="到達した結末を象徴する場面"></div>
       <div class="ending-content">
         <p class="eyebrow">CHAPTER COMPLETE</p>
         <h2>記録は次の層へ続く。</h2>
@@ -317,8 +318,8 @@
       <div class="diagnostic-layout">
         <div class="diagnostic-viewer">
           <div id="diagnostic-canvas" class="diagnostic-canvas">
-            <img id="diagnostic-base-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.22.0" alt="可視光基準画像">
-            <img id="diagnostic-active-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.22.0" alt="選択中の診断画像">
+            <img id="diagnostic-base-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.23.0" alt="可視光基準画像">
+            <img id="diagnostic-active-image" src="assets/painting-diagnostics/fourth_visible.webp?v=2.23.0" alt="選択中の診断画像">
             <span class="diagnostic-crosshair" aria-hidden="true"></span>
           </div>
           <div class="diagnostic-controls">
@@ -364,7 +365,10 @@
           <input id="line-height" type="range" min="16" max="23" value="19">
         </label>
         <label>文章パネル濃度
-          <input id="panel-opacity" type="range" min="60" max="98" value="90">
+          <input id="panel-opacity" type="range" min="60" max="98" value="84">
+        </label>
+        <label>背景の明るさ
+          <input id="scene-brightness" type="range" min="88" max="118" value="106">
         </label>
         <label>環境音量
           <input id="ambient-volume" type="range" min="0" max="100" value="65">
@@ -431,8 +435,8 @@
       </div>
     </dialog>
   </main>
-  <script src="data/game-data.js?v=2.22.0"></script>
-  <script src="game.js?v=2.22.0"></script>
+  <script src="data/game-data.js?v=2.23.0"></script>
+  <script src="game.js?v=2.23.0"></script>
   <script>
     (function(){
       var status=document.getElementById('title-launch-status');

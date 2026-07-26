@@ -289,7 +289,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .puzzle-heading{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:.7rem;margin-bottom:1rem}.puzzle-heading h2{margin:.1rem 0 .55rem}.puzzle-heading p{line-height:1.7;color:#d2ccc1}
 .puzzle-items select{width:100%;margin-top:.6rem;padding:.7rem;border-radius:9px;background:#20232d;color:#fff;border:1px solid rgba(255,255,255,.14)}
 .puzzle-error{animation:puzzle-shake .32s ease}@keyframes puzzle-shake{25%{transform:translate(-52%,-50%)}50%{transform:translate(-48%,-50%)}75%{transform:translate(-51%,-50%)}}
-.high-contrast{--text:#fff;--muted:#d7d7d7;--line:rgba(255,255,255,.36);--accent:#f5ca67}.high-contrast .dialogue-panel,.high-contrast .modal{background:rgba(0,0,0,.97)}.high-contrast .dialogue-text{font-weight:600}.high-contrast .vignette{background:radial-gradient(circle at 50% 46%,transparent 20%,rgba(0,0,0,.3) 58%,rgba(0,0,0,.94) 100%)}
+.high-contrast{--text:#fff;--muted:#d7d7d7;--line:rgba(255,255,255,.36);--accent:#f5ca67}.high-contrast .dialogue-panel,.high-contrast .modal{background:rgba(0,0,0,.97)}.high-contrast .dialogue-text{font-weight:600}.scene[data-tension="critical"]:after{opacity:.54!important}
+.high-contrast .vignette{background:radial-gradient(circle at 50% 46%,transparent 20%,rgba(0,0,0,.3) 58%,rgba(0,0,0,.94) 100%)}
 .reduce-motion .character-card.speaking svg{animation:none}.reduce-motion .chapter-card,.reduce-motion .place-card{animation:none}.reduce-motion .scene-changing{filter:none}
 @media (max-width:980px){
   .hud-right{gap:.3rem}.mode-button{min-width:42px;padding:.42rem .45rem}.progress-label{display:none}.story-progress{width:160px}
@@ -1800,3 +1801,311 @@ button.primary{background:linear-gradient(135deg,#efca73,#c79b45);box-shadow:0 1
 @keyframes v222-breath{from{transform:scale(1.012) translate3d(-.15%,0,0)}to{transform:scale(1.026) translate3d(.15%,-.2%,0)}}
 @keyframes v222-train-drift{from{transform:scale(1.02) translateX(-.25%)}to{transform:scale(1.035) translateX(.25%)}}
 .reduce-motion .scene-back{animation:none!important;transform:scale(1.012)!important}
+
+
+/* =========================================================
+   FINAL CANDIDATE 2.23 — VISUAL DIRECTION / UI INTEGRATION
+   Brighter environments, adaptive dialogue, era-separated
+   color direction, portrait lighting, restrained ambience.
+   ========================================================= */
+:root{
+  --scene-brightness:1.06;
+  --scene-lift:.18;
+  --era-key:rgba(178,205,221,.12);
+  --era-fill:rgba(235,193,122,.08);
+  --portrait-key:rgba(118,183,208,.13);
+  --portrait-fill:rgba(234,190,117,.11);
+}
+
+/* Preserve painted detail instead of crushing it under global darkness. */
+.scene-mid{
+  opacity:calc(.55 + var(--scene-lift));
+  background:
+    radial-gradient(ellipse at 50% 38%,rgba(255,255,255,.075),transparent 48%),
+    linear-gradient(112deg,var(--era-key),transparent 36% 66%,var(--era-fill)),
+    linear-gradient(180deg,transparent 62%,rgba(2,4,8,.18) 100%)!important;
+  mix-blend-mode:screen;
+}
+.scene-front{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.10),transparent 12% 88%,rgba(0,0,0,.12)),
+    linear-gradient(180deg,transparent 68%,rgba(0,0,0,.18))!important;
+}
+.vignette{
+  background:radial-gradient(ellipse at 50% 44%,transparent 42%,rgba(2,3,7,.055) 67%,rgba(1,2,5,.38) 100%)!important;
+}
+.scene:after{
+  opacity:.2!important;
+  background:radial-gradient(circle at center,transparent 48%,rgba(3,4,8,.18) 100%)!important;
+}
+.scene[data-tension="critical"]:after{opacity:.54!important}
+.high-contrast .vignette{background:radial-gradient(circle at 50% 46%,transparent 28%,rgba(0,0,0,.25) 64%,rgba(0,0,0,.78) 100%)!important}
+
+/* Era art direction. These overlays separate locations without repainting the story. */
+.scene[data-era="modern"]{--era-key:rgba(112,179,208,.14);--era-fill:rgba(233,199,140,.055);--portrait-key:rgba(105,181,214,.17);--portrait-fill:rgba(222,194,146,.08)}
+.scene[data-era="arles"]{--era-key:rgba(228,190,99,.14);--era-fill:rgba(109,151,83,.085);--portrait-key:rgba(235,189,93,.17);--portrait-fill:rgba(120,165,93,.1)}
+.scene[data-era="remy"]{--era-key:rgba(171,207,219,.16);--era-fill:rgba(230,215,167,.075);--portrait-key:rgba(167,211,225,.18);--portrait-fill:rgba(230,215,168,.09)}
+.scene[data-era="marta"]{--era-key:rgba(150,169,160,.13);--era-fill:rgba(161,132,91,.065);--portrait-key:rgba(153,180,171,.16);--portrait-fill:rgba(177,147,103,.08)}
+.scene[data-era="andre"]{--era-key:rgba(185,129,92,.13);--era-fill:rgba(142,80,73,.085);--portrait-key:rgba(202,145,103,.17);--portrait-fill:rgba(146,78,76,.1)}
+.scene[data-era="painted"]{--era-key:rgba(94,142,197,.16);--era-fill:rgba(215,174,90,.12);--portrait-key:rgba(100,151,211,.2);--portrait-fill:rgba(224,181,93,.14)}
+.scene[data-era="dawn"]{--era-key:rgba(207,224,225,.16);--era-fill:rgba(238,193,116,.14);--portrait-key:rgba(205,224,225,.18);--portrait-fill:rgba(239,195,118,.15)}
+
+/* Scene-specific luminance corrections after the 2.22 background rebuild. */
+.bg-instituteExterior .scene-mid,.bg-courtyard .scene-mid,.bg-finalGallery .scene-mid{opacity:calc(.68 + var(--scene-lift))}
+.bg-labPainting .scene-mid,.bg-scan .scene-mid,.bg-infrared .scene-mid,.bg-equipment .scene-mid{opacity:calc(.62 + var(--scene-lift))}
+.bg-archive .scene-mid,.bg-paperArchive .scene-mid,.bg-martaWorkshop .scene-mid,.bg-provenanceRoom .scene-mid{opacity:calc(.72 + var(--scene-lift))}
+.bg-warehouseDark .scene-mid,.bg-blackout .scene-mid,.bg-darkGallery .scene-mid{opacity:calc(.42 + var(--scene-lift))}
+.bg-outsideDawn .scene-mid{opacity:calc(.78 + var(--scene-lift))}
+
+/* Adaptive dialogue: shorter lines no longer cover a third of the artwork. */
+.dialogue-panel{
+  bottom:clamp(12px,2.5vh,28px);
+  width:min(84vw,1020px);
+  min-height:0;
+  padding:18px 26px 22px;
+  border-radius:12px;
+  background:
+    linear-gradient(110deg,rgba(7,9,15,calc(var(--panel-opacity) - .10)),rgba(12,14,21,calc(var(--panel-opacity) - .20)));
+  border:1px solid rgba(225,199,143,.18);
+  box-shadow:0 20px 54px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.025);
+  backdrop-filter:blur(12px) saturate(.92);
+  transition:min-height .26s ease,width .26s ease,padding .26s ease,background .26s ease;
+}
+.dialogue-panel:before{top:12px;bottom:12px;width:2px;opacity:.56}
+.dialogue-panel[data-length="short"]{width:min(72vw,850px);padding:14px 24px 17px}
+.dialogue-panel[data-length="medium"]{width:min(80vw,960px);padding:17px 26px 21px}
+.dialogue-panel[data-length="long"]{width:min(86vw,1080px);padding:20px 28px 25px}
+.dialogue-panel.extended-copy .dialogue-text{max-height:30vh;overflow:auto}
+.dialogue-panel.compact-copy .dialogue-text{line-height:1.72;margin-top:.08rem}
+.dialogue-panel.speakerless[data-length="short"]{padding-top:16px}
+.dialogue-text{line-height:1.84;max-height:27vh;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.speaker-row{min-height:18px;margin-bottom:4px}
+.speaker-name{padding:.18rem .48rem;border-left:2px solid rgba(229,194,119,.62);background:linear-gradient(90deg,rgba(229,194,119,.09),transparent);letter-spacing:.08em}
+.dialogue-status{bottom:7px;opacity:.72}
+.dialogue-panel[data-length="short"] + .choice-panel{bottom:calc(var(--safe-bottom) + 128px)}
+.dialogue-panel[data-length="medium"] + .choice-panel{bottom:calc(var(--safe-bottom) + 152px)}
+.dialogue-panel[data-length="long"] + .choice-panel{bottom:calc(var(--safe-bottom) + 188px)}
+
+/* The current objective should read like a caption, not another opaque window. */
+.objective-ribbon{
+  background:linear-gradient(90deg,rgba(7,10,16,.7),rgba(10,13,20,.48));
+  border-color:rgba(220,194,137,.16);
+  box-shadow:0 10px 34px rgba(0,0,0,.2);
+  backdrop-filter:blur(9px);
+}
+
+/* Portraits inherit the room light and sit inside the same image plane. */
+.character-card.illustrated-portrait:before{
+  background:
+    radial-gradient(ellipse at 34% 28%,var(--portrait-key),transparent 43%),
+    radial-gradient(ellipse at 73% 38%,var(--portrait-fill),transparent 48%),
+    radial-gradient(ellipse at 50% 78%,rgba(7,10,16,.3),transparent 68%)!important;
+  filter:blur(13px)!important;
+}
+.character-card.illustrated-portrait:after{
+  background:linear-gradient(105deg,var(--portrait-key),transparent 29% 68%,var(--portrait-fill))!important;
+  opacity:.78!important;
+}
+.scene[data-era="modern"] .character-card.illustrated-portrait .portrait-canvas img{filter:saturate(.95) contrast(1.035) brightness(1.045)}
+.scene[data-era="arles"] .character-card.illustrated-portrait .portrait-canvas img{filter:saturate(1.035) sepia(.035) contrast(1.035) brightness(1.055)}
+.scene[data-era="remy"] .character-card.illustrated-portrait .portrait-canvas img{filter:saturate(.92) contrast(1.025) brightness(1.075)}
+.scene[data-era="marta"] .character-card.illustrated-portrait .portrait-canvas img{filter:saturate(.78) sepia(.055) contrast(1.045) brightness(1.045)}
+.scene[data-era="andre"] .character-card.illustrated-portrait .portrait-canvas img{filter:saturate(.9) sepia(.08) contrast(1.07) brightness(1.02)}
+.scene[data-era="painted"] .character-card.illustrated-portrait .portrait-canvas img{filter:saturate(1.03) contrast(1.06) brightness(1.035)}
+.scene.state-emergency .character-card.illustrated-portrait:after,.scene.state-heat .character-card.illustrated-portrait:after{background:linear-gradient(90deg,rgba(232,78,47,.19),transparent 46%,rgba(242,160,75,.14))!important}
+.scene.bg-scan .character-card.illustrated-portrait:after,.scene.bg-infrared .character-card.illustrated-portrait:after{background:linear-gradient(90deg,rgba(72,163,203,.2),transparent 54%,rgba(150,94,170,.12))!important}
+
+/* Restrained environmental motion. It disappears in reduced-motion mode. */
+.scene-front:before,.scene-front:after{content:"";position:absolute;inset:0;pointer-events:none;display:none}
+.bg-instituteExterior .scene-front:before,.bg-breakRoom .scene-front:before,.bg-martaWorkshop .scene-front:before{
+  display:block;
+  background:repeating-linear-gradient(102deg,transparent 0 32px,rgba(182,212,225,.09) 33px 34px,transparent 35px 62px);
+  background-size:170px 220px;
+  opacity:.28;
+  animation:v223-rain 8s linear infinite;
+}
+.bg-scan .scene-front:after,.bg-infrared .scene-front:after,.bg-screenGlow .scene-front:after{
+  display:block;
+  background:linear-gradient(180deg,transparent 0 43%,rgba(110,194,220,.11) 49%,transparent 55%);
+  opacity:.55;
+  animation:v223-scan 6.5s ease-in-out infinite;
+}
+.scene[data-era="painted"] .scene-front:before{
+  display:block;
+  background:radial-gradient(circle at 30% 42%,rgba(231,193,105,.09),transparent 16%),radial-gradient(circle at 73% 28%,rgba(106,157,210,.085),transparent 19%);
+  mix-blend-mode:screen;
+  animation:v223-paint-glow 11s ease-in-out infinite alternate;
+}
+.bg-archive .scene-front:after,.bg-paperArchive .scene-front:after,.bg-provenanceRoom .scene-front:after{
+  display:block;
+  background-image:radial-gradient(circle,rgba(236,210,154,.26) 0 1px,transparent 1.6px);
+  background-size:92px 74px;
+  opacity:.18;
+  animation:v223-dust 18s linear infinite;
+}
+@keyframes v223-rain{from{background-position:0 -220px}to{background-position:70px 220px}}
+@keyframes v223-scan{0%,18%{transform:translateY(-35%);opacity:0}38%,70%{opacity:.52}100%{transform:translateY(38%);opacity:0}}
+@keyframes v223-paint-glow{from{transform:scale(1);opacity:.32}to{transform:scale(1.03);opacity:.58}}
+@keyframes v223-dust{from{background-position:0 0}to{background-position:92px -148px}}
+.reduce-motion .scene-front:before,.reduce-motion .scene-front:after{animation:none!important}
+
+/* CG scenes pull UI further away from the image. */
+.scene.cg-active .dialogue-panel{width:min(78vw,930px);background:linear-gradient(110deg,rgba(7,9,15,calc(var(--panel-opacity) - .16)),rgba(12,14,21,calc(var(--panel-opacity) - .25)))}
+
+@media(max-width:800px){
+  .dialogue-panel,.dialogue-panel[data-length="short"],.dialogue-panel[data-length="medium"],.dialogue-panel[data-length="long"]{width:94vw;padding:15px 16px 20px;border-radius:10px}
+  .dialogue-panel[data-length="short"] + .choice-panel{bottom:calc(var(--safe-bottom) + 118px)}
+  .dialogue-panel[data-length="medium"] + .choice-panel{bottom:calc(var(--safe-bottom) + 146px)}
+  .dialogue-panel[data-length="long"] + .choice-panel{bottom:calc(var(--safe-bottom) + 178px)}
+  .dialogue-text{line-height:1.74;max-height:30vh}
+  .objective-ribbon{background:rgba(7,10,16,.76)}
+  .scene-mid{opacity:calc(.5 + var(--scene-lift))}
+}
+@media(max-height:650px){
+  .dialogue-panel,.dialogue-panel[data-length="long"]{padding:11px 16px 16px}
+  .dialogue-text{line-height:1.55;max-height:24vh}
+}
+
+/* =========================================================
+   FINAL CANDIDATE 2.23B — VISUAL COHESION COMPLETION
+   Removes legacy geometric layers, establishes the title key
+   visual, completes exposure control, and integrates scene/UI.
+   ========================================================= */
+:root{
+  --scene-brighten-alpha:.046;
+  --scene-darken-alpha:0;
+}
+
+/* All authored 2.22 environments replace the old CSS placeholder drawings. */
+.scene-mid::before,.scene-mid::after{content:none!important;display:none!important}
+.scene-back::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,var(--scene-brighten-alpha)),rgba(255,255,255,var(--scene-brighten-alpha))),
+    linear-gradient(rgba(0,0,0,var(--scene-darken-alpha)),rgba(0,0,0,var(--scene-darken-alpha))),
+    repeating-radial-gradient(circle at 17% 23%,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);
+  background-blend-mode:screen,normal,soft-light;
+  mix-blend-mode:soft-light;
+  opacity:.46;
+}
+
+/* Stronger era separation without turning every place into the same blue room. */
+.scene[data-era="modern"] .scene-mid{background:linear-gradient(110deg,rgba(93,164,190,.095),transparent 34% 70%,rgba(226,214,185,.035)),linear-gradient(180deg,transparent 65%,rgba(1,3,7,.15))!important}
+.scene[data-era="arles"] .scene-mid{background:linear-gradient(110deg,rgba(239,193,87,.13),transparent 38% 68%,rgba(92,143,68,.09)),linear-gradient(180deg,rgba(255,221,137,.035),transparent 55%,rgba(52,30,18,.12))!important}
+.scene[data-era="remy"] .scene-mid{background:linear-gradient(110deg,rgba(189,220,229,.15),transparent 43% 73%,rgba(230,216,175,.08)),linear-gradient(180deg,rgba(255,255,255,.035),transparent 62%,rgba(42,50,56,.1))!important}
+.scene[data-era="marta"] .scene-mid{background:linear-gradient(110deg,rgba(145,166,158,.11),transparent 39% 69%,rgba(159,125,82,.075)),linear-gradient(180deg,rgba(205,209,198,.025),transparent 58%,rgba(32,27,22,.16))!important}
+.scene[data-era="andre"] .scene-mid{background:linear-gradient(110deg,rgba(201,139,91,.11),transparent 37% 67%,rgba(126,62,58,.095)),linear-gradient(180deg,rgba(237,173,112,.03),transparent 55%,rgba(37,18,18,.17))!important}
+.scene[data-era="painted"] .scene-mid{background:radial-gradient(ellipse at 50% 38%,rgba(228,191,99,.085),transparent 45%),linear-gradient(112deg,rgba(72,126,190,.14),transparent 36% 66%,rgba(220,176,79,.12)),linear-gradient(180deg,transparent 62%,rgba(3,5,11,.17))!important}
+.scene[data-era="dawn"] .scene-mid{background:linear-gradient(112deg,rgba(211,231,233,.15),transparent 38% 66%,rgba(245,193,105,.16)),linear-gradient(180deg,rgba(255,244,212,.045),transparent 60%,rgba(43,38,34,.08))!important}
+
+/* Special layers use full-frame material effects rather than rectangular overlays. */
+.bg-chairLayer .scene-front::after{
+  display:block!important;content:"";position:absolute;inset:-6%;
+  background:
+    radial-gradient(ellipse at 29% 47%,rgba(231,191,105,.13),transparent 28%),
+    radial-gradient(ellipse at 72% 45%,rgba(99,139,193,.12),transparent 30%),
+    repeating-linear-gradient(101deg,transparent 0 47px,rgba(230,211,171,.035) 48px 49px,transparent 50px 83px);
+  mix-blend-mode:screen;filter:blur(.25px);opacity:.72;animation:v223-layer-breathe 10s ease-in-out infinite alternate;
+}
+.bg-keyholeRoom .scene-front::after{
+  display:block!important;content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 73% 48%,transparent 0 7%,rgba(219,183,107,.12) 8%,rgba(7,8,13,.16) 19%,rgba(2,3,7,.38) 52%,rgba(1,2,4,.55) 100%);
+  mix-blend-mode:multiply;opacity:.72;
+}
+.bg-layerCollapse .scene-front::after,.bg-bedroomCrumble .scene-front::after{
+  display:block!important;content:"";position:absolute;inset:-5%;
+  background:
+    repeating-linear-gradient(117deg,transparent 0 83px,rgba(232,220,191,.1) 84px 85px,transparent 86px 143px),
+    radial-gradient(ellipse at 58% 43%,transparent 0 17%,rgba(10,11,16,.22) 40%,rgba(2,3,6,.58) 75%);
+  mix-blend-mode:multiply;opacity:.68;animation:v223-collapse-shift 6.8s ease-in-out infinite alternate;
+}
+.bg-unpainted .scene-front::after{
+  display:block!important;content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(0deg,rgba(79,65,46,.065) 0 1px,transparent 1px 5px),
+    repeating-linear-gradient(90deg,rgba(89,72,48,.045) 0 1px,transparent 1px 7px),
+    radial-gradient(ellipse at 48% 40%,transparent 22%,rgba(58,49,39,.1) 61%,rgba(25,22,19,.25));
+  mix-blend-mode:multiply;opacity:.72;
+}
+.bg-infrared .scene-front::after{mix-blend-mode:screen!important;opacity:.42!important}
+.bg-emergency .scene-front::before,.bg-smoke .scene-front::before,.bg-instituteFire .scene-front::before,.bg-fireControl .scene-front::before{
+  display:block!important;content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 17% 45%,rgba(217,45,30,.14),transparent 35%),radial-gradient(circle at 82% 28%,rgba(244,141,61,.13),transparent 31%);
+  mix-blend-mode:screen;animation:v223-emergency-light 2.1s ease-in-out infinite alternate;
+}
+@keyframes v223-layer-breathe{from{transform:translateX(-.35%) scale(1);opacity:.48}to{transform:translateX(.35%) scale(1.015);opacity:.78}}
+@keyframes v223-collapse-shift{from{transform:translate3d(-.4%,0,0) rotate(-.12deg)}to{transform:translate3d(.45%,-.35%,0) rotate(.12deg)}}
+@keyframes v223-emergency-light{from{opacity:.28}to{opacity:.7}}
+
+/* Premium title treatment: one coherent key visual, less explanation-page clutter. */
+.title-screen{
+  display:block!important;position:relative;overflow:hidden;
+  background:#05070b url("assets/backgrounds-v223/title-key-art.webp") center/cover no-repeat!important;
+}
+.title-screen::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(3,5,9,.88) 0,rgba(3,5,9,.58) 35%,rgba(3,5,9,.08) 70%,rgba(3,5,9,.44) 100%),linear-gradient(180deg,rgba(2,3,6,.2),transparent 48%,rgba(2,3,6,.66));
+}
+.title-art{display:none!important}
+.title-copy{
+  position:relative;z-index:2;width:min(46vw,670px);min-height:100dvh;
+  padding:clamp(54px,8vh,100px) clamp(32px,5vw,82px) clamp(170px,22vh,236px);
+  justify-content:center;align-items:flex-start;
+  background:linear-gradient(90deg,rgba(4,6,10,.36),transparent);
+}
+.title-copy h1{font-size:clamp(4rem,8.5vw,8.2rem);line-height:.83;letter-spacing:-.055em;text-shadow:0 10px 38px rgba(0,0,0,.75)}
+.title-copy h1 span{display:block}
+.title-copy .eyebrow{color:rgba(229,199,134,.78);letter-spacing:.28em}
+.title-copy .subtitle{font-size:clamp(.95rem,1.3vw,1.28rem);color:rgba(237,232,221,.84);letter-spacing:.12em}
+.title-hook{font-size:clamp(1.25rem,2vw,1.85rem);line-height:1.58;margin:1.15rem 0 .55rem;max-width:26rem;text-shadow:0 3px 15px #000}
+.title-intro,.title-promises,.listening-note{display:none!important}
+.title-sub-actions{margin-top:1rem}
+.title-sub-actions button{background:rgba(5,8,13,.42);border:1px solid rgba(226,198,139,.16);border-radius:999px;padding:.45rem .8rem;backdrop-filter:blur(7px)}
+.offline-library-status{background:rgba(4,7,12,.52)!important;backdrop-filter:blur(9px);border-radius:10px!important}
+.version{color:rgba(224,216,201,.56)!important}
+#title-launch-dock{
+  z-index:4!important;left:clamp(30px,5vw,82px)!important;right:auto!important;transform:none!important;
+  width:min(520px,calc(100vw - 60px))!important;
+  background:linear-gradient(110deg,rgba(5,8,13,.86),rgba(8,10,15,.62))!important;
+  border-color:rgba(229,197,131,.18)!important;backdrop-filter:blur(15px) saturate(.88)!important;
+}
+
+/* Keep the HUD focused; these functions remain available from the menu/log. */
+.hud-right #case-focus-toggle,.hud-right #layer-map-toggle{display:none!important}
+.hud-right{gap:6px}
+.hud-right button{background:rgba(5,8,13,.42);border-color:rgba(218,194,146,.11);backdrop-filter:blur(7px)}
+
+/* Portrait grounding and directional light. */
+.character-card.illustrated-portrait{--portrait-shadow-x:0px}
+.character-card.illustrated-portrait.left{--portrait-shadow-x:18px}
+.character-card.illustrated-portrait.right{--portrait-shadow-x:-18px}
+.character-card.illustrated-portrait .portrait-canvas{filter:drop-shadow(var(--portrait-shadow-x) 22px 23px rgba(0,0,0,.34))}
+.character-card.illustrated-portrait::after{box-shadow:inset var(--portrait-shadow-x) 0 25px rgba(0,0,0,.08)}
+
+/* Wide scenes and mobile crops are authored independently. */
+@media(max-width:800px){
+  .title-screen{background-position:62% 50%!important;overflow-y:auto}
+  .title-screen::after{background:linear-gradient(180deg,rgba(3,5,9,.26) 0,rgba(3,5,9,.52) 36%,rgba(3,5,9,.94) 72%)}
+  .title-copy{width:100%;min-height:max(100dvh,760px);padding:35vh 7vw 180px;justify-content:flex-end;background:none}
+  .title-copy h1{font-size:clamp(3.4rem,17vw,5.6rem)}
+  .title-hook{font-size:1.08rem;line-height:1.55;margin:.65rem 0 .25rem}
+  .offline-library-status{width:100%;display:grid!important;grid-template-columns:auto 1fr auto}
+  #title-launch-dock{left:4vw!important;right:4vw!important;width:92vw!important;bottom:max(12px,env(safe-area-inset-bottom))!important}
+  .bg-train .scene-back{background-position:61% 50%!important}
+  .bg-arles .scene-back{background-position:48% 50%!important}
+  .bg-instituteExterior .scene-back{background-position:54% 50%!important}
+  .bg-loadingBay .scene-back{background-position:54% 50%!important}
+  .bg-labPainting .scene-back,.bg-scan .scene-back,.bg-infrared .scene-back{background-position:61% 50%!important}
+  .bg-bedroomWorld .scene-back,.bg-keyholeRoom .scene-back,.bg-chairLayer .scene-back{background-position:57% 50%!important}
+  .bg-martaWorkshop .scene-back{background-position:47% 50%!important}
+  .bg-comparisonRoom .scene-back{background-position:50% 50%!important}
+  .hud-right #focus-toggle{display:none!important}
+}
+@media(max-height:650px) and (min-width:801px){
+  .title-copy{padding-top:24px;padding-bottom:150px;justify-content:flex-start}
+  .title-copy h1{font-size:clamp(3.3rem,7vw,5.8rem)}
+  .title-hook{margin:.5rem 0}
+  .offline-library-status{margin-top:.4rem}
+}
+.reduce-motion .bg-chairLayer .scene-front::after,.reduce-motion .bg-layerCollapse .scene-front::after,.reduce-motion .bg-bedroomCrumble .scene-front::after,.reduce-motion .bg-emergency .scene-front::before,.reduce-motion .bg-smoke .scene-front::before,.reduce-motion .bg-instituteFire .scene-front::before,.reduce-motion .bg-fireControl .scene-front::before{animation:none!important}
+

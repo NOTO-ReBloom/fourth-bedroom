@@ -158,3 +158,7 @@ Historical artists are dramatized for an original fictional game. Game dialogue 
 
 研究所、廊下、資料室、調査室、設備室、絵画世界、マルタ工房などの
 環境美術は本作向けに生成し、ゲーム画面の人物配置とUIを考慮して再編集しています。
+
+
+## 2.23 title key visual
+The 2.23 title key visual is an original AI-assisted production asset created specifically for this project and integrated as a game background.
